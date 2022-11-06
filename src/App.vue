@@ -1,12 +1,29 @@
+<script setup>
+import MainLocationView from './views/MainLocationView.vue';
+</script>
+
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <MainLocationView />
 </template>
 
 <style>
+body {
+  margin: 0;
+}
+
+header {
+  display: flex;
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(219, 217, 217);
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
