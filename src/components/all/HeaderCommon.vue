@@ -3,7 +3,7 @@
 
 <template>
   <header>
-    <img src="../assets/all/icon-menu.svg" />
+    <img src="../../assets/all/icon-menu.svg" />
   </header>
 </template>
 

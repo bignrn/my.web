@@ -5,7 +5,7 @@
   <footer>
     <address>
       <a href="https://github.com/bignrn" target="_blank">
-        <img src="../assets/all/address-github.svg" />
+        <img src="../../assets/all/address-github.svg" />
       </a>
     </address>
 
