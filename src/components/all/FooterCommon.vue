@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <footer>
+  <footer class="orange">
     <address>
       <a href="https://github.com/bignrn" target="_blank">
         <img src="../../assets/all/address-github.svg" />
