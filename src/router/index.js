@@ -1,11 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import IndexView from '../views/IndexView'
+import ActivityView from '../views/ActivityView'
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: IndexView
+  },
+  {
+    path: '/ice-break',
+    name: 'iceBreak',
+    component: ActivityView,
   },
 ]
 
