@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import IndexView from '../views/IndexView'
+import ActivityView from '../views/ActivityView'
 import MyHistoryView from '../views/MyHistoryView';
 
 const routes = [
@@ -9,6 +10,10 @@ const routes = [
     component: IndexView
   },
   {
+    path: '/ice-break',
+    name: 'iceBreak',
+    component: ActivityView,
+  },
     path: '/my-profile-page',
     name: 'MyHistory',
     component: MyHistoryView,
