@@ -16,7 +16,7 @@ const historyList = [
       <p>システム開発で笑顔を増やせたらと考えています。</p>
     </div>
     <div class="prof-basic-histories-wrap">
-      <h1>取得資格</h1>
+      <h1>取得した資格</h1>
       <ul>
         <li v-for="(list, i) of historyList" :key="i">
           <img :src="list.img" alt="list-icon" class="history-img" />{{ list.title }}
@@ -33,11 +33,12 @@ const historyList = [
 
 <style scoped>
 article {
-  margin-bottom: 5rem;
+  margin-top: 3rem;
+  margin-bottom: 7rem;
 }
 
 .prof-basic-contents-wrap {
-  padding: 2rem 0 5rem;
+  padding: 2rem 0;
   background-color: orange;
   color: white;
 }
