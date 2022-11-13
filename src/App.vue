@@ -37,6 +37,7 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+  padding-bottom: 0.5rem;
   background-color: rgb(219, 217, 217);
 }
 

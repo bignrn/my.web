@@ -1,8 +1,8 @@
 <script setup>
 import { defineProps } from "vue"
 defineProps({
-  updateList: Array,
-})
+  updateLists: { type: Array },
+});
 </script>
 
 <template>
@@ -12,9 +12,7 @@ defineProps({
       <img src="../../assets/index/icon-update-info.svg" style="width: 3rem;" />
     </div>
     <ul>
-      <li>マイページをリニューアルしました！</li>
-      <li>マイページ</li>
-      <li>リニューアルしました！</li>
+      <li v-for="(list, i) of updateLists" :key="i">{{ list.title }}</li>
     </ul>
   </section>
 </template>

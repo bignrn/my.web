@@ -1,40 +1,19 @@
 <script setup>
-import { ref } from "vue";
 import InfoList from '@/components/index/InfoList.vue';
 import IndexDetail from '@/components/index/IndexDetail.vue';
-
-const List = ref([
-  {
-    title: "タイトル",
-    message: "メッセージコンテンツが表示されていくので確認する。",
-    pictureUrl: "",
-  },
-  {
-    title: "タイトル",
-    message: "メッセージコンテンツが表示されていくので確認する。",
-    pictureUrl: "",
-  },
-  {
-    title: "タイトル",
-    message: "メッセージコンテンツが表示されていくので確認する。",
-    pictureUrl: "",
-  },
-  {
-    title: "タイトル",
-    message: "メッセージコンテンツが表示されていくので確認する。",
-    pictureUrl: "",
-  },
-]);
+import updateList from "../assets/basic/List/information/update";
+import contents from "../assets/basic/List/information/contents";
 
 </script>
 
 <template>
   <article>
     <h1>ご覧いただきありがとうございます!</h1>
-    <InfoList />
+    <InfoList :updateLists="updateList.updateList" />
     <h1>コンテンツ</h1>
     <div class="wrap-detail-list">
-      <IndexDetail v-for="(item, i) in List" :title="item.title" :detail="item.message" :key="i" />
+      <IndexDetail v-for="(item, i) in contents.infoList" :to="item.target" :title="item.title" :detail="item.message"
+        :imgUrl="item.pictureUrl" :key="i" />
     </div>
   </article>
 </template>

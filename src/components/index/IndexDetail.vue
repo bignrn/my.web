@@ -1,28 +1,40 @@
 <script setup>
 import { defineProps } from "vue"
+import normal from "@/assets/index/undraw_upgrade_re_gano.svg";
 defineProps({
   title: String,
   detail: String,
-  imgUrl: {
-    type: String,
-    default: "@/assets/index/undraw_upgrade_re_gano.svg",
-  },
+  imgUrl: String,
+  to: String,
 })
 </script>
 
 <template>
-  <section class="wrap-detail">
-    <img src="@/assets/index/undraw_upgrade_re_gano.svg" class="img-index" />
-    <div class="wrap-detail-members">
-      <div>{{ title }}</div>
-      <pre class="detail-messages">
+  <component :is="!to ? 'div' : 'router-link'" :to="to">
+    <section class="wrap-detail">
+      <div class="img-index-wrap">
+        <img :src="imgUrl ? './image/detail/' + imgUrl : normal" class="img-index" />
+      </div>
+      <div class="wrap-detail-members">
+        <h1>{{ title }}</h1>
+        <pre class="detail-messages">
         {{ detail }}
       </pre>
-    </div>
-  </section>
+      </div>
+    </section>
+  </component>
 </template>
 
 <style scoped>
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color: orange;
+}
+
 .wrap-detail {
   display: flex;
   flex-wrap: wrap;
@@ -37,9 +49,14 @@ defineProps({
   padding-left: 1rem;
 }
 
+.img-index-wrap {
+  max-height: 10rem;
+  overflow: hidden;
+  background-color: cadetblue;
+}
+
 .img-index {
   width: 15rem;
-  background-color: cadetblue;
 }
 
 .detail-messages {
