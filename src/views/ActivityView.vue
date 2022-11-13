@@ -13,4 +13,9 @@ import TopicDice from "../components/activity/TopicDice.vue"
 header {
   background-color: black;
 }
+
+article {
+  margin-top: 4rem;
+  margin-bottom: 7rem;
+}
 </style>

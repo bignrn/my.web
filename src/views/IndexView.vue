@@ -14,6 +14,7 @@ import contents from "../assets/basic/List/information/contents";
     <div class="wrap-detail-list">
       <IndexDetail v-for="(item, i) in contents.infoList" :to="item.target" :title="item.title" :detail="item.message"
         :imgUrl="item.pictureUrl" :key="i" />
+      <p>※まだまだ増やします。</p>
     </div>
   </article>
 </template>
@@ -34,6 +35,7 @@ article {
   margin: 1rem;
   padding: 1rem;
   background-color: aliceblue;
+  border: 0.1rem solid black;
   border-radius: 2rem;
 }
 </style>
