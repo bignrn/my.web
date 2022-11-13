@@ -2,8 +2,10 @@
 </script>
 
 <template>
-  <header>
-    <img src="../../assets/all/icon-menu.svg" />
+  <header class="orange">
+    <div>
+      <img src="../../assets/all/icon-menu.svg" />
+    </div>
   </header>
 </template>
 

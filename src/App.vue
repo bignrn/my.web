@@ -9,18 +9,35 @@ import MainLocationView from './views/MainLocationView.vue';
 <style>
 body {
   margin: 0;
+  font-size: medium;
+}
+
+@media screen and (max-width: 620px) {
+  body {
+    font-size: 0.9rem;
+  }
 }
 
 header {
   display: flex;
-  margin-left: 1rem;
-  margin-top: 1rem;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  /* height: 100%; */
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.orange {
+  background-color: rgb(255, 206, 114);
 }
 
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
+  padding-bottom: 0.5rem;
   background-color: rgb(219, 217, 217);
 }
 
