@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import IndexView from '../views/IndexView'
+import MyHistoryView from '../views/MyHistoryView';
 
 const routes = [
   {
@@ -7,6 +8,11 @@ const routes = [
     name: 'home',
     component: IndexView
   },
+  {
+    path: '/my-profile-page',
+    name: 'MyHistory',
+    component: MyHistoryView,
+  }
 ]
 
 const router = createRouter({
