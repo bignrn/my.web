@@ -14,6 +14,7 @@ const routes = [
     name: 'iceBreak',
     component: ActivityView,
   },
+  {
     path: '/my-profile-page',
     name: 'MyHistory',
     component: MyHistoryView,
