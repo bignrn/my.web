@@ -1,11 +1,20 @@
 <script setup>
+import { ref } from "vue";
+import NavMenu from './NavMenu.vue';
+
+const menuFlg = ref(false);
+
+function clickFunction() {
+  menuFlg.value = !menuFlg.value;
+}
 </script>
 
 <template>
   <header class="orange">
-    <div>
+    <NavMenu :status="menuFlg" @close="(e) => { menuFlg = e }" />
+    <a @click="clickFunction">
       <img src="../../assets/all/icon-menu.svg" />
-    </div>
+    </a>
   </header>
 </template>
 

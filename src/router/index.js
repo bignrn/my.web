@@ -6,6 +6,10 @@ import MyHistoryView from '../views/MyHistoryView';
 const routes = [
   {
     path: '/',
+    redirect: "/home",
+  },
+  {
+    path: '/home',
     name: 'home',
     component: IndexView
   },
