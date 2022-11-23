@@ -19,18 +19,20 @@ function closeMenu() {
 </script>
 
 <template>
-  <nav v-show="status">
-    <a class="nav-wrap">
-      <a @click="closeMenu">
-        <img src="../../assets/all/icon-batu.svg" />
+  <transition name="fade">
+    <nav v-show="status">
+      <a class="nav-wrap">
+        <a @click="closeMenu">
+          <img src="../../assets/all/icon-batu.svg" />
+        </a>
+        <ul class="nav-text-wrap">
+          <li v-for="(item, i) of navList" :key="i">
+            <router-link class="nav-text" :to="item.to" @click="closeMenu">{{ item.label }}</router-link>
+          </li>
+        </ul>
       </a>
-      <ul class="nav-text-wrap">
-        <li v-for="(item, i) of navList" :key="i">
-          <router-link class="nav-text" :to="item.to" @click="closeMenu">{{ item.label }}</router-link>
-        </li>
-      </ul>
-    </a>
-  </nav>
+    </nav>
+  </transition>
 </template>
 
 <style scoped>
