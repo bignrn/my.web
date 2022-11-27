@@ -33,12 +33,15 @@ const historyList = [
       <img src="../assets/profile/undraw_programmer_re_owql.svg" class="img-class" />
     </div>
     <hr />
-    <div class="prof-basic-histories-wrap">
+    <div class="prof-basic-histories-wrap wrap-hobby">
       <h1>趣味</h1>
       <img src="../assets/profile/tp-icon.jpg" class="tp-icon-img" />
       <h2>トランペット🎺</h2>
+      <p>学生時代にソロコンテスト県2位を取る事が出来ました。</p>
+      <p>現在は母校である小学校のバンドで<br />指導をさせて貰っています。</p>
+      <p>子供たちの成長を実感します。</p>
+      <img src="../assets/profile/tp-img.jpg" class="tp-img" />
     </div>
-    <hr />
     <nav class="prof-basic-nav-wrap">
       <h1>情報を発信</h1>
       <a href="https://github.com/bignrn" target="_blank">ソースコードはGitHubへ</a>
@@ -48,6 +51,7 @@ const historyList = [
 
 <style scoped>
 article {
+  width: fit-content;
   margin-top: 3rem;
   margin-bottom: 7rem;
 }
@@ -98,11 +102,12 @@ hr {
 }
 
 .prof-basic-nav-wrap {
-  padding: 0;
+  background-color: azure;
+  padding: 1.5rem 0;
 }
 
 .img-class {
-  width: 20rem;
+  width: 17rem;
 }
 
 .gradient {
@@ -112,12 +117,27 @@ hr {
 
 .gradient-reverse {
   margin: 0;
-  padding: 0;
+  padding: 4rem 0;
   background: linear-gradient(#ffe227, white);
+}
+
+.wrap-hobby {
+  margin-top: 1rem;
+  margin-bottom: 5rem;
+  color: black;
 }
 
 .tp-icon-img {
   width: 7rem;
   border-radius: 50%;
+}
+
+.tp-img {
+  width: 25.9rem;
+  position: absolute;
+  top: 106rem;
+  left: 0rem;
+  z-index: -1;
+  opacity: 0.45;
 }
 </style>
