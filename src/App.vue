@@ -34,6 +34,8 @@ header {
 }
 
 footer {
+  font-family: "Sawarabi Mincho";
+  font-weight: 600;
   position: fixed;
   bottom: 0;
   width: 100%;
