@@ -9,7 +9,7 @@ import contents from "../assets/basic/List/information/contents";
 <template>
   <article>
     <div class="index-wrap">
-      <h1>Thank you for watch!</h1>
+      <h1>Welcome to MyWeb page!</h1>
       <InfoList :updateLists="updateList.updateList" />
       <h1>Contents</h1>
       <div class="wrap-detail-list">
@@ -39,7 +39,7 @@ article {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-around;
   align-content: space-around;
   gap: 1rem;
   margin: 1rem;
