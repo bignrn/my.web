@@ -25,13 +25,14 @@ section {
 }
 
 section.wrap {
-  width: 50%;
+  min-width: 70%;
 }
 
 @media screen and (max-width: 620px) {
   section.wrap {
-    width: 90%;
+    width: 100%;
     font-weight: bold;
+    margin: 0 auto;
   }
 }
 
@@ -47,9 +48,8 @@ ul {
 
 li {
   font-weight: bold;
-  border-bottom-style: groove;
   width: fit-content;
   color: cornflowerblue;
-  padding: 0.3rem 0;
+  padding: 0;
 }
 </style>

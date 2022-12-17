@@ -8,13 +8,15 @@ import contents from "../assets/basic/List/information/contents";
 
 <template>
   <article>
-    <h1>ご覧いただきありがとうございます!</h1>
-    <InfoList :updateLists="updateList.updateList" />
-    <h1>コンテンツ</h1>
-    <div class="wrap-detail-list">
-      <IndexDetail v-for="(item, i) in contents.infoList" :to="item.target" :title="item.title" :detail="item.message"
-        :imgUrl="item.pictureUrl" :key="i" />
-      <p>※まだまだ増やします。</p>
+    <div class="index-wrap">
+      <h1>Thank you for watch!</h1>
+      <InfoList :updateLists="updateList.updateList" />
+      <h1>Contents</h1>
+      <div class="wrap-detail-list">
+        <IndexDetail v-for="(item, i) in contents.infoList" :to="item.target" :title="item.title" :detail="item.message"
+          :imgUrl="item.pictureUrl" :key="i" />
+      </div>
+      <p class="add-contents-text">※まだまだ増やします。</p>
     </div>
   </article>
 </template>
@@ -23,6 +25,14 @@ import contents from "../assets/basic/List/information/contents";
 article {
   margin: 5rem auto;
   padding-bottom: 5rem;
+}
+
+.index-wrap {
+  margin: 0 10%;
+}
+
+.index-wrap h1 {
+  margin-top: 5rem;
 }
 
 .wrap-detail-list {
@@ -34,8 +44,12 @@ article {
   gap: 1rem;
   margin: 1rem;
   padding: 1rem;
-  background-color: aliceblue;
+  background-color: cornsilk;
   border: 0.1rem solid black;
   border-radius: 2rem;
+}
+
+.add-contents-text {
+  text-align: right;
 }
 </style>

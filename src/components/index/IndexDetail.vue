@@ -52,7 +52,7 @@ a:hover {
 .img-index-wrap {
   max-height: 10rem;
   overflow: hidden;
-  background-color: cadetblue;
+  background-color: ivory;
 }
 
 .img-index {
