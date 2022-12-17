@@ -32,7 +32,6 @@ const historyList = [
     <div class="prof-basic-histories-wrap gradient-reverse">
       <img src="../assets/profile/undraw_programmer_re_owql.svg" class="img-class" />
     </div>
-    <hr />
     <div class="prof-basic-histories-wrap wrap-hobby">
       <h1>趣味</h1>
       <img src="../assets/profile/tp-icon.jpg" class="tp-icon-img" />
@@ -51,7 +50,7 @@ const historyList = [
 
 <style scoped>
 article {
-  width: fit-content;
+  /* width: fit-content; */
   margin-top: 3rem;
   margin-bottom: 7rem;
 }
@@ -133,11 +132,22 @@ hr {
 }
 
 .tp-img {
-  width: 25.9rem;
+  display: none;
+  /* width: 25.9rem;
   position: absolute;
   top: 106rem;
-  left: 0rem;
   z-index: -1;
-  opacity: 0.45;
+  opacity: 0.45; */
+}
+
+@media screen and (max-width: 430px) {
+  .tp-img {
+    width: 25.9rem;
+    position: absolute;
+    top: 106rem;
+    left: 0rem;
+    z-index: -1;
+    opacity: 0.45;
+  }
 }
 </style>
