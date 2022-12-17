@@ -39,7 +39,7 @@ const historyList = [
       <p>学生時代にソロコンテスト県2位を取る事が出来ました。</p>
       <p>現在は母校である小学校のバンドで<br />指導をさせて貰っています。</p>
       <p>子供たちの成長を実感します。</p>
-      <img src="../assets/profile/tp-img.jpg" class="tp-img" />
+      <img src="../assets/profile/tp-bg-img.jpg" class="tp-img" />
     </div>
     <nav class="prof-basic-nav-wrap">
       <h1>情報を発信</h1>
@@ -132,22 +132,17 @@ hr {
 }
 
 .tp-img {
-  display: none;
-  /* width: 25.9rem;
+  width: 25.9rem;
   position: absolute;
   top: 106rem;
+  left: 0rem;
   z-index: -1;
-  opacity: 0.45; */
+  opacity: 0.45;
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (min-width: 430px) {
   .tp-img {
-    width: 25.9rem;
-    position: absolute;
-    top: 106rem;
-    left: 0rem;
-    z-index: -1;
-    opacity: 0.45;
+    display: none;
   }
 }
 </style>
