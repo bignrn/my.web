@@ -3,26 +3,28 @@ import IndexView from '../views/IndexView'
 import ActivityView from '../views/ActivityView'
 import MyHistoryView from '../views/MyHistoryView';
 
+const rootPath = "/my.web";
+
 const routes = [
   {
-    path: '/',
-    redirect: "/home",
-  },
-  {
-    path: '/home',
+    path: rootPath + '/home',
     name: 'home',
     component: IndexView
   },
   {
-    path: '/ice-break',
+    path: rootPath + '/ice-break',
     name: 'iceBreak',
     component: ActivityView,
   },
   {
-    path: '/my-profile-page',
+    path: rootPath + '/my-profile-page',
     name: 'MyHistory',
     component: MyHistoryView,
-  }
+  },
+  {
+    path: '/',
+    redirect: rootPath + "/home",
+  },
 ]
 
 const router = createRouter({
