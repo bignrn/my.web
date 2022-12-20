@@ -22,6 +22,11 @@ const routes = [
     component: MyHistoryView,
   },
   {
+    path: rootPath,
+    component: IndexView,
+    redirect: rootPath + "/home",
+  },
+  {
     path: '/',
     redirect: rootPath + "/home",
   },

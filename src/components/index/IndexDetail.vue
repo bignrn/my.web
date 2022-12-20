@@ -13,7 +13,7 @@ defineProps({
   <component :is="!to ? 'div' : 'router-link'" :to="'/my.web' + to">
     <section class="wrap-detail">
       <div class="img-index-wrap">
-        <img :src="imgUrl ? './image/detail/' + imgUrl : normal" class="img-index" />
+        <img :src="imgUrl ? '/image/detail/' + imgUrl : normal" class="img-index" />
       </div>
       <div class="wrap-detail-members">
         <h1>{{ title }}</h1>
