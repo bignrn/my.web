@@ -28,6 +28,7 @@ const routes = [
   },
   {
     path: '/',
+    component: IndexView,
     redirect: rootPath + "/home",
   },
 ]
