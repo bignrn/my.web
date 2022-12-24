@@ -1,6 +1,6 @@
 <script setup>
 import { defineProps } from "vue"
-import normal from "@/assets/index/undraw_upgrade_re_gano.svg";
+
 defineProps({
   title: String,
   detail: String,
@@ -10,10 +10,10 @@ defineProps({
 </script>
 
 <template>
-  <component :is="!to ? 'div' : 'router-link'" :to="'/my.web' + to">
+  <component :is="!to ? 'div' : 'router-link'" :to="to">
     <section class="wrap-detail">
       <div class="img-index-wrap">
-        <img :src="imgUrl ? '/image/detail/' + imgUrl : normal" class="img-index" />
+        <img :src="imgUrl ? '/image/detail/' + imgUrl : '/image/detail/undraw_upgrade_re_gano.svg'" class="img-index" />
       </div>
       <div class="wrap-detail-members">
         <h1>{{ title }}</h1>
