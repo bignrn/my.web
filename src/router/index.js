@@ -3,39 +3,36 @@ import IndexView from '../views/IndexView'
 import ActivityView from '../views/ActivityView'
 import MyHistoryView from '../views/MyHistoryView';
 
-const rootPath = "/my.web";
-
 const routes = [
   {
-    path: rootPath + '/home',
+    path: '/home',
     name: 'home',
     component: IndexView
   },
   {
-    path: rootPath + '/ice-break',
+    path: '/ice-break',
     name: 'iceBreak',
     component: ActivityView,
   },
   {
-    path: rootPath + '/my-profile-page',
+    path: '/my-profile-page',
     name: 'MyHistory',
     component: MyHistoryView,
   },
+  // {
+  //   path: "/my.web",
+  //   redirect: "/home",
+  // },
   {
-    path: rootPath,
-    component: IndexView,
-    redirect: rootPath + "/home",
-  },
-  {
-    path: '/',
-    component: IndexView,
-    redirect: rootPath + "/home",
-  },
+    path: "/",
+    redirect: "/home",
+  }
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
+  history: createWebHistory("/my.web"),
+  // history: createWebHistory(process.env.BASE_URL),
+  routes,
 })
 
 export default router
