@@ -46,7 +46,7 @@ article {
   padding: 1rem;
   background-color: cornsilk;
   border: 0.1rem solid black;
-  border-radius: 2rem;
+  border-radius: 1rem;
 }
 
 .add-contents-text {
