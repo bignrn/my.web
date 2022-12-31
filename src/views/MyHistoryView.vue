@@ -101,7 +101,7 @@ hr {
 }
 
 .prof-basic-nav-wrap {
-  background-color: azure;
+  background-color: white;
   padding: 1.5rem 0;
 }
 
