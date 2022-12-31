@@ -10,7 +10,7 @@ defineProps({
 </script>
 
 <template>
-  <component :is="!to ? 'div' : 'router-link'" :to="'/my.web' + to">
+  <component :is="!to ? 'div' : 'router-link'" :to="to">
     <section class="wrap-detail">
       <div class="img-index-wrap">
         <img :src="imgUrl ? '/image/detail/' + imgUrl : normal" class="img-index" />

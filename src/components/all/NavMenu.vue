@@ -10,9 +10,9 @@ const router = useRouter();
 const emits = defineEmits(["close"])
 
 const navList = [
-  { to: router.resolve({ name: "home" }).href, label: "ホームページ" },
-  { to: router.resolve({ name: "iceBreak" }).href, label: "アクティビティ" },
-  { to: router.resolve({ name: "MyHistory" }).href, label: "製作者について" }
+  { to: router.resolve({ name: "home" }).href.replace("/my.web", ""), label: "ホームページ" },
+  { to: router.resolve({ name: "iceBreak" }).href.replace("/my.web", ""), label: "アクティビティ" },
+  { to: router.resolve({ name: "MyHistory" }).href.replace("/my.web", ""), label: "製作者について" }
 ]
 
 function closeMenu() {
