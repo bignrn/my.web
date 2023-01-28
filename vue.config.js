@@ -6,5 +6,5 @@ module.exports = defineConfig({
 module.exports = {
   outputDir: 'docs',
   assetsDir: './',
-  publicPath: './',
+  publicPath: '/my.web',
 }
