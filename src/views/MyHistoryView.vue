@@ -101,7 +101,7 @@ hr {
 }
 
 .prof-basic-nav-wrap {
-  background-color: azure;
+  background-color: white;
   padding: 1.5rem 0;
 }
 
@@ -132,7 +132,7 @@ hr {
 }
 
 .tp-img {
-  width: 25.9rem;
+  width: 24.4rem;
   position: absolute;
   top: 106rem;
   left: 0rem;

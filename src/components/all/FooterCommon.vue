@@ -1,4 +1,12 @@
 <script setup>
+import { ref } from "vue";
+
+const openStatus = ref(false);
+
+const onClickOpen = () => {
+  openStatus.value = !openStatus.value;
+};
+
 </script>
 
 <template>
@@ -10,10 +18,12 @@
     </address>
 
     <small>
-      <p>下記より画像・OSSをお借りしています。</p>
-      <div class="small-wrap">
-        <p>icon by <a target="_blank" href="https://icons8.com">Icons8</a></p> /
-        <p>illustration by <a target="_blank" href="https://undraw.co/illustrations">unDraw</a></p>
+      <a @click="onClickOpen">
+        <p>下記より画像・OSSをお借りしています。▼※タッチで開きます。</p>
+      </a>
+      <div class="small-wrap" v-show="openStatus">
+        <p>icon by <a target="_blank" href="https://icons8.com">Icons8</a>/</p>
+        <p>illustration by <a target="_blank" href="https://undraw.co/illustrations">unDraw</a>/</p>
         <p>Favicon by <a target="_blank" href="http://flat-icon-design.com/">FLAT ICON</a></p>
       </div>
     </small>
@@ -21,7 +31,11 @@
 </template>
 
 <style scoped>
-small p {
+a {
+  cursor: pointer;
+}
+
+small a p {
   margin: 0;
 }
 
@@ -29,5 +43,6 @@ small p {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
+  flex-wrap: wrap-reverse;
 }
 </style>

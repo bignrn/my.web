@@ -34,10 +34,10 @@ header {
 }
 
 footer {
-  font-family: "Sawarabi Mincho";
-  font-weight: 600;
   position: fixed;
   bottom: 0;
+  font-family: "Sawarabi Mincho";
+  font-weight: 600;
   width: 100%;
   padding-bottom: 0.5rem;
   background-color: rgb(219, 217, 217);

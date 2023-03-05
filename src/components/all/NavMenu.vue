@@ -1,16 +1,17 @@
 <script setup>
 import { defineProps, defineEmits } from "vue"
+import { useRouter } from "vue-router";
 
 const props = defineProps({
   status: Boolean,
 })
 
 const emits = defineEmits(["close"])
+const router = useRouter();
 
 const navList = [
-  { to: "/home", label: "ホームページ" },
-  { to: "/ice-break", label: "アクティビティ" },
-  { to: "/my-profile-page", label: "製作者について" }
+  { to: router.resolve({ name: "MyHistory" }), label: "製作者について" },
+  { to: router.resolve({ name: "iceBreak" }), label: "アクティビティ" },
 ]
 
 function closeMenu() {

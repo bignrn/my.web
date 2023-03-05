@@ -1,28 +1,22 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import IndexView from '../views/IndexView'
 import ActivityView from '../views/ActivityView'
 import MyHistoryView from '../views/MyHistoryView';
 
 const routes = [
   {
     path: '/',
-    redirect: "/home",
+    redirect: "/profile",
   },
   {
-    path: '/home',
-    name: 'home',
-    component: IndexView
+    path: '/profile',
+    name: 'MyHistory',
+    component: MyHistoryView,
   },
   {
     path: '/ice-break',
     name: 'iceBreak',
     component: ActivityView,
   },
-  {
-    path: '/my-profile-page',
-    name: 'MyHistory',
-    component: MyHistoryView,
-  }
 ]
 
 const router = createRouter({
