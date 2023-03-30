@@ -6,7 +6,7 @@ import MainLocationView from './views/MainLocationView.vue';
   <MainLocationView />
 </template>
 
-<style>
+<style lang="scss">
 body {
   margin: 0;
   font-size: medium;
@@ -30,11 +30,10 @@ header {
 }
 
 .orange {
-  background-color: rgb(255, 206, 114);
+  background-color: $theme-color;
 }
 
 footer {
-  position: fixed;
   bottom: 0;
   font-family: "Sawarabi Mincho";
   font-weight: 600;
