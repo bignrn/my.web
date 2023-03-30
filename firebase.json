@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "myweb-yuu",
+    "site": "my-web-bb123",
     "public": "dist",
     "ignore": [
       "firebase.json",
