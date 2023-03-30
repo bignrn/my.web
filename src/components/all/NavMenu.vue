@@ -11,7 +11,7 @@ const router = useRouter();
 
 const navList = [
   { to: router.resolve({ name: "MyHistory" }), label: "製作者について" },
-  { to: router.resolve({ name: "iceBreak" }), label: "アクティビティ" },
+  { to: router.resolve({ name: "iceBreak" }), label: "アイスブレイク" },
 ]
 
 function closeMenu() {
@@ -20,47 +20,67 @@ function closeMenu() {
 </script>
 
 <template>
-  <transition name="fade">
-    <nav v-show="status">
-      <a class="nav-wrap">
-        <a @click="closeMenu">
-          <img src="../../assets/all/icon-batu.svg" />
-        </a>
-        <ul class="nav-text-wrap">
-          <li v-for="(item, i) of navList" :key="i">
-            <router-link class="nav-text" :to="item.to" @click="closeMenu">{{ item.label }}</router-link>
-          </li>
-        </ul>
+  <nav v-show="status" class="nav-main-wrap">
+    <a class="nav-wrap">
+      <a @click="closeMenu" class="back-btn">
+        <img src="../../assets/all/icon-batu.svg" />
       </a>
-    </nav>
-  </transition>
+      <ul class="nav-text-wrap">
+        <li v-for="(item, i) of navList" :key="i">
+          <router-link class="nav-text" :to="item.to" @click="closeMenu">{{ item.label }}</router-link>
+        </li>
+      </ul>
+    </a>
+  </nav>
 </template>
 
-<style scoped>
-a.nav-wrap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  min-width: -webkit-fill-available;
-  min-height: 50rem;
-  background-color: white;
-  padding: 1rem;
-}
+<style lang="scss" scoped>
+.nav-main-wrap {
+  padding: 30px;
 
-ul {
-  list-style-type: none;
-}
+  a {
+    font-weight: bold;
+    color: black;
 
-.nav-text-wrap {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: flex-start;
-  justify-content: center;
-}
+    &.router-link-exact-active {
+      color: rgba(#fff, 0.5);
+    }
 
-.nav-text {
-  font-size: 1.5rem;
+    &.nav-wrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      width: 100%;
+      max-height: 50rem;
+      background-color: $theme-color;
+      padding: 1rem;
+
+      .back-btn {
+        display: flex;
+
+        >img {
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+
+      ul {
+        list-style-type: none;
+
+        &.nav-text-wrap {
+          display: flex;
+          flex-direction: column;
+          flex-wrap: nowrap;
+          align-items: flex-start;
+          justify-content: center;
+
+          .nav-text {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+  }
 }
 </style>

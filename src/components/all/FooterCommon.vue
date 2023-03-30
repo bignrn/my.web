@@ -10,7 +10,7 @@ const onClickOpen = () => {
 </script>
 
 <template>
-  <footer class="orange">
+  <footer class="common-footer">
     <address>
       <a href="https://github.com/bignrn" target="_blank">
         <img src="../../assets/all/address-github.svg" />
@@ -30,19 +30,29 @@ const onClickOpen = () => {
   </footer>
 </template>
 
-<style scoped>
-a {
-  cursor: pointer;
-}
+<style lang="scss" scoped>
+.common-footer {
+  bottom: 0;
+  font-family: "Sawarabi Mincho";
+  font-weight: 600;
+  width: 100%;
+  padding-bottom: 0.5rem;
+  background-color: $theme-color;
 
-small a p {
-  margin: 0;
-}
+  small {
+    a {
+      p {
+        margin: 0;
+        cursor: pointer;
+      }
+    }
 
-.small-wrap {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  flex-wrap: wrap-reverse;
+    .small-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap-reverse;
+    }
+  }
 }
 </style>

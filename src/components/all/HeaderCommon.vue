@@ -10,7 +10,7 @@ function clickFunction() {
 </script>
 
 <template>
-  <header class="orange">
+  <header class="common-header">
     <NavMenu :status="menuFlg" @close="(e) => { menuFlg = e }" />
     <a @click="clickFunction">
       <img src="../../assets/all/icon-menu.svg" />
@@ -18,6 +18,15 @@ function clickFunction() {
   </header>
 </template>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.common-header {
+  display: flex;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: $theme-color;
+}
 </style>
