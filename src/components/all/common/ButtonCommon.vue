@@ -27,7 +27,7 @@ button {
   box-shadow: 0rem 0.1rem 0.1em black;
 }
 
-button:hover {
+button:active {
   cursor: pointer;
   background-color: rgb(169, 135, 73);
   box-shadow: 0rem 0rem 0.1em black;
