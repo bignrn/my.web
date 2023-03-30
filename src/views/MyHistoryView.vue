@@ -59,12 +59,8 @@ const historyList = [
 }
 
 .portfolio-wrap {
-  /* width: fit-content; */
-  margin-top: 3rem;
-  margin-bottom: 7rem;
-
   .prof-basic-contents-wrap {
-    padding: 2rem 0;
+    padding: 4rem 0;
     background-color: orange;
     color: white;
 
