@@ -2,7 +2,11 @@
 import { computed } from "@vue/reactivity";
 import ButtonCommon from "../all/common/ButtonCommon.vue";
 import { ref } from "vue";
-import topics from "../../assets/basic/List/activity/topic"
+import { storeToRefs } from "pinia";
+import { useDiceTopicStore } from "../../stores/DiceTopic";
+
+const diceTopicStore = useDiceTopicStore();
+const { topics } = storeToRefs(diceTopicStore);
 
 const dices = ref([
   require("../../assets/activity/dices/dice-1.png"),
@@ -29,7 +33,7 @@ const btnMessage = computed(() => {
 })
 
 const topicList = computed(() => {
-  return topics.topics;
+  return topics.value;
 })
 
 function onClick() {
