@@ -1,9 +1,9 @@
 <script setup>
-import { computed } from "@vue/reactivity";
-import ButtonCommon from "../all/common/ButtonCommon.vue";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useDiceTopicStore } from "../../stores/DiceTopic";
+import ButtonCommon from "../all/common/ButtonCommon.vue";
+import EditTopicItem from "./EditTopicItem.vue";
 
 const diceTopicStore = useDiceTopicStore();
 const { topics } = storeToRefs(diceTopicStore);
@@ -79,7 +79,9 @@ function animation() {
     </section>
     <section>
       <div>
-        <ButtonCommon @click="onClick" width="12rem" height="2rem">{{ btnMessage }}</ButtonCommon>
+        <ButtonCommon @click="onClick" width="12rem" height="2rem">
+          {{ btnMessage }}
+        </ButtonCommon>
       </div>
       <h2>TOPIC:</h2>
       <h3>「{{ topicList[topicIndex].title }}」</h3>
@@ -89,11 +91,14 @@ function animation() {
       <h1>登録されているリスト</h1>
       <div class="list-wrap">
         <ul>
-          <li v-for="(list, i) of topicList" :key="i" class="registered-list">
-            <div>
-              {{ list.id }}:{{ list.title }}
+          <li v-for="(list, i) of topicList" :key="i">
+            <div class="registered-list">
+              <div>
+                {{ list.id }}:{{ list.title }}
+              </div>
+              <button class="edit-btn">編集</button>
             </div>
-            <button class="edit-btn">編集</button>
+            <EditTopicItem :id="list.id" :topic="list.title" />
           </li>
           <li class="registered-list">
             <button class="list-add-btn-wrap">

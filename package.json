@@ -26,7 +26,7 @@
     "sass-loader": "^13.2.0"
   },
   "eslintConfig": {
-    "root": false,
+    "root": true,
     "env": {
       "node": true
     },
@@ -37,7 +37,11 @@
     "parserOptions": {
       "parser": "@babel/eslint-parser"
     },
-    "rules": {}
+    "rules": {
+      "no-unused-vars": "warn",
+      "vue/no-unused-components": "warn",
+      "vue/no-unused-vars": "warn"
+    }
   },
   "browserslist": [
     "> 1%",
