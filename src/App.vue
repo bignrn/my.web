@@ -12,6 +12,11 @@ body {
   font-size: medium;
 }
 
+p {
+  padding: 0;
+  margin: 0;
+}
+
 @media screen and (max-width: 620px) {
   body {
     font-size: 0.9rem;
@@ -23,6 +28,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: $text-black;
 }
 </style>
