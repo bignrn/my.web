@@ -97,43 +97,45 @@ function animation() {
   </div>
 </template>
 
-<style scoped>
-img {
-  width: 10rem;
-}
+<style lang="scss" scoped>
+.activity-contents-wrap {
+  img {
+    width: 10rem;
+  }
 
-.activity-list-wrap {
-  margin: 0.5rem;
-}
+  ol {
+    text-align: left;
+    font-weight: bold;
+    width: fit-content;
+    padding: 0.3rem 2rem;
+    border: 0.1rem solid black;
+  }
 
-.activity-list-wrap h1 {
-  margin: 0;
-  padding-top: 1rem;
-}
+  ul {
+    text-align: left;
+    font-weight: bold;
+    width: fit-content;
+    padding: 0.3rem;
+    list-style-type: none;
+    border: 0.1rem solid black;
+  }
 
-.list-wrap {
-  display: flex;
-  justify-content: center;
-}
+  .activity-list-wrap {
+    margin: 0.5rem;
 
-.list-wrap h1 {
-  width: 6rem;
-}
+    h1 {
+      margin: 0;
+      padding-top: 1rem;
+    }
 
-ol {
-  text-align: left;
-  font-weight: bold;
-  width: fit-content;
-  padding: 0.3rem 2rem;
-  border: 0.1rem solid black;
-}
+    .list-wrap {
+      display: flex;
+      justify-content: center;
 
-ul {
-  text-align: left;
-  font-weight: bold;
-  width: fit-content;
-  padding: 0.3rem;
-  list-style-type: none;
-  border: 0.1rem solid black;
+      h1 {
+        width: 6rem;
+      }
+    }
+  }
 }
 </style>
