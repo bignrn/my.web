@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, ref, toRefs } from 'vue';
+import { defineProps, defineEmits, ref, toRefs } from 'vue';
 import ButtonCommon from '../all/common/ButtonCommon.vue';
 
 const props = defineProps({
@@ -10,8 +10,16 @@ const props = defineProps({
   topic: String,
 })
 const { topic } = toRefs(props)
+const emits = defineEmits(["saveBtn", "cancelBtn"]);
 
 const editTopic = ref(topic.value);
+
+const saveBtn = (id) => {
+  emits("saveBtn", { id: id, topic: editTopic.value });
+}
+const cancelBtn = (id) => {
+  emits("cancelBtn", id);
+}
 
 </script>
 
@@ -22,10 +30,10 @@ const editTopic = ref(topic.value);
       <input type="text" v-model="editTopic" class="input-topic" />
     </div>
     <div class="btn-wrap">
-      <ButtonCommon class="register-btn">
+      <ButtonCommon @click="saveBtn(id)" class="register-btn">
         登録する
       </ButtonCommon>
-      <ButtonCommon classType="type-b" class="cancel-btn">
+      <ButtonCommon @click="cancelBtn(id)" classType="type-b" class="cancel-btn">
         キャンセル
       </ButtonCommon>
     </div>

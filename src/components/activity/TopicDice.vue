@@ -25,9 +25,12 @@ const dices = ref([
 const diceIndex = ref(0);
 const topicIndex = ref(0);
 const stopFlg = ref(false);
+const isOpenEdit = ref("");
+const isOpenAddListEdit = ref(false);
 const maxCount = 300;
 let count = 0;
 
+// **** サイコロ処理 ****//
 const btnMessage = computed(() => {
   return stopFlg.value ? "ストップする" : "サイコロを投げる";
 })
@@ -59,6 +62,35 @@ function animation() {
     count = 0;
     stopFlg.value = false;
   }
+}
+
+// **** リスト編集処理 ****//
+const returnNextListLength = computed(() => {
+  return `${topicList.value.length + 1}`;
+})
+
+const openEditBtn = (id) => {
+  isOpenEdit.value = id;
+}
+const executeSave = (val) => {
+  console.debug(val);
+  closeEditStatus(val.id);
+
+  // 追加時の変種画面を閉じる
+  if (isOpenAddListEdit.value) {
+    isOpenAddListEdit.value = false;
+  }
+}
+const closeEditStatus = (id) => {
+  if (isOpenEdit.value === id) {
+    isOpenEdit.value = "";
+  }
+}
+const addListBtn = () => {
+  isOpenAddListEdit.value = true;
+}
+const addListCloseBtn = () => {
+  isOpenAddListEdit.value = false;
 }
 </script>
 
@@ -92,19 +124,21 @@ function animation() {
       <div class="list-wrap">
         <ul>
           <li v-for="(list, i) of topicList" :key="i">
-            <div class="registered-list">
-              <div>
-                {{ list.id }}:{{ list.title }}
-              </div>
-              <button class="edit-btn">編集</button>
+            <div v-show="isOpenEdit !== list.id" class="registered-list">
+              <div class="registered-list-id">{{ list.id }}：</div>
+              <div>{{ list.title }}</div>
+              <button @click="openEditBtn(list.id)" class="edit-btn">編集</button>
             </div>
-            <EditTopicItem :id="list.id" :topic="list.title" />
+            <EditTopicItem v-show="isOpenEdit === list.id" :id="list.id" :topic="list.title" @saveBtn="executeSave"
+              @cancelBtn="closeEditStatus" />
           </li>
           <li class="registered-list">
-            <button class="list-add-btn-wrap">
+            <button v-show="!isOpenAddListEdit" @click="addListBtn" class="list-add-btn-wrap">
               <img src="/image/activity/diceTopic/icons8-add-64.png">
               <p>項目を追加する</p>
             </button>
+            <EditTopicItem v-show="isOpenAddListEdit" :id="returnNextListLength" @saveBtn="executeSave"
+              @cancelBtn="addListCloseBtn" />
           </li>
         </ul>
       </div>
@@ -163,6 +197,10 @@ function animation() {
         display: flex;
         margin: 0.4rem 0;
         align-items: center;
+
+        .registered-list-id {
+          padding: 0.4rem;
+        }
 
         .edit-btn {
           color: $secondary-text-color;
