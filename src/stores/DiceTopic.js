@@ -53,4 +53,22 @@ export const useDiceTopicStore = defineStore("DiceTopic", {
       }
     ],
   }),
+  actions: {
+    setTopic(val, idx) {
+      const setVal = {
+        id: val.id,
+        title: val.topic,
+      };
+
+      if (idx >= this.topics.length) {
+        this.topics.push(setVal)
+        return;
+      }
+
+      this.topics[idx] = setVal;
+    },
+    deleteTopic(idx) {
+      this.topics.splice(idx, 1);
+    },
+  }
 })

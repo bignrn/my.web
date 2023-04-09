@@ -26,7 +26,6 @@ const diceIndex = ref(0);
 const topicIndex = ref(0);
 const stopFlg = ref(false);
 const isOpenEdit = ref("");
-const isOpenAddListEdit = ref(false);
 const maxCount = 300;
 let count = 0;
 
@@ -72,25 +71,14 @@ const returnNextListLength = computed(() => {
 const openEditBtn = (id) => {
   isOpenEdit.value = id;
 }
-const executeSave = (val) => {
-  console.debug(val);
+const executeSave = (val, i) => {
+  diceTopicStore.setTopic(val, i);
   closeEditStatus(val.id);
-
-  // 追加時の変種画面を閉じる
-  if (isOpenAddListEdit.value) {
-    isOpenAddListEdit.value = false;
-  }
 }
 const closeEditStatus = (id) => {
   if (isOpenEdit.value === id) {
     isOpenEdit.value = "";
   }
-}
-const addListBtn = () => {
-  isOpenAddListEdit.value = true;
-}
-const addListCloseBtn = () => {
-  isOpenAddListEdit.value = false;
 }
 </script>
 
@@ -129,16 +117,17 @@ const addListCloseBtn = () => {
               <div>{{ list.title }}</div>
               <button @click="openEditBtn(list.id)" class="edit-btn">編集</button>
             </div>
-            <EditTopicItem v-show="isOpenEdit === list.id" :id="list.id" :topic="list.title" @saveBtn="executeSave"
-              @cancelBtn="closeEditStatus" />
+            <EditTopicItem v-if="isOpenEdit === list.id" :id="list.id" :topic="list.title"
+              @saveBtn="executeSave($event, i)" @cancelBtn="closeEditStatus" />
           </li>
           <li class="registered-list">
-            <button v-show="!isOpenAddListEdit" @click="addListBtn" class="list-add-btn-wrap">
+            <button v-show="isOpenEdit !== returnNextListLength" @click="openEditBtn(returnNextListLength)"
+              class="list-add-btn-wrap">
               <img src="/image/activity/diceTopic/icons8-add-64.png">
               <p>項目を追加する</p>
             </button>
-            <EditTopicItem v-show="isOpenAddListEdit" :id="returnNextListLength" @saveBtn="executeSave"
-              @cancelBtn="addListCloseBtn" />
+            <EditTopicItem v-if="isOpenEdit === returnNextListLength" :id="returnNextListLength" topic=""
+              @saveBtn="executeSave($event, returnNextListLength)" @cancelBtn="closeEditStatus" />
           </li>
         </ul>
       </div>
@@ -195,6 +184,8 @@ const addListCloseBtn = () => {
 
       .registered-list {
         display: flex;
+        font-size: 0.8rem;
+        width: 23rem;
         margin: 0.4rem 0;
         align-items: center;
 
@@ -217,14 +208,14 @@ const addListCloseBtn = () => {
           cursor: pointer;
 
           img {
-            width: 2rem;
-            height: 2rem;
+            width: 1.5rem;
+            height: 1.5rem;
             align-items: center;
           }
 
           p {
             color: $text-black;
-            font-size: 1rem;
+            font-size: 0.8rem;
             font-weight: 600;
             line-height: 1rem;
           }

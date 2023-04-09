@@ -56,9 +56,9 @@ const cancelBtn = (id) => {
     }
 
     .input-topic {
-      font-size: 1.2rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      width: 20rem;
+      width: 18rem;
       height: 1.5rem;
       padding: 0.4rem;
       background-color: $theme-color;
