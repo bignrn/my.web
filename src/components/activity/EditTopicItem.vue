@@ -8,12 +8,19 @@ const props = defineProps({
     required: true,
   },
   topic: String,
+  isDeleteBtn: {
+    type: Boolean,
+    default: false,
+  }
 })
 const { topic } = toRefs(props)
-const emits = defineEmits(["saveBtn", "cancelBtn"]);
+const emits = defineEmits(["deleteBtn", "saveBtn", "cancelBtn"]);
 
 const editTopic = ref(topic.value);
 
+const deleteBtn = (id) => {
+  emits("deleteBtn", id);
+};
 const saveBtn = (id) => {
   emits("saveBtn", { id: id, topic: editTopic.value });
 }
@@ -26,8 +33,9 @@ const cancelBtn = (id) => {
 <template>
   <section class="edit-topic-item-wrap">
     <div class="input-form-wrap">
-      <div>{{ id }}：</div>
-      <input type="text" v-model="editTopic" class="input-topic" />
+      <div>{{ id }}:</div>
+      <input type="text" v-model="editTopic" class="input-topic" :class="{ isDelete: isDeleteBtn }" />
+      <button v-if="isDeleteBtn" @click="deleteBtn(id)" class="delete-list-btn">削除</button>
     </div>
     <div class="btn-wrap">
       <ButtonCommon @click="saveBtn(id)" class="register-btn">
@@ -69,6 +77,18 @@ const cancelBtn = (id) => {
         background-color: $white;
         outline: none;
       }
+
+      &.isDelete {
+        width: 17rem;
+      }
+    }
+
+    .delete-list-btn {
+      border: none;
+      background-color: transparent;
+      color: $delete-text-color;
+      margin-left: auto;
+      cursor: pointer;
     }
   }
 

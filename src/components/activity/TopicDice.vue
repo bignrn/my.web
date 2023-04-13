@@ -71,6 +71,9 @@ const returnNextListLength = computed(() => {
 const openEditBtn = (id) => {
   isOpenEdit.value = id;
 }
+const deleteListBtn = (idx) => {
+  diceTopicStore.deleteTopic(idx);
+};
 const executeSave = (val, i) => {
   diceTopicStore.setTopic(val, i);
   closeEditStatus(val.id);
@@ -104,22 +107,28 @@ const closeEditStatus = (id) => {
         </ButtonCommon>
       </div>
       <h2>TOPIC:</h2>
-      <h3>「{{ topicList[topicIndex].title }}」</h3>
+      <h3 v-if="topicList.length > 0">「{{ topicList[topicIndex].title }}」</h3>
+      <div v-else class="empty-list-wrap">
+        <h3>リストがありません。</h3>
+        <span class="empty-message-text">※追加するには下部にあるボタンから</span>
+      </div>
       <img :src="dices[diceIndex]" />
     </section>
     <section class="activity-register-list-wrap">
       <h1>登録されているリスト</h1>
       <div class="list-wrap">
         <ul>
-          <li v-for="(list, i) of topicList" :key="i">
-            <div v-show="isOpenEdit !== list.id" class="registered-list">
-              <div class="registered-list-id">{{ list.id }}：</div>
-              <div>{{ list.title }}</div>
-              <button @click="openEditBtn(list.id)" class="edit-btn">編集</button>
-            </div>
-            <EditTopicItem v-if="isOpenEdit === list.id" :id="list.id" :topic="list.title"
-              @saveBtn="executeSave($event, i)" @cancelBtn="closeEditStatus" />
-          </li>
+          <template v-if="topicList.length > 0">
+            <li v-for="(list, i) of topicList" :key="i">
+              <div v-show="isOpenEdit !== list.id" class="registered-list">
+                <div class="registered-list-id">{{ i + 1 }}：</div>
+                <div>{{ list.title }}</div>
+                <button @click="openEditBtn(list.id)" class="edit-btn">編集</button>
+              </div>
+              <EditTopicItem v-if="isOpenEdit === list.id" :id="list.id" :topic="list.title" isDeleteBtn
+                @saveBtn="executeSave($event, i)" @cancelBtn="closeEditStatus" @deleteBtn="deleteListBtn(i)" />
+            </li>
+          </template>
           <li class="registered-list">
             <button v-show="isOpenEdit !== returnNextListLength" @click="openEditBtn(returnNextListLength)"
               class="list-add-btn-wrap">
@@ -139,6 +148,15 @@ const closeEditStatus = (id) => {
 .activity-contents-wrap {
   img {
     width: 10rem;
+  }
+
+  .empty-list-wrap {
+    margin-bottom: 30px;
+
+    .empty-message-text {
+      color: $text-secondary;
+      font-size: 0.8rem;
+    }
   }
 
   .activity-register-list-wrap {
