@@ -116,29 +116,28 @@ const closeEditStatus = (id) => {
     </section>
     <section class="activity-register-list-wrap">
       <h1>登録されているリスト</h1>
-      <div class="list-wrap">
-        <ul>
-          <template v-if="topicList.length > 0">
-            <li v-for="(list, i) of topicList" :key="i">
-              <div v-show="isOpenEdit !== list.id" class="registered-list">
-                <div class="registered-list-id">{{ i + 1 }}：</div>
-                <div>{{ list.title }}</div>
-                <button @click="openEditBtn(list.id)" class="edit-btn">編集</button>
-              </div>
-              <EditTopicItem v-if="isOpenEdit === list.id" :id="list.id" :topic="list.title" isDeleteBtn
-                @saveBtn="executeSave($event, i)" @cancelBtn="closeEditStatus" @deleteBtn="deleteListBtn(i)" />
-            </li>
-          </template>
-          <li class="registered-list">
-            <button v-show="isOpenEdit !== returnNextListLength" @click="openEditBtn(returnNextListLength)"
-              class="list-add-btn-wrap">
-              <img src="/image/activity/diceTopic/icons8-add-64.png">
-              <p>項目を追加する</p>
-            </button>
-            <EditTopicItem v-if="isOpenEdit === returnNextListLength" :id="returnNextListLength" topic=""
-              @saveBtn="executeSave($event, returnNextListLength)" @cancelBtn="closeEditStatus" />
+      <div class="list-wrap register-list-wrap">
+        <ul v-if="topicList.length > 0">
+          <li v-for="(list, i) of topicList" :key="i">
+            <div v-show="isOpenEdit !== list.id" class="registered-list">
+              <div class="registered-list-id">{{ i + 1 }}：</div>
+              <div>{{ list.title }}</div>
+              <button @click="openEditBtn(list.id)" class="edit-btn">編集</button>
+            </div>
+            <EditTopicItem v-if="isOpenEdit === list.id" :id="list.id" :topic="list.title" isDeleteBtn
+              @saveBtn="executeSave($event, i)" @cancelBtn="closeEditStatus" @deleteBtn="deleteListBtn(i)" />
           </li>
         </ul>
+        <div v-else class="empty-list-wrap register-section">
+          <span class="empty-message-text">リストを作ってサイコロを振ろう！</span>
+        </div>
+        <button v-show="isOpenEdit !== returnNextListLength" @click="openEditBtn(returnNextListLength)"
+          class="list-add-btn-wrap">
+          <img src="/image/activity/diceTopic/icons8-add-64.png">
+          <p>項目を追加する</p>
+        </button>
+        <EditTopicItem v-if="isOpenEdit === returnNextListLength" :id="returnNextListLength" topic=""
+          @saveBtn="executeSave($event, returnNextListLength)" @cancelBtn="closeEditStatus" />
       </div>
     </section>
   </div>
@@ -150,8 +149,18 @@ const closeEditStatus = (id) => {
     width: 10rem;
   }
 
+  button {
+    background: none;
+    border: none;
+  }
+
   .empty-list-wrap {
     margin-bottom: 30px;
+
+    &.register-section {
+      // display: flex;
+      margin: 0;
+    }
 
     .empty-message-text {
       color: $text-secondary;
@@ -160,8 +169,11 @@ const closeEditStatus = (id) => {
   }
 
   .activity-register-list-wrap {
+    display: flex;
+    flex-direction: column;
+    min-height: 15rem;
     background-color: $theme-bg-color;
-    margin-top: 4rem;
+    margin: 4rem auto 0;
   }
 
   .activity-list-wrap,
@@ -174,6 +186,11 @@ const closeEditStatus = (id) => {
     .list-wrap {
       display: flex;
       justify-content: center;
+
+      &.register-list-wrap {
+        margin: 0 auto 1rem;
+        flex-direction: column;
+      }
 
       h1 {
         width: 6rem;
@@ -191,13 +208,8 @@ const closeEditStatus = (id) => {
         text-align: left;
         font-weight: bold;
         width: fit-content;
-        padding: 0.3rem;
+        padding: 0rem;
         list-style-type: none;
-      }
-
-      button {
-        background: none;
-        border: none;
       }
 
       .registered-list {
@@ -218,26 +230,26 @@ const closeEditStatus = (id) => {
           justify-items: end;
           cursor: pointer;
         }
+      }
+    }
 
-        .list-add-btn-wrap {
-          display: flex;
-          align-items: center;
-          padding: 0;
-          cursor: pointer;
+    .list-add-btn-wrap {
+      display: flex;
+      align-items: center;
+      padding: 0;
+      cursor: pointer;
 
-          img {
-            width: 1.5rem;
-            height: 1.5rem;
-            align-items: center;
-          }
+      img {
+        width: 1.5rem;
+        height: 1.5rem;
+        align-items: center;
+      }
 
-          p {
-            color: $text-black;
-            font-size: 0.8rem;
-            font-weight: 600;
-            line-height: 1rem;
-          }
-        }
+      p {
+        color: $text-black;
+        font-size: 0.8rem;
+        font-weight: 600;
+        line-height: 1rem;
       }
     }
   }
