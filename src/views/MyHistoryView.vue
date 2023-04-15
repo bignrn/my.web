@@ -12,18 +12,18 @@ const historyList = [
   <article class="portfolio-wrap">
     <div class="prof-basic-contents-wrap">
       <img src="../assets/profile/myAvatar.jpg" class="prof-basic-my-avatar" />
-      <h1>Yuma Mishima</h1>
+      <h1 class="my-name-title">Yuma Mishima</h1>
       <p>システム開発で笑顔を<br />増やせたらと考えています。</p>
     </div>
     <div class="prof-basic-histories-wrap">
-      <h1>取得した資格</h1>
+      <h1 class="contents-title">取得した資格</h1>
       <ul>
         <li v-for="(list, i) of historyList" :key="i">
           <img :src="list.img" alt="list-icon" class="history-img" />{{ list.title }}
         </li>
       </ul>
       <div class="gradient">
-        <h1>技術者を目指した切っ掛け</h1>
+        <h1 class="contents-title">技術者を目指した切っ掛け</h1>
         <img src="../assets/profile/undraw_back_in_the_day_knsh.svg" class="img-class" />
         <p>"ゲーム"が切っ掛けでプログラミングを知りました。</p>
         <p>そこから"疑問の答えを求めて"<br />気が付くとSEになっていました。</p>
@@ -32,7 +32,7 @@ const historyList = [
         <img src="../assets/profile/undraw_programmer_re_owql.svg" class="img-class" />
       </div>
       <div class="wrap-hobby">
-        <h1>趣味</h1>
+        <h1 class="contents-title">趣味</h1>
         <img src="../assets/profile/tp-icon.jpg" class="tp-icon-img" />
         <h2>トランペット🎺</h2>
         <p>学生時代にソロコンテスト県2位を取る事が出来ました。</p>
@@ -41,7 +41,6 @@ const historyList = [
         <img src="../assets/profile/tp-bg-img.jpg" class="tp-img" />
       </div>
     </div>
-
     <nav class="prof-basic-nav-wrap">
       <h1>情報を発信</h1>
       <a href="https://github.com/bignrn" target="_blank">ソースコードはGitHubへ</a>
@@ -59,6 +58,12 @@ const historyList = [
 }
 
 .portfolio-wrap {
+
+  .contents-title {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
+
   .prof-basic-contents-wrap {
     padding: 4rem 0;
     background-color: orange;
@@ -70,6 +75,11 @@ const historyList = [
       border-radius: 50% 70%;
       width: 20rem;
       box-shadow: 0rem 0.5rem 0.8rem black;
+    }
+
+    .my-name-title {
+      font-size: 2rem;
+      margin: 1rem 0;
     }
   }
 
