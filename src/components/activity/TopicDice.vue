@@ -87,8 +87,8 @@ const closeEditStatus = (id) => {
 
 <template>
   <div class="activity-contents-wrap">
-    <h1>サイコロ<span>TOPIC</span></h1>
-    <p>ルール：サイコロで出た話題について話してみよう！</p>
+    <h1 class="main-title">サイコロトーク</h1>
+    <p class="sub-title">-SAIKORO TALK-</p>
     <section class="activity-list-wrap">
       <h1>☕やり方</h1>
       <div class="list-wrap">
@@ -100,7 +100,7 @@ const closeEditStatus = (id) => {
         </ol>
       </div>
     </section>
-    <section>
+    <section class="dice-area-wrap">
       <div>
         <ButtonCommon @click="onClick" width="12rem" height="2rem">
           {{ btnMessage }}
@@ -154,17 +154,43 @@ const closeEditStatus = (id) => {
     border: none;
   }
 
-  .empty-list-wrap {
-    margin-bottom: 30px;
+  ol {
+    text-align: left;
+    font-weight: bold;
+    width: fit-content;
+    padding: 0.3rem 2rem;
+    border: 0.1rem solid black;
+  }
 
-    &.register-section {
-      // display: flex;
-      margin: 0;
-    }
+  ul {
+    text-align: left;
+    font-weight: bold;
+    width: fit-content;
+    padding: 0rem;
+    list-style-type: none;
+  }
 
-    .empty-message-text {
-      color: $text-secondary;
-      font-size: 0.8rem;
+  .main-title {
+    font-size: 2.5rem;
+  }
+
+  .sub-title {
+    font-size: 1rem;
+  }
+
+  .dice-area-wrap {
+    .empty-list-wrap {
+      margin-bottom: 30px;
+
+      &.register-section {
+        // display: flex;
+        margin: 0;
+      }
+
+      .empty-message-text {
+        color: $text-secondary;
+        font-size: 0.8rem;
+      }
     }
   }
 
@@ -176,10 +202,13 @@ const closeEditStatus = (id) => {
     margin: 4rem auto 0;
   }
 
+  .activity-list-wrap {
+    margin: 2rem 0;
+  }
+
   .activity-list-wrap,
   .activity-register-list-wrap {
     h1 {
-      margin: 0;
       padding-top: 1rem;
     }
 
@@ -194,22 +223,6 @@ const closeEditStatus = (id) => {
 
       h1 {
         width: 6rem;
-      }
-
-      ol {
-        text-align: left;
-        font-weight: bold;
-        width: fit-content;
-        padding: 0.3rem 2rem;
-        border: 0.1rem solid black;
-      }
-
-      ul {
-        text-align: left;
-        font-weight: bold;
-        width: fit-content;
-        padding: 0rem;
-        list-style-type: none;
       }
 
       .registered-list {

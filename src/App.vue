@@ -12,6 +12,10 @@ body {
   font-size: medium;
 }
 
+h1 {
+  margin: 0;
+}
+
 p {
   padding: 0;
   margin: 0;
