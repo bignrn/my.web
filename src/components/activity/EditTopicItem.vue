@@ -11,7 +11,8 @@ const props = defineProps({
   isDeleteBtn: {
     type: Boolean,
     default: false,
-  }
+  },
+  dispId: String,
 })
 const { topic } = toRefs(props)
 const emits = defineEmits(["deleteBtn", "saveBtn", "cancelBtn"]);
@@ -33,7 +34,7 @@ const cancelBtn = (id) => {
 <template>
   <section class="edit-topic-item-wrap">
     <div class="input-form-wrap">
-      <div>{{ id }}:</div>
+      <div>{{ dispId }}:</div>
       <input type="text" v-model="editTopic" class="input-topic" :class="{ isDelete: isDeleteBtn }" />
       <button v-if="isDeleteBtn" @click="deleteBtn(id)" class="delete-list-btn">削除</button>
     </div>

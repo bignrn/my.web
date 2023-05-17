@@ -65,7 +65,7 @@ function animation() {
 
 // **** リスト編集処理 ****//
 const returnNextListLength = computed(() => {
-  return `${topicList.value.length + 1}`;
+  return `${Number(topicList.value[topicList.value.length - 1].id) + 1}`; // TODO 削除時にidが被ってしまう
 })
 
 const openEditBtn = (id) => {
@@ -107,7 +107,7 @@ const closeEditStatus = (id) => {
         </ButtonCommon>
       </div>
       <h2>TOPIC:</h2>
-      <h3 v-if="topicList.length > 0">「{{ topicList[topicIndex].title }}」</h3>
+      <h3 v-if="topicList.length > 0">「{{ topicList[topicIndex]?.title }}」</h3>
       <div v-else class="empty-list-wrap">
         <h3>リストがありません。</h3>
         <span class="empty-message-text">※追加するには下部にあるボタンから</span>
@@ -118,14 +118,14 @@ const closeEditStatus = (id) => {
       <h1>登録されているリスト</h1>
       <div class="list-wrap register-list-wrap">
         <ul v-if="topicList.length > 0">
-          <li v-for="(list, i) of topicList" :key="i">
+          <li v-for="(list, i) of topicList" :key="list">
             <div v-show="isOpenEdit !== list.id" class="registered-list">
               <div class="registered-list-id">{{ i + 1 }}：</div>
               <div>{{ list.title }}</div>
               <button @click="openEditBtn(list.id)" class="edit-btn">編集</button>
             </div>
-            <EditTopicItem v-if="isOpenEdit === list.id" :id="list.id" :topic="list.title" isDeleteBtn
-              @saveBtn="executeSave($event, i)" @cancelBtn="closeEditStatus" @deleteBtn="deleteListBtn(i)" />
+            <EditTopicItem v-if="isOpenEdit === list.id" :dispId="(i + 1).toString()" :id="list.id" :topic="list.title"
+              isDeleteBtn @saveBtn="executeSave($event, i)" @cancelBtn="closeEditStatus" @deleteBtn="deleteListBtn(i)" />
           </li>
         </ul>
         <div v-else class="empty-list-wrap register-section">
@@ -136,8 +136,9 @@ const closeEditStatus = (id) => {
           <img src="/image/activity/diceTopic/icons8-add-64.png">
           <p>項目を追加する</p>
         </button>
-        <EditTopicItem v-if="isOpenEdit === returnNextListLength" :id="returnNextListLength" topic=""
-          @saveBtn="executeSave($event, returnNextListLength)" @cancelBtn="closeEditStatus" />
+        <EditTopicItem v-if="isOpenEdit === returnNextListLength" :dispId="(topicList.length + 1).toString()"
+          :id="returnNextListLength" topic="" @saveBtn="executeSave($event, returnNextListLength)"
+          @cancelBtn="closeEditStatus" />
       </div>
     </section>
   </div>
