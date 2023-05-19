@@ -28,7 +28,6 @@ const saveBtn = (id) => {
 const cancelBtn = (id) => {
   emits("cancelBtn", id);
 }
-
 </script>
 
 <template>
@@ -51,7 +50,6 @@ const cancelBtn = (id) => {
 
 <style lang="scss" scoped>
 .edit-topic-item-wrap {
-
   .input-form-wrap {
     display: flex;
 
@@ -67,7 +65,7 @@ const cancelBtn = (id) => {
     .input-topic {
       font-size: 0.8rem;
       font-weight: 600;
-      width: 18rem;
+      width: 16rem;
       height: 1.5rem;
       padding: 0.4rem;
       background-color: $theme-color;
@@ -80,7 +78,7 @@ const cancelBtn = (id) => {
       }
 
       &.isDelete {
-        width: 17rem;
+        width: 15rem;
       }
     }
 
@@ -92,7 +90,6 @@ const cancelBtn = (id) => {
       cursor: pointer;
     }
   }
-
 
   .btn-wrap {
     display: flex;

@@ -65,7 +65,7 @@ function animation() {
 
 // **** リスト編集処理 ****//
 const returnNextListLength = computed(() => {
-  return `${Number(topicList.value[topicList.value.length - 1].id) + 1}`; // TODO 削除時にidが被ってしまう
+  return `${Number(topicList.value[topicList.value.length - 1]?.id) + 1}`; // TODO 削除時にidが被ってしまう
 })
 
 const openEditBtn = (id) => {
@@ -121,7 +121,7 @@ const closeEditStatus = (id) => {
           <li v-for="(list, i) of topicList" :key="list">
             <div v-show="isOpenEdit !== list.id" class="registered-list">
               <div class="registered-list-id">{{ i + 1 }}：</div>
-              <div>{{ list.title }}</div>
+              <div class="registered-list-title">{{ list.title }}</div>
               <button @click="openEditBtn(list.id)" class="edit-btn">編集</button>
             </div>
             <EditTopicItem v-if="isOpenEdit === list.id" :dispId="(i + 1).toString()" :id="list.id" :topic="list.title"
@@ -183,11 +183,6 @@ const closeEditStatus = (id) => {
     .empty-list-wrap {
       margin-bottom: 30px;
 
-      &.register-section {
-        // display: flex;
-        margin: 0;
-      }
-
       .empty-message-text {
         color: $text-secondary;
         font-size: 0.8rem;
@@ -220,6 +215,10 @@ const closeEditStatus = (id) => {
       &.register-list-wrap {
         margin: 0 auto 1rem;
         flex-direction: column;
+
+        .empty-list-wrap {
+          padding: 1rem 0;
+        }
       }
 
       h1 {
@@ -229,7 +228,7 @@ const closeEditStatus = (id) => {
       .registered-list {
         display: flex;
         font-size: 0.8rem;
-        width: 23rem;
+        max-width: 23rem;
         margin: 0.4rem 0;
         align-items: center;
 
@@ -237,10 +236,16 @@ const closeEditStatus = (id) => {
           padding: 0.4rem;
         }
 
+        .registered-list-title {
+          min-width: 14rem;
+          max-width: 16rem;
+          white-space: pre-wrap;
+          word-break: break-word;
+        }
+
         .edit-btn {
           color: $secondary-text-color;
           margin: 0 0 0 auto;
-          padding-left: 2rem;
           justify-items: end;
           cursor: pointer;
         }
