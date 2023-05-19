@@ -75,6 +75,9 @@ const deleteListBtn = (idx) => {
   diceTopicStore.deleteTopic(idx);
 };
 const executeSave = (val, i) => {
+  if (isNaN(i)) {
+    i = val.id;
+  }
   diceTopicStore.setTopic(val, i);
   closeEditStatus(val.id);
 }

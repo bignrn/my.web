@@ -23,6 +23,10 @@ const deleteBtn = (id) => {
   emits("deleteBtn", id);
 };
 const saveBtn = (id) => {
+  if (isNaN(id)) {
+    id = "1"; // 0追加時にNaNが来る為応急処置
+  }
+  if (editTopic.value == "") return;
   emits("saveBtn", { id: id, topic: editTopic.value });
 }
 const cancelBtn = (id) => {
