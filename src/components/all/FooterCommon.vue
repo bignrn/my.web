@@ -1,16 +1,22 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { useRouter, useRoute } from "vue-router";
 
 const openStatus = ref(false);
+const router = useRouter();
+const route = useRoute();
 
 const onClickOpen = () => {
   openStatus.value = !openStatus.value;
 };
 
+const isMyHobby = computed(() => {
+  return route.path === router.resolve({ name: "VideoView" }).fullPath
+});
 </script>
 
 <template>
-  <footer class="common-footer">
+  <footer class="common-footer" :class="{ 'isMyHobby': isMyHobby }">
     <address>
       <a href="https://github.com/bignrn" target="_blank">
         <img src="../../assets/all/address-github.svg" />
@@ -38,6 +44,11 @@ const onClickOpen = () => {
   width: 100%;
   padding-bottom: 0.5rem;
   background-color: $theme-color;
+
+  &.isMyHobby {
+    background-color: $my-hobby-primary-color;
+    color: $white;
+  }
 
   small {
     a {

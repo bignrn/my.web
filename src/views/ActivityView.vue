@@ -11,6 +11,6 @@ import TopicDice from "../components/activity/TopicDice.vue"
 
 <style lang="scss" scoped>
 .ice-brake-root {
-  margin-top: 4rem;
+  margin-top: $header-height;
 }
 </style>

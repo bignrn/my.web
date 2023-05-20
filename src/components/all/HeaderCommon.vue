@@ -14,13 +14,16 @@ function clickFunction() {
 const isProfile = computed(() => {
   return route.path === router.resolve({ name: "MyHistory" }).fullPath
 });
+const isMyHobby = computed(() => {
+  return route.path === router.resolve({ name: "VideoView" }).fullPath
+});
 </script>
 
 <template>
-  <header class="common-header" :class="{ 'isProfile': isProfile }">
+  <header class="common-header" :class="{ 'is-profile': isProfile, 'is-my-hobby': isMyHobby }">
     <NavMenu :status="menuFlg" @close="(e) => { menuFlg = e }" />
     <a @click="clickFunction">
-      <img src="../../assets/all/icon-menu.svg" />
+      <img :src="isMyHobby ? '/image/common/icon-menu-white.svg' : '/image/common/icon-menu-black.svg'" />
     </a>
   </header>
 </template>
@@ -36,7 +39,8 @@ const isProfile = computed(() => {
   width: 100%;
   background-color: $theme-color;
 
-  &.isProfile {
+  &.is-profile,
+  &.is-my-hobby {
     background-color: transparent;
   }
 }

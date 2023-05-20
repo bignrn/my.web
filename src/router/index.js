@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ActivityView from '../views/ActivityView'
 import MyHistoryView from '../views/MyHistoryView';
+import VideoView from '../views/VideoView';
 
 const routes = [
   {
@@ -16,6 +17,11 @@ const routes = [
     path: '/ice-break',
     name: 'iceBreak',
     component: ActivityView,
+  },
+  {
+    path: '/my-hobby-video',
+    name: 'VideoView',
+    component: VideoView,
   },
 ]
 
