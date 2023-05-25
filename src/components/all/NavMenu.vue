@@ -12,6 +12,7 @@ const router = useRouter();
 const navList = [
   { to: router.resolve({ name: "MyHistory" }), label: "製作者について" },
   { to: router.resolve({ name: "iceBreak" }), label: "アイスブレイク" },
+  { to: router.resolve({ name: "VideoView" }), label: "動画編集" },
 ]
 
 function closeMenu() {
