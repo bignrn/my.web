@@ -23,7 +23,7 @@ function closeMenu() {
   <nav v-show="status" class="nav-main-wrap">
     <a class="nav-wrap">
       <a @click="closeMenu" class="back-btn">
-        <img src="../../assets/all/icon-batu.svg" />
+        <img src="images/all/icon-batu.svg" />
       </a>
       <ul class="nav-text-wrap">
         <li v-for="(item, i) of navList" :key="i">

@@ -20,7 +20,7 @@ const isProfile = computed(() => {
   <header class="common-header" :class="{ 'isProfile': isProfile }">
     <NavMenu :status="menuFlg" @close="(e) => { menuFlg = e }" />
     <a @click="clickFunction">
-      <img src="../../assets/all/icon-menu.svg" />
+      <img src="images/all/icon-menu.svg" />
     </a>
   </header>
 </template>
