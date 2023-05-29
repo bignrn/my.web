@@ -67,7 +67,7 @@ const cancelBtn = (id) => {
     }
 
     .input-topic {
-      font-size: 0.8rem;
+      font-size: 1rem;
       font-weight: 600;
       width: 16rem;
       height: 1.5rem;
@@ -102,6 +102,8 @@ const cancelBtn = (id) => {
 
     .register-btn,
     .cancel-btn {
+      font-size: 1rem;
+      font-weight: 600;
       margin: 0.5rem 0.3rem;
     }
   }

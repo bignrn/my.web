@@ -96,8 +96,8 @@ const closeEditStatus = (id) => {
       <h1>☕やり方</h1>
       <div class="list-wrap">
         <ol>
+          <li>回す順番を決める。</li>
           <li><kbd>"サイコロを投げる"</kbd>を押す。</li>
-          <li>サイコロが回り始める。</li>
           <li>自分のタイミングで<kbd>"ストップする"</kbd>を押す。</li>
           <li>その話題について話す。</li>
         </ol>
@@ -105,7 +105,7 @@ const closeEditStatus = (id) => {
     </section>
     <section class="dice-area-wrap">
       <div>
-        <ButtonCommon @click="onClick" width="12rem" height="2rem">
+        <ButtonCommon @click="onClick" width="12rem" height="2rem" class="start-dice-btn">
           {{ btnMessage }}
         </ButtonCommon>
       </div>
@@ -160,6 +160,7 @@ const closeEditStatus = (id) => {
 
   ol {
     text-align: left;
+    font-size: 0.8rem;
     font-weight: bold;
     width: fit-content;
     padding: 0.3rem 2rem;
@@ -183,6 +184,11 @@ const closeEditStatus = (id) => {
   }
 
   .dice-area-wrap {
+    .start-dice-btn {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
     .empty-list-wrap {
       margin-bottom: 30px;
 
@@ -213,6 +219,7 @@ const closeEditStatus = (id) => {
     .list-wrap {
       display: flex;
       justify-content: center;
+      margin: 0 0.5rem;
 
       &.register-list-wrap {
         margin: 0 auto 1rem;
@@ -238,8 +245,8 @@ const closeEditStatus = (id) => {
         }
 
         .registered-list-title {
-          min-width: 14rem;
-          max-width: 16rem;
+          min-width: 16rem;
+          max-width: 18rem;
           white-space: pre-wrap;
           word-break: break-word;
         }
