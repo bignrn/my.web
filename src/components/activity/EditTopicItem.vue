@@ -37,7 +37,7 @@ const cancelBtn = (id) => {
 <template>
   <section class="edit-topic-item-wrap">
     <div class="input-form-wrap">
-      <div>{{ dispId }}:</div>
+      <div class="disp-id">{{ dispId }}:</div>
       <input type="text" v-model="editTopic" class="input-topic" :class="{ isDelete: isDeleteBtn }" />
       <button v-if="isDeleteBtn" @click="deleteBtn(id)" class="delete-list-btn">削除</button>
     </div>
@@ -57,13 +57,15 @@ const cancelBtn = (id) => {
   .input-form-wrap {
     display: flex;
 
-    >div {
+    .disp-id {
       display: flex;
       align-items: center;
       height: calc(2rem - 0.1rem);
       padding: 0.4rem;
       background-color: $theme-color;
       border-radius: 0.5rem 0 0 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
     }
 
     .input-topic {
