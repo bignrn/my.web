@@ -1,6 +1,6 @@
 <script setup>
-import lv1 from "../assets/profile/lv1.gif";
-import normal from "../assets/all/icon-list-book.png";
+const lv1 = "images/profile/lv1.gif";
+const normal = "images/all/icon-list-book.png";
 const historyList = [
   { img: lv1, title: "HTML5プロフェッショナル試験Lv1" },
   { img: normal, title: "基本情報技術者試験" },
@@ -11,7 +11,7 @@ const historyList = [
 <template>
   <article class="portfolio-wrap">
     <div class="prof-basic-contents-wrap">
-      <img src="../assets/profile/myAvatar.jpg" class="prof-basic-my-avatar" />
+      <img src="/images/profile/myAvatar.jpg" class="prof-basic-my-avatar" />
       <h1 class="my-name-title">Yuma Mishima</h1>
       <p class="my-sub-title">システム開発で笑顔を<br />増やす事が目標！</p>
     </div>
@@ -24,16 +24,16 @@ const historyList = [
       </ul>
       <div class="gradient">
         <h1 class="contents-title">技術者を目指した切っ掛け</h1>
-        <img src="../assets/profile/undraw_back_in_the_day_knsh.svg" class="img-class" />
+        <img src="images/profile/undraw_back_in_the_day_knsh.svg" class="img-class" />
         <p>"ゲーム"が切っ掛けで<br />プログラミングを知りました。</p>
         <p>そこから"疑問の答えを求めて"<br />気が付くとSEになっていました。</p>
       </div>
       <div class="gradient-reverse">
-        <img src="../assets/profile/undraw_programmer_re_owql.svg" class="img-class" />
+        <img src="images/profile/undraw_programmer_re_owql.svg" class="img-class" />
       </div>
       <div class="wrap-hobby">
         <h1 class="contents-title">趣味</h1>
-        <img src="../assets/profile/tp-icon.jpg" class="tp-icon-img" />
+        <img src="images/profile/tp-icon.jpg" class="tp-icon-img" />
         <h2>トランペット🎺</h2>
         <p>学生時代にソロコンテスト県2位を<br />取る事が出来ました。</p>
         <p>現在は母校である小学校のクラブで<br />Tpの指導をさせて貰っています。</p>

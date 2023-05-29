@@ -13,7 +13,7 @@ const onClickOpen = () => {
   <footer class="common-footer">
     <address>
       <a href="https://github.com/bignrn" target="_blank">
-        <img src="../../assets/all/address-github.svg" />
+        <img src="images/all/address-github.svg" />
       </a>
     </address>
 

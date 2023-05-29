@@ -9,18 +9,18 @@ const diceTopicStore = useDiceTopicStore();
 const { topics } = storeToRefs(diceTopicStore);
 
 const dices = ref([
-  require("../../assets/activity/dices/dice-1.png"),
-  require("../../assets/activity/dices/dice-2.png"),
-  require("../../assets/activity/dices/dice-3.png"),
-  require("../../assets/activity/dices/dice-4.png"),
-  require("../../assets/activity/dices/dice-5.png"),
-  require("../../assets/activity/dices/dice-6.png"),
-  require("../../assets/activity/dices/dice-black-1.png"),
-  require("../../assets/activity/dices/dice-black-2.png"),
-  require("../../assets/activity/dices/dice-black-3.png"),
-  require("../../assets/activity/dices/dice-black-4.png"),
-  require("../../assets/activity/dices/dice-black-5.png"),
-  require("../../assets/activity/dices/dice-black-6.png"),
+  "images/activity/dices/dice-1.png",
+  "images/activity/dices/dice-2.png",
+  "images/activity/dices/dice-3.png",
+  "images/activity/dices/dice-4.png",
+  "images/activity/dices/dice-5.png",
+  "images/activity/dices/dice-6.png",
+  "images/activity/dices/dice-black-1.png",
+  "images/activity/dices/dice-black-2.png",
+  "images/activity/dices/dice-black-3.png",
+  "images/activity/dices/dice-black-4.png",
+  "images/activity/dices/dice-black-5.png",
+  "images/activity/dices/dice-black-6.png",
 ]);
 const diceIndex = ref(0);
 const topicIndex = ref(0);
@@ -143,7 +143,7 @@ onUnmounted(() => {
         </div>
         <button v-show="isOpenEdit !== returnNextListLength" @click="openEditBtn(returnNextListLength)"
           class="list-add-btn-wrap">
-          <img src="/image/activity/diceTopic/icons8-add-64.png">
+          <img src="images/activity/diceTopic/icons8-add-64.png">
           <p>項目を追加する</p>
         </button>
         <EditTopicItem v-if="isOpenEdit === returnNextListLength" :dispId="(topicList.length + 1).toString()"
