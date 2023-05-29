@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useDiceTopicStore } from "../../stores/DiceTopic";
 import ButtonCommon from "../all/common/ButtonCommon.vue";
@@ -86,6 +86,13 @@ const closeEditStatus = (id) => {
     isOpenEdit.value = "";
   }
 }
+
+onMounted(() => {
+  document.addEventListener("dblclick", function (e) { e.preventDefault(); }, { passive: false });
+})
+onUnmounted(() => {
+  document.removeEventListener("dblclick");
+})
 </script>
 
 <template>
@@ -110,7 +117,7 @@ const closeEditStatus = (id) => {
         </ButtonCommon>
       </div>
       <h2>TOPIC:</h2>
-      <h3 v-if="topicList.length > 0">「{{ topicList[topicIndex]?.title }}」</h3>
+      <h2 v-if="topicList.length > 0">「{{ topicList[topicIndex]?.title }}」</h2>
       <div v-else class="empty-list-wrap">
         <h3>リストがありません。</h3>
         <span class="empty-message-text">※追加するには下部にあるボタンから</span>
