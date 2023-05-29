@@ -22,7 +22,7 @@ defineProps({
 <style lang="scss" scoped>
 .common-button-wrap {
   border: $button-bg solid 0.1rem;
-  font-size: larger;
+  font-size: 0.8rem;
   font-weight: bold;
   color: black;
   padding: 0.3rem 1rem;

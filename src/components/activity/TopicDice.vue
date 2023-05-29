@@ -179,7 +179,7 @@ const closeEditStatus = (id) => {
   }
 
   .sub-title {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 
   .dice-area-wrap {
@@ -188,7 +188,6 @@ const closeEditStatus = (id) => {
 
       .empty-message-text {
         color: $text-secondary;
-        font-size: 0.8rem;
       }
     }
   }
@@ -230,7 +229,6 @@ const closeEditStatus = (id) => {
 
       .registered-list {
         display: flex;
-        font-size: 0.8rem;
         max-width: 23rem;
         margin: 0.4rem 0;
         align-items: center;
@@ -269,7 +267,6 @@ const closeEditStatus = (id) => {
 
       p {
         color: $text-black;
-        font-size: 0.8rem;
         font-weight: 600;
         line-height: 1rem;
       }

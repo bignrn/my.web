@@ -13,7 +13,7 @@ const historyList = [
     <div class="prof-basic-contents-wrap">
       <img src="../assets/profile/myAvatar.jpg" class="prof-basic-my-avatar" />
       <h1 class="my-name-title">Yuma Mishima</h1>
-      <p>システム開発で笑顔を<br />増やせたらと考えています。</p>
+      <p>システム開発で笑顔を<br />増やす事が目標！</p>
     </div>
     <div class="prof-basic-histories-wrap">
       <h1 class="contents-title">取得した資格</h1>
@@ -35,9 +35,8 @@ const historyList = [
         <h1 class="contents-title">趣味</h1>
         <img src="../assets/profile/tp-icon.jpg" class="tp-icon-img" />
         <h2>トランペット🎺</h2>
-        <p>学生時代にソロコンテスト県2位を取る事が出来ました。</p>
-        <p>現在は母校である小学校のバンドで<br />指導をさせて貰っています。</p>
-        <p>子供たちの成長を実感します。</p>
+        <p>学生時代にソロコンテスト県2位を<br />取る事が出来ました。</p>
+        <p>現在は母校である小学校のクラブで<br />Tpの指導をさせて貰っています。</p>
         <img src="../assets/profile/tp-bg-img.jpg" class="tp-img" />
       </div>
     </div>
@@ -93,7 +92,7 @@ const historyList = [
       display: inline-table;
       text-align: left;
       list-style-type: none;
-      font-size: large;
+      font-size: 1.2rem;
       font-weight: bold;
 
       li {
