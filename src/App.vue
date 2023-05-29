@@ -6,32 +6,4 @@ import MainLocationView from './views/MainLocationView.vue';
   <MainLocationView />
 </template>
 
-<style lang="scss">
-body {
-  margin: 0;
-  font-size: medium;
-}
-
-h1 {
-  margin: 0;
-}
-
-p {
-  padding: 0;
-  margin: 0;
-}
-
-@media screen and (max-width: 620px) {
-  body {
-    font-size: 0.9rem;
-  }
-}
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: $text-black;
-}
-</style>
+<style lang="scss"></style>

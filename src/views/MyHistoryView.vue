@@ -13,7 +13,7 @@ const historyList = [
     <div class="prof-basic-contents-wrap">
       <img src="../assets/profile/myAvatar.jpg" class="prof-basic-my-avatar" />
       <h1 class="my-name-title">Yuma Mishima</h1>
-      <p>システム開発で笑顔を<br />増やせたらと考えています。</p>
+      <p class="my-sub-title">システム開発で笑顔を<br />増やす事が目標！</p>
     </div>
     <div class="prof-basic-histories-wrap">
       <h1 class="contents-title">取得した資格</h1>
@@ -25,7 +25,7 @@ const historyList = [
       <div class="gradient">
         <h1 class="contents-title">技術者を目指した切っ掛け</h1>
         <img src="../assets/profile/undraw_back_in_the_day_knsh.svg" class="img-class" />
-        <p>"ゲーム"が切っ掛けでプログラミングを知りました。</p>
+        <p>"ゲーム"が切っ掛けで<br />プログラミングを知りました。</p>
         <p>そこから"疑問の答えを求めて"<br />気が付くとSEになっていました。</p>
       </div>
       <div class="gradient-reverse">
@@ -35,23 +35,16 @@ const historyList = [
         <h1 class="contents-title">趣味</h1>
         <img src="../assets/profile/tp-icon.jpg" class="tp-icon-img" />
         <h2>トランペット🎺</h2>
-        <p>学生時代にソロコンテスト県2位を取る事が出来ました。</p>
-        <p>現在は母校である小学校のバンドで<br />指導をさせて貰っています。</p>
-        <p>子供たちの成長を実感します。</p>
-        <img src="../assets/profile/tp-bg-img.jpg" class="tp-img" />
+        <p>学生時代にソロコンテスト県2位を<br />取る事が出来ました。</p>
+        <p>現在は母校である小学校のクラブで<br />Tpの指導をさせて貰っています。</p>
       </div>
     </div>
-    <nav class="prof-basic-nav-wrap">
-      <h1>情報を発信</h1>
-      <a href="https://github.com/bignrn" target="_blank">ソースコードはGitHubへ</a>
-    </nav>
   </article>
 </template>
 
 <style lang="scss" scoped>
 @mixin initP {
   p {
-    font-size: large;
     font-weight: bolder;
     padding: 0 0.5rem;
   }
@@ -78,8 +71,12 @@ const historyList = [
     }
 
     .my-name-title {
-      font-size: 2rem;
+      font-size: 2.5rem;
       margin: 1rem 0;
+    }
+
+    .my-sub-title {
+      font-size: 1.3rem;
     }
   }
 
@@ -93,14 +90,13 @@ const historyList = [
       display: inline-table;
       text-align: left;
       list-style-type: none;
-      font-size: large;
-      font-weight: bold;
+      font-weight: 600;
+      padding: 0;
 
       li {
         display: flex;
         align-items: center;
         align-content: center;
-
 
         .history-img {
           width: 4rem;
