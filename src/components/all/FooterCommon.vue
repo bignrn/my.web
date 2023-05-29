@@ -36,7 +36,7 @@ const onClickOpen = () => {
   font-family: "Sawarabi Mincho";
   font-weight: 600;
   width: 100%;
-  height: 6rem;
+  min-height: 6rem;
   padding-bottom: 0.5rem;
   background-color: $theme-color;
 
