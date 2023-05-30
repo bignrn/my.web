@@ -87,11 +87,16 @@ const closeEditStatus = (id) => {
   }
 }
 
+// ダブルタップのズーム処理阻止
+const stopDoubleTap = (e) => {
+  e.preventDefault();
+};
+
 onMounted(() => {
-  document.addEventListener("dblclick", function (e) { e.preventDefault(); }, { passive: false });
+  document.addEventListener("dblclick", stopDoubleTap, { passive: false });
 })
 onUnmounted(() => {
-  document.removeEventListener("dblclick");
+  document.removeEventListener("dblclick", stopDoubleTap);
 })
 </script>
 
