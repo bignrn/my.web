@@ -23,7 +23,7 @@ const isMyHobby = computed(() => {
   <header class="common-header" :class="{ 'is-profile': isProfile, 'is-my-hobby': isMyHobby }">
     <NavMenu :status="menuFlg" @close="(e) => { menuFlg = e }" />
     <a @click="clickFunction">
-      <img :src="isMyHobby ? '/image/common/icon-menu-white.svg' : '/image/common/icon-menu-black.svg'" />
+      <img :src="isMyHobby ? '/images/common/icon-menu-white.svg' : '/images/common/icon-menu-black.svg'" />
     </a>
   </header>
 </template>
