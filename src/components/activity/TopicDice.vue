@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useDiceTopicStore } from "../../stores/DiceTopic";
 import ButtonCommon from "../all/common/ButtonCommon.vue";
@@ -9,18 +9,18 @@ const diceTopicStore = useDiceTopicStore();
 const { topics } = storeToRefs(diceTopicStore);
 
 const dices = ref([
-  require("../../assets/activity/dices/dice-1.png"),
-  require("../../assets/activity/dices/dice-2.png"),
-  require("../../assets/activity/dices/dice-3.png"),
-  require("../../assets/activity/dices/dice-4.png"),
-  require("../../assets/activity/dices/dice-5.png"),
-  require("../../assets/activity/dices/dice-6.png"),
-  require("../../assets/activity/dices/dice-black-1.png"),
-  require("../../assets/activity/dices/dice-black-2.png"),
-  require("../../assets/activity/dices/dice-black-3.png"),
-  require("../../assets/activity/dices/dice-black-4.png"),
-  require("../../assets/activity/dices/dice-black-5.png"),
-  require("../../assets/activity/dices/dice-black-6.png"),
+  "images/activity/dices/dice-1.png",
+  "images/activity/dices/dice-2.png",
+  "images/activity/dices/dice-3.png",
+  "images/activity/dices/dice-4.png",
+  "images/activity/dices/dice-5.png",
+  "images/activity/dices/dice-6.png",
+  "images/activity/dices/dice-black-1.png",
+  "images/activity/dices/dice-black-2.png",
+  "images/activity/dices/dice-black-3.png",
+  "images/activity/dices/dice-black-4.png",
+  "images/activity/dices/dice-black-5.png",
+  "images/activity/dices/dice-black-6.png",
 ]);
 const diceIndex = ref(0);
 const topicIndex = ref(0);
@@ -86,6 +86,13 @@ const closeEditStatus = (id) => {
     isOpenEdit.value = "";
   }
 }
+
+onMounted(() => {
+  document.addEventListener("dblclick", function (e) { e.preventDefault(); }, { passive: false });
+})
+onUnmounted(() => {
+  document.removeEventListener("dblclick");
+})
 </script>
 
 <template>
@@ -96,8 +103,8 @@ const closeEditStatus = (id) => {
       <h1>☕やり方</h1>
       <div class="list-wrap">
         <ol>
+          <li>回す順番を決める。</li>
           <li><kbd>"サイコロを投げる"</kbd>を押す。</li>
-          <li>サイコロが回り始める。</li>
           <li>自分のタイミングで<kbd>"ストップする"</kbd>を押す。</li>
           <li>その話題について話す。</li>
         </ol>
@@ -105,12 +112,12 @@ const closeEditStatus = (id) => {
     </section>
     <section class="dice-area-wrap">
       <div>
-        <ButtonCommon @click="onClick" width="12rem" height="2rem">
+        <ButtonCommon @click="onClick" width="12rem" height="2rem" class="start-dice-btn">
           {{ btnMessage }}
         </ButtonCommon>
       </div>
       <h2>TOPIC:</h2>
-      <h3 v-if="topicList.length > 0">「{{ topicList[topicIndex]?.title }}」</h3>
+      <h2 v-if="topicList.length > 0">「{{ topicList[topicIndex]?.title }}」</h2>
       <div v-else class="empty-list-wrap">
         <h3>リストがありません。</h3>
         <span class="empty-message-text">※追加するには下部にあるボタンから</span>
@@ -136,7 +143,7 @@ const closeEditStatus = (id) => {
         </div>
         <button v-show="isOpenEdit !== returnNextListLength" @click="openEditBtn(returnNextListLength)"
           class="list-add-btn-wrap">
-          <img src="/image/activity/diceTopic/icons8-add-64.png">
+          <img src="images/activity/diceTopic/icons8-add-64.png">
           <p>項目を追加する</p>
         </button>
         <EditTopicItem v-if="isOpenEdit === returnNextListLength" :dispId="(topicList.length + 1).toString()"
@@ -160,6 +167,7 @@ const closeEditStatus = (id) => {
 
   ol {
     text-align: left;
+    font-size: 0.8rem;
     font-weight: bold;
     width: fit-content;
     padding: 0.3rem 2rem;
@@ -179,16 +187,20 @@ const closeEditStatus = (id) => {
   }
 
   .sub-title {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 
   .dice-area-wrap {
+    .start-dice-btn {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
     .empty-list-wrap {
       margin-bottom: 30px;
 
       .empty-message-text {
         color: $text-secondary;
-        font-size: 0.8rem;
       }
     }
   }
@@ -214,6 +226,7 @@ const closeEditStatus = (id) => {
     .list-wrap {
       display: flex;
       justify-content: center;
+      margin: 0 0.5rem;
 
       &.register-list-wrap {
         margin: 0 auto 1rem;
@@ -230,7 +243,6 @@ const closeEditStatus = (id) => {
 
       .registered-list {
         display: flex;
-        font-size: 0.8rem;
         max-width: 23rem;
         margin: 0.4rem 0;
         align-items: center;
@@ -240,8 +252,8 @@ const closeEditStatus = (id) => {
         }
 
         .registered-list-title {
-          min-width: 14rem;
-          max-width: 16rem;
+          min-width: 16rem;
+          max-width: 18rem;
           white-space: pre-wrap;
           word-break: break-word;
         }
@@ -269,7 +281,6 @@ const closeEditStatus = (id) => {
 
       p {
         color: $text-black;
-        font-size: 0.8rem;
         font-weight: 600;
         line-height: 1rem;
       }

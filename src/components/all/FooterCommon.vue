@@ -19,7 +19,7 @@ const isMyHobby = computed(() => {
   <footer class="common-footer" :class="{ 'isMyHobby': isMyHobby }">
     <address>
       <a href="https://github.com/bignrn" target="_blank">
-        <img src="../../assets/all/address-github.svg" />
+        <img src="images/all/address-github.svg" />
       </a>
     </address>
 
@@ -42,6 +42,7 @@ const isMyHobby = computed(() => {
   font-family: "Sawarabi Mincho";
   font-weight: 600;
   width: 100%;
+  min-height: 6rem;
   padding-bottom: 0.5rem;
   background-color: $theme-color;
 
