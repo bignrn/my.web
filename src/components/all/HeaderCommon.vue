@@ -38,7 +38,7 @@ const isMyHobby = computed(() => {
   top: 0;
   width: 100%;
   background-color: $theme-color;
-  z-index: 100;
+  z-index: 110;
 
   &.is-profile,
   &.is-my-hobby {
