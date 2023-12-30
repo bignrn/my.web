@@ -9,6 +9,4 @@ import FooterCommon from "@/components/all/FooterCommon.vue";
   <FooterCommon />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

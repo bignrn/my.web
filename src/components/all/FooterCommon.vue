@@ -42,12 +42,15 @@ const isMyHobby = computed(() => {
   font-family: "Sawarabi Mincho";
   font-weight: 600;
   width: 100%;
-  min-height: 6rem;
+  min-height: $footer-height;
   padding-bottom: 0.5rem;
   background-color: $theme-color;
 
   &.isMyHobby {
-    background-color: $my-hobby-primary-color;
+    position: fixed;
+    bottom: 0;
+    z-index: 5;
+    background-color: $my-hobby-theme-color;
     color: $white;
   }
 
