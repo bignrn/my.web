@@ -12,12 +12,16 @@ const historyList = [
   <article class="portfolio-wrap">
     <div class="prof-basic-contents-wrap">
       <img src="/images/profile/myAvatar.jpg" class="prof-basic-my-avatar" />
-      <h1 class="my-name-title">Yuma Mishima</h1>
-      <p class="my-sub-title">システム開発で笑顔を<br />増やす事が目標！</p>
+      <h1 class="my-name-title">Mishima Yuma</h1>
+      <div class="my-purpose-title">
+        <p>開発の楽しさを求めて。</p>
+        <p>楽しい明日をつくる。</p>
+        <p>開発のプロフェッショナル。</p>
+      </div>
     </div>
     <div class="prof-basic-histories-wrap">
       <h1 class="contents-title">取得した資格</h1>
-      <ul>
+      <ul class="ul-my-qualification">
         <li v-for="(list, i) of historyList" :key="i">
           <img :src="list.img" alt="list-icon" class="history-img" />{{ list.title }}
         </li>
@@ -75,8 +79,14 @@ const historyList = [
       margin: 1rem 0;
     }
 
-    .my-sub-title {
-      font-size: 1.3rem;
+    .my-purpose-title {
+      display: flex;
+      flex-direction: column;
+      font-weight: 200;
+      font-size: 1.2rem;
+      text-align: start;
+      margin: 0 auto;
+      width: fit-content;
     }
   }
 
@@ -86,7 +96,7 @@ const historyList = [
     @include initP;
 
 
-    ul {
+    .ul-my-qualification {
       display: inline-table;
       text-align: left;
       list-style-type: none;
