@@ -1,6 +1,24 @@
+html {
+  /*font-size: 62.5%; */
+  font-size: 10px;
+
+  /* font family */
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @font-face {
+    font-family: "LilitaOne-Regular";
+    src: url("@/assets/fonts/LilitaOne-Regular.ttf");
+  }
+}
+
 body {
   margin: 0;
-  font-size: 62.5%;
+
+  /* font setting */
+  color: $text-black;
+  text-align: center;
 }
 
 h1 {
@@ -8,18 +26,8 @@ h1 {
 }
 
 p {
-  padding: 0;
-  margin: 0;
-}
-
-#app {
-  /* font family */
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  /* font setting */
-  color: $text-black;
+  font-weight: bolder;
   font-size: 1rem;
-  text-align: center;
+  padding: 0 0.5rem;
+  margin: 0;
 }

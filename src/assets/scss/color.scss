@@ -1,9 +1,11 @@
 // base
 $theme-color: rgb(255, 206, 114);
 $theme-bg-color: rgb(255, 248, 236);
-$white: #fff;
 $text-black: #2c3e50;
 $text-secondary: #808080;
+$text-tertiary: #AFAFAF;
+$black: #000;
+$white: #fff;
 
 // button
 $button-bg: rgb(255, 206, 114);
@@ -11,6 +13,10 @@ $button-text-color: rgb(254, 189, 67);
 
 // input
 $input-active-color: #ffdab9;
+
+// history
+$prof-theme-color: orange;
+$prof-theme-bg-color: #FFDEA0;
 
 // activity
 $secondary-text-color: rgb(254, 189, 67);
