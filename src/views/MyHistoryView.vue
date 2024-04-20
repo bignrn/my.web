@@ -48,8 +48,8 @@ const historyList = [
           <img src="images/profile/undraw_programmer_re_owql.svg" class="img-class" />
         </div>
       </div>
-      <h2 class="contents-title hobby">趣味</h2>
       <div class="hobby-wrap">
+        <h2 class="contents-title hobby">趣味</h2>
         <img src="images/profile/tp-icon.jpg" class="tp-icon-img" />
         <h3>トランペット🎺</h3>
         <p>
@@ -205,6 +205,7 @@ const historyList = [
     }
 
     .hobby-wrap {
+      height: 80dvh;
       padding-bottom: 5rem;
       color: $black;
       background-color: $prof-theme-bg-color;

@@ -76,7 +76,7 @@ function closeMenu() {
           justify-content: center;
 
           .nav-text {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
           }
         }
       }

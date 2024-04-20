@@ -27,13 +27,13 @@ const isProfile = computed(() => {
 
 <style lang="scss" scoped>
 .common-header {
-  display: flex;
-  padding-left: 1rem;
-  padding-top: 1rem;
-  padding-bottom: 0.5rem;
   position: fixed;
   top: 0;
+  display: flex;
+  align-items: center;
   width: 100%;
+  height: $header-height;
+  padding-left: 1rem;
   background-color: $theme-color;
 
   &.isProfile {

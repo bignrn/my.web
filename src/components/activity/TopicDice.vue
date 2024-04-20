@@ -101,11 +101,11 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="activity-contents-wrap">
+  <section class="activity-contents-wrap">
     <h1 class="main-title">サイコロトーク</h1>
     <p class="sub-title">-SAIKORO TALK-</p>
-    <section class="activity-list-wrap">
-      <h1>☕やり方</h1>
+    <div class="activity-list-wrap">
+      <h2>☕やり方</h2>
       <div class="list-wrap">
         <ol>
           <li>回す順番を決める。</li>
@@ -114,8 +114,9 @@ onUnmounted(() => {
           <li>その話題について話す。</li>
         </ol>
       </div>
-    </section>
-    <section class="dice-area-wrap">
+    </div>
+    <!-- DICE -->
+    <div class="dice-area-wrap">
       <div>
         <ButtonCommon @click="onClick" width="12rem" height="2rem" class="start-dice-btn">
           {{ btnMessage }}
@@ -127,10 +128,11 @@ onUnmounted(() => {
         <h3>リストがありません。</h3>
         <span class="empty-message-text">※追加するには下部にあるボタンから</span>
       </div>
-      <img :src="dices[diceIndex]" />
-    </section>
-    <section class="activity-register-list-wrap">
-      <h1>登録されているリスト</h1>
+      <img :src="dices[diceIndex]" class="dice-img" />
+    </div>
+    <!-- TOPIC LIST -->
+    <div class="activity-register-list-wrap">
+      <h2>登録されているリスト</h2>
       <div class="list-wrap register-list-wrap">
         <ul v-if="topicList.length > 0">
           <li v-for="(list, i) of topicList" :key="list">
@@ -140,7 +142,8 @@ onUnmounted(() => {
               <button @click="openEditBtn(list.id)" class="edit-btn">編集</button>
             </div>
             <EditTopicItem v-if="isOpenEdit === list.id" :dispId="(i + 1).toString()" :id="list.id" :topic="list.title"
-              isDeleteBtn @saveBtn="executeSave($event, i)" @cancelBtn="closeEditStatus" @deleteBtn="deleteListBtn(i)" />
+              isDeleteBtn @saveBtn="executeSave($event, i)" @cancelBtn="closeEditStatus"
+              @deleteBtn="deleteListBtn(i)" />
           </li>
         </ul>
         <div v-else class="empty-list-wrap register-section">
@@ -148,43 +151,26 @@ onUnmounted(() => {
         </div>
         <button v-show="isOpenEdit !== returnNextListLength" @click="openEditBtn(returnNextListLength)"
           class="list-add-btn-wrap">
-          <img src="images/activity/diceTopic/icons8-add-64.png">
+          <img src="images/activity/diceTopic/icons8-add-64.png" class="add-img-icon" />
           <p>項目を追加する</p>
         </button>
         <EditTopicItem v-if="isOpenEdit === returnNextListLength" :dispId="(topicList.length + 1).toString()"
           :id="returnNextListLength" topic="" @saveBtn="executeSave($event, returnNextListLength)"
           @cancelBtn="closeEditStatus" />
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </template>
 
 <style lang="scss" scoped>
 .activity-contents-wrap {
-  img {
+  .dice-img {
     width: 10rem;
   }
 
   button {
     background: none;
     border: none;
-  }
-
-  ol {
-    text-align: left;
-    font-size: 0.8rem;
-    font-weight: bold;
-    width: fit-content;
-    padding: 0.3rem 2rem;
-    border: 0.1rem solid black;
-  }
-
-  ul {
-    text-align: left;
-    font-weight: bold;
-    width: fit-content;
-    padding: 0rem;
-    list-style-type: none;
   }
 
   .main-title {
@@ -213,13 +199,29 @@ onUnmounted(() => {
   .activity-register-list-wrap {
     display: flex;
     flex-direction: column;
+    padding-bottom: 5rem;
     min-height: 15rem;
-    background-color: $theme-bg-color;
     margin: 4rem auto 0;
+    background-color: $theme-bg-color;
   }
 
   .activity-list-wrap {
     margin: 2rem 0;
+
+    h2 {
+      font-size: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    ol {
+      text-align: left;
+      font-size: 1.2rem;
+      font-weight: bold;
+      width: fit-content;
+      padding: 0.3rem 2rem;
+      border: 0.1rem solid black;
+    }
   }
 
   .activity-list-wrap,
@@ -236,6 +238,14 @@ onUnmounted(() => {
       &.register-list-wrap {
         margin: 0 auto 1rem;
         flex-direction: column;
+
+        ul {
+          text-align: left;
+          font-weight: bold;
+          width: fit-content;
+          padding: 0rem;
+          list-style-type: none;
+        }
 
         .empty-list-wrap {
           padding: 1rem 0;
@@ -278,7 +288,7 @@ onUnmounted(() => {
       padding: 0;
       cursor: pointer;
 
-      img {
+      .add-img-icon {
         width: 1.5rem;
         height: 1.5rem;
         align-items: center;
