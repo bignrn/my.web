@@ -25,3 +25,5 @@ node_modules/*
 
 # firebase
 .firebase
+.firebaserc
+firebase.json
