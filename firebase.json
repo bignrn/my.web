@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "my-web-bb123",
+    "site": "portfolio-yuma",
     "public": "dist",
     "ignore": [
       "firebase.json",
