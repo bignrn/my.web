@@ -56,6 +56,9 @@ const cancelBtn = (id) => {
 .edit-topic-item-wrap {
   .input-form-wrap {
     display: flex;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: 600;
 
     .disp-id {
       display: flex;
@@ -64,14 +67,11 @@ const cancelBtn = (id) => {
       padding: 0.4rem;
       background-color: $theme-color;
       border-radius: 0.5rem 0 0 0.5rem;
-      font-size: 1rem;
-      font-weight: 600;
     }
 
     .input-topic {
-      font-size: 1rem;
-      font-weight: 600;
-      width: 16rem;
+      max-width: 42rem;
+      width: 100%;
       height: 1.5rem;
       padding: 0.4rem;
       background-color: $theme-color;
@@ -82,17 +82,12 @@ const cancelBtn = (id) => {
         background-color: $white;
         outline: none;
       }
-
-      &.isDelete {
-        width: 15rem;
-      }
     }
 
     .delete-list-btn {
       border: none;
       background-color: transparent;
       color: $delete-text-color;
-      margin-left: auto;
       cursor: pointer;
     }
   }
