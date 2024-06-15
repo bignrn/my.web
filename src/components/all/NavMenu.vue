@@ -40,10 +40,10 @@ function closeMenu() {
 
   a {
     font-weight: bold;
-    color: black;
+    color: $black;
 
     &.router-link-exact-active {
-      color: rgba(#fff, 0.5);
+      color: rgba($white, 0.5);
     }
 
     &.nav-wrap {
