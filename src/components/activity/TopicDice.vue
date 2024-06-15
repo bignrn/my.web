@@ -309,7 +309,7 @@ onUnmounted(() => {
         display: flex;
         max-width: 50rem;
         width: 100%;
-        margin: 0.4rem auto;
+        margin: 1rem auto;
         font-size: 1.6rem;
         font-weight: 500;
 
