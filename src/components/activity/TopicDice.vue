@@ -104,6 +104,22 @@ onUnmounted(() => {
   <section class="activity-contents-wrap">
     <h1 class="main-title">サイコロトーク</h1>
     <p class="sub-title">-SAIKORO TALK-</p>
+    <!-- DICE -->
+    <div class="dice-area-wrap">
+      <div>
+        <ButtonCommon @click="onClick" width="15rem" height="3rem" class="start-dice-btn">
+          {{ btnMessage }}
+        </ButtonCommon>
+      </div>
+      <p class="topic-title-label">TOPIC</p>
+      <p v-if="topicList.length > 0" class="topic-title">「{{ topicList[topicIndex]?.title }}」</p>
+      <div v-else class="empty-list-wrap">
+        <p class="topic-title">リストがありません</p>
+        <p class="empty-message-text">※追加するには下部にあるボタンから</p>
+      </div>
+      <img :src="dices[diceIndex]" class="dice-img" />
+    </div>
+    <!-- 使い方 -->
     <div class="activity-list-wrap">
       <h2>使い方</h2>
       <div class="list-wrap">
@@ -122,21 +138,6 @@ onUnmounted(() => {
           </li>
         </ol>
       </div>
-    </div>
-    <!-- DICE -->
-    <div class="dice-area-wrap">
-      <div>
-        <ButtonCommon @click="onClick" width="15rem" height="3rem" class="start-dice-btn">
-          {{ btnMessage }}
-        </ButtonCommon>
-      </div>
-      <p class="topic-title label">TOPIC:</p>
-      <p v-if="topicList.length > 0" class="topic-title">「{{ topicList[topicIndex]?.title }}」</p>
-      <div v-else class="empty-list-wrap">
-        <h3>リストがありません。</h3>
-        <span class="empty-message-text">※追加するには下部にあるボタンから</span>
-      </div>
-      <img :src="dices[diceIndex]" class="dice-img" />
     </div>
     <!-- TOPIC LIST -->
     <div class="activity-register-list-wrap">
@@ -177,6 +178,7 @@ onUnmounted(() => {
     border: none;
   }
 
+  // タイトル
   .main-title {
     font-size: 3rem;
   }
@@ -185,16 +187,34 @@ onUnmounted(() => {
     font-size: 2rem;
   }
 
+  // サイコロ
   .dice-area-wrap {
-    .topic-title {
-      font-size: 2.4rem;
-      font-weight: 500;
+    margin-top: 6.4rem;
 
-      &.label {
-        font-size: 1.8rem;
-        font-weight: 600;
-        margin-top: 4rem
+    .topic-title-label {
+      position: relative;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-top: 3.1rem;
+
+      &::after {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -0.3rem;
+        display: flex;
+        content: "";
+        width: 3.9rem;
+        height: 0.4rem;
+        margin: 0 auto;
+        background-color: $black;
       }
+    }
+
+    .topic-title {
+      font-size: 2rem;
+      font-weight: 400;
+      margin-top: 1.9rem
     }
 
     // リストが無い時
@@ -202,6 +222,8 @@ onUnmounted(() => {
       margin-bottom: 30px;
 
       .empty-message-text {
+        font-size: 1.6rem;
+        font-weight: 400;
         color: $text-secondary;
       }
     }
@@ -225,18 +247,20 @@ onUnmounted(() => {
   // 使い方
   .activity-list-wrap,
   .activity-register-list-wrap {
-    margin: 2rem 0 0;
+    margin: 6.2rem 0 0;
 
     h2 {
       font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2.3rem;
     }
 
     ol {
       text-align: left;
       font-size: 1.2rem;
       font-weight: bold;
-      max-width: 29.6rem;
-      padding: 0.3rem 2rem;
+      max-width: 33rem;
+      padding: 0.3rem 4rem;
     }
 
     .list-wrap {
@@ -264,7 +288,7 @@ onUnmounted(() => {
       li {
         @mixin font-style {
           font-size: 1.6rem;
-          font-weight: 500;
+          font-weight: 400;
         }
 
         &.step-item {

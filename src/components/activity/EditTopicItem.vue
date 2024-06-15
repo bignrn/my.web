@@ -99,8 +99,6 @@ const cancelBtn = (id) => {
 
     .register-btn,
     .cancel-btn {
-      font-size: 1rem;
-      font-weight: 600;
       margin: 0.5rem 0.3rem;
     }
   }

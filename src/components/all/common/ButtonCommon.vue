@@ -26,7 +26,7 @@ defineProps({
   font-weight: bold;
   color: $black;
   padding: 0.3rem 1rem;
-  border-radius: 1rem;
+  border-radius: 1.6rem;
   box-shadow: 0rem 0.1rem 0.1em $black;
   box-sizing: content-box;
   cursor: pointer;
