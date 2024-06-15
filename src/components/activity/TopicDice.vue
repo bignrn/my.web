@@ -295,7 +295,7 @@ onUnmounted(() => {
 
         .registered-list-title {
           min-width: 16rem;
-          max-width: 18rem;
+          max-width: 40rem;
           white-space: pre-wrap;
           word-break: break-word;
         }
