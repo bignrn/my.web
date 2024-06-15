@@ -56,35 +56,36 @@ const cancelBtn = (id) => {
 .edit-topic-item-wrap {
   .input-form-wrap {
     display: flex;
+    justify-content: center;
+    height: 3.7rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+
+    $border-size: 0.2rem;
 
     .disp-id {
       display: flex;
       align-items: center;
-      height: calc(2rem - 0.1rem);
+      height: 100%;
       padding: 0.4rem;
       background-color: $theme-color;
       border-radius: 0.5rem 0 0 0.5rem;
-      font-size: 1rem;
-      font-weight: 600;
+      box-sizing: border-box;
     }
 
     .input-topic {
-      font-size: 1rem;
-      font-weight: 600;
-      width: 16rem;
-      height: 1.5rem;
+      max-width: 42rem;
+      width: 100%;
+      height: 100%;
       padding: 0.4rem;
       background-color: $theme-color;
-      border: $theme-color solid 0.2rem;
+      border: $theme-color solid $border-size;
       border-radius: 0 0.5rem 0.5rem 0;
+      box-sizing: border-box;
 
       &:focus-visible {
         background-color: $white;
         outline: none;
-      }
-
-      &.isDelete {
-        width: 15rem;
       }
     }
 
@@ -92,7 +93,6 @@ const cancelBtn = (id) => {
       border: none;
       background-color: transparent;
       color: $delete-text-color;
-      margin-left: auto;
       cursor: pointer;
     }
   }
@@ -104,8 +104,6 @@ const cancelBtn = (id) => {
 
     .register-btn,
     .cancel-btn {
-      font-size: 1rem;
-      font-weight: 600;
       margin: 0.5rem 0.3rem;
     }
   }
