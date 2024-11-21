@@ -50,22 +50,24 @@ const historyList = [
       </div>
       <div class="hobby-wrap">
         <h2 class="contents-title hobby">趣味</h2>
-        <img src="images/profile/tp-icon.jpg" class="tp-icon-img" />
-        <h3>トランペット🎺</h3>
-        <p>
-          小学4年生から続けたトランペット。<br />
-          高校卒業頃には、<br />
-          県ソロコン大会で2位を獲得。
-        </p>
-        <p>
-          時折、母校にトランペットを<br />
-          教えに行っています。
-        </p>
-        <p>
-          少しでも若い世代に、<br />
-          トランペットの師匠の思いが、<br />
-          届けられたらと願っています。
-        </p>
+        <div class="card trumpet">
+          <img src="images/profile/tp-icon.jpg" class="tp-icon-img" />
+          <h3>トランペット🎺</h3>
+          <p>
+            小学4年生から続けたトランペット。<br />
+            高校卒業頃には、<br />
+            県ソロコン大会で2位を獲得。
+          </p>
+          <p>
+            時折、母校にトランペットを<br />
+            教えに行っています。
+          </p>
+          <p>
+            少しでも若い世代に、<br />
+            トランペットの師匠の思いが、<br />
+            届けられたらと願っています。
+          </p>
+        </div>
       </div>
     </div>
   </article>
@@ -205,25 +207,38 @@ const historyList = [
     }
 
     .hobby-wrap {
-      height: 80dvh;
+      height: 100vh;
+      height: 100dvh;
+      padding: 1rem;
       padding-bottom: 5rem;
       color: $black;
       background-color: $prof-theme-bg-color;
 
-      h3 {
-        font-size: 2rem;
-      }
+      .card {
+        max-width: 50rem;
+        padding: 1rem;
+        margin: auto;
+        margin-bottom: 4rem;
+        background-color: rgba($theme-bg-color, 0.65);
+        border-radius: 1.6rem;
 
-      p {
-        font-size: 1.6rem;
-        line-height: 2.3rem;
-        margin-bottom: 2rem;
-      }
+        h3 {
+          font-size: 2rem;
+        }
 
-      .tp-icon-img {
-        max-width: 6.7rem;
-        width: 100%;
-        border-radius: 50%;
+        p {
+          font-size: 1.6rem;
+          line-height: 2.3rem;
+          margin-bottom: 2rem;
+        }
+
+        &.trumpet {
+          .tp-icon-img {
+            max-width: 6.7rem;
+            width: 100%;
+            border-radius: 50%;
+          }
+        }
       }
     }
   }
