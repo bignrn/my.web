@@ -88,6 +88,7 @@ const historyList = [
         </div>
         <h2 class="contents-title">IoT</h2>
         <div class="content-flex">
+          <ul class="columns"><!-- space --></ul>
           <ul class="columns">
             <li class="language-item">Raspberry pi4</li>
             <li class="language-item">ESP-32</li>
@@ -256,7 +257,6 @@ const historyList = [
       position: relative;
       padding: 0 0.5rem;
       margin-bottom: 15rem;
-      font-family: "Yaldevi Colombo Medium";
 
       .background-square-bottom {
         position: absolute;
@@ -291,13 +291,19 @@ const historyList = [
         margin-bottom: 5rem;
 
         .columns {
-          width: 100%;
-          text-align: start;
-          margin-right: 4rem;
+          width: 30vw;
+          width: 30dvw;
+          text-align: end;
+          margin-right: 0.5rem;
+
+          &:nth-child(2n) {
+            text-align: start;
+            margin-left: 0.5rem;
+        }
 
           .language-item {
             font-size: 1.6rem;
-            font-weight: 500;
+            font-weight: 700;
           }
         }
       }
