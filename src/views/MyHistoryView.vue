@@ -4,8 +4,8 @@ const lv2 = "images/profile/lv2.svg";
 const ipa = "images/profile/ipa.svg";
 const oracle = "images/profile/oracle.svg";
 const historyList = [
-  { img: lv2, title: "HTML5\nプロフェッショナル試験Lv2", period: "2024.03.30▶2029.03.30" },
-  { img: lv1, title: "HTML5\nプロフェッショナル試験Lv1", period: "2024.03.30▶2029.03.30" },
+  { img: lv2, title: "HTML5\nプロフェッショナル試験Lv2", period: "2024.03.30 > 2029.03.30" },
+  { img: lv1, title: "HTML5\nプロフェッショナル試験Lv1", period: "2024.03.30 > 2029.03.30" },
   { img: ipa, title: "基本情報技術者試験" },
   { img: oracle, title: "JAVA BRONZE SE" }
 ]
@@ -46,6 +46,52 @@ const historyList = [
         </div>
         <div class="gradient-reverse">
           <img src="images/profile/undraw_programmer_re_owql.svg" class="img-class" />
+        </div>
+      </div>
+      <div class="used-dev-language-wrap">
+        <span class="background-square-bottom"></span>
+        <span class="background-square-top"></span>
+        <h2 class="contents-title">開発言語</h2>
+        <div class="content-flex">
+          <ul class="columns">
+            <li class="language-item">HTML</li>
+            <li class="language-item">CSS</li>
+            <li class="language-item">JavaScript</li>
+            <li class="language-item">Python</li>
+          </ul>
+          <ul class="columns">
+            <li class="language-item">Java</li>
+            <li class="language-item">php</li>
+            <li class="language-item">c</li>
+            <li class="language-item">cpp</li>
+          </ul>
+        </div>
+        <h2 class="contents-title">フレームワーク</h2>
+        <div class="content-flex">
+          <ul class="columns">
+            <li class="language-item">Vue.js</li>
+            <li class="language-item">Angular</li>
+          </ul>
+          <ul class="columns">
+            <li class="language-item">Astro</li>
+          </ul>
+        </div>
+        <h2 class="contents-title">DB</h2>
+        <div class="content-flex">
+          <ul class="columns">
+            <li class="language-item">firebase</li>
+          </ul>
+          <ul class="columns">
+            <li class="language-item">MySQL</li>
+            <li class="language-item">PostgresSQL</li>
+          </ul>
+        </div>
+        <h2 class="contents-title">IoT</h2>
+        <div class="content-flex">
+          <ul class="columns">
+            <li class="language-item">Raspberry pi4</li>
+            <li class="language-item">ESP-32</li>
+          </ul>
         </div>
       </div>
       <div class="hobby-wrap">
@@ -203,6 +249,57 @@ const historyList = [
         margin: 0;
         padding: 4rem 0;
         background: linear-gradient(#ffe227, $white);
+      }
+    }
+
+    .used-dev-language-wrap {
+      position: relative;
+      padding: 0 0.5rem;
+      margin-bottom: 15rem;
+      font-family: "Yaldevi Colombo Medium";
+
+      .background-square-bottom {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -2;
+        width: 100%;
+        height: 100%;
+        background-color: $background-square-bottom-color;
+        clip-path: polygon(0 0, 100% 4rem, 0 60%);
+      }
+      .background-square-top {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -2;
+        width: 100%;
+        height: 100%;
+        background-color: $background-square-top-color;
+        clip-path: polygon(0 8rem, 100% 13rem, 100% 100%, 30% 95%);
+      }
+
+      .contents-title {
+        padding: 0;
+        margin-bottom: 0.5rem;
+        line-height: 2rem;
+      }
+      .content-flex {
+        display: flex;
+        width: fit-content;
+        margin: 0 auto;
+        margin-bottom: 5rem;
+
+        .columns {
+          width: 100%;
+          text-align: start;
+          margin-right: 4rem;
+
+          .language-item {
+            font-size: 1.6rem;
+            font-weight: 500;
+          }
+        }
       }
     }
 
