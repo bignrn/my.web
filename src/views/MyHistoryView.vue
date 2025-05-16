@@ -17,7 +17,7 @@ const historyList = [
       <img src="/images/profile/myAvatar.jpg" class="my-avatar-img" />
       <h1 class="my-name">Mishima Yuma</h1>
       <div class="my-purpose-title">
-        <p>開発の楽しさを求めて。</p>
+        <p>開発の楽しさを原動力に。</p>
         <p>楽しい明日をつくる。</p>
         <p>開発のプロフェッショナル。</p>
       </div>
@@ -48,53 +48,67 @@ const historyList = [
           <img src="images/profile/undraw_programmer_re_owql.svg" class="img-class" />
         </div>
       </div>
+      <!-- 開発言語 -->
       <div class="used-dev-language-wrap">
+        <!-- 背景図形 -->
         <span class="background-square-bottom"></span>
         <span class="background-square-top"></span>
+        <!-- 言語 -->
         <h2 class="contents-title">開発言語</h2>
         <div class="content-flex">
           <ul class="columns">
+            <li class="language-item small">業務実績</li>
             <li class="language-item">HTML</li>
             <li class="language-item">CSS</li>
             <li class="language-item">JavaScript</li>
             <li class="language-item">Python</li>
           </ul>
           <ul class="columns">
+            <li class="language-item small">勉強実績</li>
             <li class="language-item">Java</li>
             <li class="language-item">php</li>
             <li class="language-item">c</li>
             <li class="language-item">cpp</li>
           </ul>
         </div>
+        <!-- フレームワーク -->
         <h2 class="contents-title">フレームワーク</h2>
         <div class="content-flex">
           <ul class="columns">
+            <li class="language-item small">業務実績</li>
             <li class="language-item">Vue.js</li>
             <li class="language-item">Angular</li>
           </ul>
           <ul class="columns">
+            <li class="language-item small">勉強実績</li>
             <li class="language-item">Astro</li>
           </ul>
         </div>
+        <!-- DB -->
         <h2 class="contents-title">DB</h2>
         <div class="content-flex">
           <ul class="columns">
+            <li class="language-item small">業務実績</li>
             <li class="language-item">firebase</li>
           </ul>
           <ul class="columns">
+            <li class="language-item small">勉強実績</li>
             <li class="language-item">MySQL</li>
             <li class="language-item">PostgresSQL</li>
           </ul>
         </div>
+        <!-- マイコン -->
         <h2 class="contents-title">IoT</h2>
         <div class="content-flex">
           <ul class="columns"><!-- space --></ul>
           <ul class="columns">
+            <li class="language-item small">勉強実績</li>
             <li class="language-item">Raspberry pi4</li>
             <li class="language-item">ESP-32</li>
           </ul>
         </div>
       </div>
+      <!-- 趣味 -->
       <div class="hobby-wrap">
         <h2 class="contents-title hobby">趣味</h2>
         <div class="card trumpet">
@@ -286,6 +300,7 @@ const historyList = [
       }
       .content-flex {
         display: flex;
+        gap: 1rem;
         width: fit-content;
         margin: 0 auto;
         margin-bottom: 5rem;
@@ -302,8 +317,12 @@ const historyList = [
         }
 
           .language-item {
-            font-size: 1.6rem;
-            font-weight: 700;
+            font-size: 1.8rem;
+            font-weight: 400;
+
+            &.small {
+              font-size: 1.4rem;
+            }
           }
         }
       }
