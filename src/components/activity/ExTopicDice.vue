@@ -1,28 +1,33 @@
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from "vue";
+import { ref, computed, onMounted, onUnmounted, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useDiceTopicDbStore } from "@/stores/DiceTopicDb";
+import { useUserInfoStore } from "@/stores/UserInfo";
 import { diceImgs } from "@/util/diceUtils";
 import ButtonCommon from "@/components/all/common/ButtonCommon.vue";
+import DialogCommon from "@/components/all/common/DialogCommon.vue";
 import EditTopicItem from "@/components/activity/EditTopicItem.vue";
 
-const { topicList, selectedTopic } = storeToRefs(useDiceTopicDbStore());
-const { setTopic, deleteTopic, setSelectedTopic } = useDiceTopicDbStore();
+const { topicList, selectedTopic, selectedKeyword, allDiceTopicInfo } = storeToRefs(useDiceTopicDbStore());
+const { setTopic, deleteTopic, setSelectedTopic, searchKeyword, destroyDiceTopicData } = useDiceTopicDbStore();
+const { myInformation } = storeToRefs(useUserInfoStore());
+const { retrieveUserInfo } = useUserInfoStore();
 
 const diceIndex = ref(0);
 const topicIndex = ref(0);
 const stopFlg = ref(false);
 const isOpenEdit = ref("");
+const inputKeyword = ref("");
+const inputUserName = ref("");
+const isLockedLocal = ref("");
 const MAX_SHAKE_COUNT = 300;
 let count = 0;
 
 // computed //
-const btnMessage = computed(() => {
-  return stopFlg.value ? "ストップする" : "サイコロを投げる";
-})
+const btnMessage = computed(() =>  stopFlg.value ? "ストップする" : "サイコロを投げる");
 const returnNextListLength = computed(() => {
   if (topicList.value.length === 0) return "1"; // 初期値
-  return `${Math.max(...topicList.value.map(l => Number(l.id))) + 1}`;
+  return `${Math.max(...topicList.value.map(l => Number(l.topicId))) + 1}`;
 })
 
 // **** サイコロ処理 ****//
@@ -36,6 +41,10 @@ const onStartShakeDice = () => {
     setSelectedTopic(topicList.value[topicIndex.value]);
   }
 }
+const fakeStartShakeDice = (flg) => {
+  stopFlg.value = flg;
+  if (flg) animation();
+};
 const shakeDice = () => {
   diceIndex.value = Math.floor(Math.random() * diceImgs.length);
   topicIndex.value = Math.floor(Math.random() * topicList.value.length);
@@ -55,45 +64,77 @@ const animation = () => {
 const openEditBtn = (id) => isOpenEdit.value = id;
 const deleteListBtn = (idx) => deleteTopic(idx);
 const executeSave = (val, i) => {
+  const { id: topicId, topic: topicTitle} = val; //NOTE: 既存コンポーネントを変えない様にする為置換
   if (isNaN(i)) {
-    i = val.id;
+    i = topicId;
   }
-  setTopic(val, i);
-  closeEditStatus(val.id);
+  setTopic({topicId, topicTitle}, i);
+  closeEditStatus(topicId);
 }
 const closeEditStatus = (id) => {
   if (isOpenEdit.value === id) isOpenEdit.value = "";
 }
 
+// **** utils ****//
 // ダブルタップのズーム処理阻止
 const stopDoubleTap = (e) => e.preventDefault();
+// ダイアログの処理
+const onNextProcess = async () => {
+  const step2Flg = selectedKeyword.value?.keyword;
+  // 空チェック
+  if (!inputKeyword.value) return;
+  if (step2Flg && !inputUserName.value) return;
+  if (step2Flg && !inputUserName.value.match(/^[^.]+$/)) return;
+  // 実行
+  if (!selectedKeyword.value) return await searchKeyword(inputKeyword.value);
+  if (step2Flg) await retrieveUserInfo(inputUserName.value);
+};
 
-// mounted
+// watch //
+watch(allDiceTopicInfo, () => {
+  // NOTE: 初回起動時はデータが無いので動かさなくて良い
+  isLockedLocal.value = allDiceTopicInfo.value?.isLocked ?? "";
+  fakeStartShakeDice(isLockedLocal.value !== "")
+}, {deep:true});
+
+// mounted //
 onMounted(() => {
   document.addEventListener("dblclick", stopDoubleTap, { passive: false });
 })
-// unmounted
+// unmounted //
 onUnmounted(() => {
   document.removeEventListener("dblclick", stopDoubleTap);
+  destroyDiceTopicData();
 })
 </script>
 
 <template>
   <section class="activity-contents-wrap">
-    <h1 class="main-title">サイコロトーク</h1>
+    <h1 class="main-title">サイコロトーク(試験運用)</h1>
     <p class="sub-title">-SAIKORO TALK-</p>
+    <div class="login-information-wrap">
+      <!-- login user -->
+      <p>
+        user: {{ myInformation?.userName ? myInformation?.userName : "未ログイン" }}
+      </p>
+      <!-- login keyword -->
+      <p>
+        あいことば: {{ selectedKeyword?.keyword }}
+      </p>
+    </div>
     <!-- DICE -->
     <div class="dice-area-wrap">
-      <div>
-        <ButtonCommon @click="onStartShakeDice" width="15rem" height="3rem" class="start-dice-btn">
+      <div v-if="allDiceTopicInfo">
+        <ButtonCommon v-if="isLockedLocal === ''" @click="onStartShakeDice" width="15rem" height="3rem" class="start-dice-btn">
           {{ btnMessage }}
         </ButtonCommon>
+        <p v-else class="button-not-action">{{isLockedLocal}}が操作中です。</p>
       </div>
       <p class="topic-title-label">TOPIC</p>
       <!-- 選択したトピック -->
       <p v-if="topicList.length > 0" class="topic-title">
         <!-- アニメーションの為切り替える -->
-        「{{ selectedTopic ? selectedTopic?.title : topicList[topicIndex]?.title }}」
+        「{{ selectedTopic ? selectedTopic?.topicTitle : topicList[topicIndex]?.topicTitle }}」
       </p>
       <div v-else class="empty-list-wrap">
         <p class="topic-title">リストがありません</p>
@@ -127,14 +168,21 @@ onUnmounted(() => {
       <div class="list-wrap register-list-wrap">
         <ul v-if="topicList.length > 0">
           <li v-for="(list, i) of topicList" :key="list">
-            <div v-show="isOpenEdit !== list.id" class="registered-list">
+            <div v-show="isOpenEdit !== list.topicId" class="registered-list">
               <div class="registered-list-id">{{ i + 1 }}：</div>
-              <div class="registered-list-title">{{ list.title }}</div>
-              <button @click="openEditBtn(list.id)" class="edit-btn">編集</button>
+              <div class="registered-list-title">{{ list.topicTitle }}</div>
+              <button @click="openEditBtn(list.topicId)" class="edit-btn">編集</button>
             </div>
-            <EditTopicItem v-if="isOpenEdit === list.id" :dispId="(i + 1).toString()" :id="list.id" :topic="list.title"
-              isDeleteBtn @saveBtn="executeSave($event, i)" @cancelBtn="closeEditStatus"
-              @deleteBtn="deleteListBtn(i)" />
+            <EditTopicItem
+              v-if="isOpenEdit === list.topicId"
+              :dispId="(i + 1).toString()"
+              :id="list.topicId"
+              :topic="list.topicTitle"
+              isDeleteBtn
+              @saveBtn="executeSave($event, i)"
+              @cancelBtn="closeEditStatus"
+              @deleteBtn="deleteListBtn(i)"
+            />
           </li>
         </ul>
         <div v-else class="empty-list-wrap register-section">
@@ -146,7 +194,7 @@ onUnmounted(() => {
           class="list-add-btn-wrap"
         >
           <img src="images/activity/diceTopic/icons8-add-64.png" class="add-img-icon" />
-          <p>項目を追加する</p>{{ returnNextListLength }}
+          <p>項目を追加する</p>
         </button>
         <EditTopicItem
           v-if="isOpenEdit === returnNextListLength"
@@ -158,6 +206,32 @@ onUnmounted(() => {
         />
       </div>
     </div>
+    <div v-if="allDiceTopicInfo" class="login-users-list-wrap">
+      <h2>ログインしているユーザ名</h2>
+      <p v-for="shearUserName in allDiceTopicInfo.shearUser" :key="shearUserName">
+        {{ shearUserName }}
+      </p>
+    </div>
+    <DialogCommon :displayStatus="!selectedKeyword || !myInformation">
+      <template #dialog-main>
+        <div class="setting-space-form">
+          <div v-if="myInformation?.userName">「{{myInformation?.userName}}」でログインします</div>
+          <div class="step1-wrap">
+            <p>あいことばを入力</p>
+            <input v-model="inputKeyword" class="input-text"/>
+          </div>
+          <div v-if="selectedKeyword" class="step2-wrap">
+            <p>ニックネームを入力</p>
+            <input v-model="inputUserName" class="input-text"/>
+            <div class="msg">※「.」(ドット)は使用できません</div>
+            <div class="msg">※本名は避けてください</div>
+          </div>
+          <ButtonCommon @click="onNextProcess()" width="15rem" height="3rem">
+            合言葉を入力
+          </ButtonCommon>
+        </div>
+      </template>
+    </DialogCommon>
   </section>
 </template>
 
@@ -172,17 +246,29 @@ onUnmounted(() => {
   .main-title {
     font-size: 3rem;
   }
-
   .sub-title {
     font-size: 2rem;
+  }
+
+  // ログイン情報
+  .login-information-wrap {
+    p {
+      font-size: 1.6rem;
+      margin-top: 0.5rem;
+    }
   }
 
   // サイコロ
   .dice-area-wrap {
     margin-top: 6.4rem;
 
+    .button-not-action {
+      font-size: 2rem;
+    }
+
     .topic-title-label {
       position: relative;
+      z-index: -1;
       font-size: 2rem;
       font-weight: 700;
       margin-top: 3.1rem;
@@ -236,7 +322,8 @@ onUnmounted(() => {
 
   // 使い方
   .activity-list-wrap,
-  .activity-register-list-wrap {
+  .activity-register-list-wrap,
+  .login-users-list-wrap {
     margin: 6.2rem 0 0;
 
     h2 {
@@ -344,6 +431,45 @@ onUnmounted(() => {
         color: $text-black;
         font-size: 1.6rem;
         font-weight: 700;
+      }
+    }
+  }
+
+  .login-users-list-wrap {
+    margin: 2rem 0;
+    p {
+      font-size: 1.6rem;
+    }
+  }
+
+  // ダイアログ
+  .setting-space-form {
+    position: relative;
+    height: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    :deep(.common-button-wrap) {
+      position: absolute;
+      bottom: 3rem;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+    .step1-wrap,
+    .step2-wrap {
+      margin-top: 1rem;
+      p {
+        font-size: 2rem;
+      }
+      .input-text {
+        margin-top: 0.5rem;
+        font-size: 1.6rem;
+        width: 20rem;
+        height: 2.4rem;
+        border-radius: 1rem;
+      }
+      .msg {
+        font-size: 1.6rem;
       }
     }
   }
