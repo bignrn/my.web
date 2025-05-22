@@ -12,6 +12,7 @@ const router = useRouter();
 const navList = [
   { to: router.resolve({ name: "MyHistory" }), label: "製作者について" },
   { to: router.resolve({ name: "iceBreak" }), label: "アイスブレイク" },
+  { to: router.resolve({ name: "ExActivityView" }), label: "アイスブレイク(試験運用)" },
 ]
 
 function closeMenu() {
