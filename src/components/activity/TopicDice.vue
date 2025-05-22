@@ -5,8 +5,8 @@ import { useDiceTopicStore } from "../../stores/DiceTopic";
 import ButtonCommon from "../all/common/ButtonCommon.vue";
 import EditTopicItem from "./EditTopicItem.vue";
 
-const diceTopicStore = useDiceTopicStore();
-const { topics } = storeToRefs(diceTopicStore);
+const { topics } = storeToRefs(useDiceTopicStore());
+const { setTopic, deleteTopic } = useDiceTopicStore();
 
 const dices = ref([
   "images/activity/dices/dice-1.png",
@@ -72,13 +72,13 @@ const openEditBtn = (id) => {
   isOpenEdit.value = id;
 }
 const deleteListBtn = (idx) => {
-  diceTopicStore.deleteTopic(idx);
+  deleteTopic(idx);
 };
 const executeSave = (val, i) => {
   if (isNaN(i)) {
     i = val.id;
   }
-  diceTopicStore.setTopic(val, i);
+  setTopic(val, i);
   closeEditStatus(val.id);
 }
 const closeEditStatus = (id) => {

@@ -1,5 +1,5 @@
 <script setup>
-import TopicDice from "../components/activity/TopicDice.vue"
+import TopicDice from "@/components/activity/TopicDice.vue"
 </script>
 
 <template>
