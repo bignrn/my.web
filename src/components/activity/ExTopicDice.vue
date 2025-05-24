@@ -16,7 +16,8 @@ const {
   searchKeyword,
   destroyDiceTopicData,
   setShearUser,
-  setIsLocked
+  setIsLocked,
+  createDiceTopicData,
 } = useDiceTopicDbStore();
 const { myInformation } = storeToRefs(useUserInfoStore());
 const { retrieveUserInfo } = useUserInfoStore();
@@ -28,6 +29,7 @@ const isOpenEdit = ref("");
 const inputKeyword = ref("");
 const inputUserName = ref("");
 const isLockedLocal = ref("");
+const inputNewKeyword = ref(""); // 管理者のみ
 const MAX_SHAKE_COUNT = 300;
 let count = 0;
 
@@ -74,7 +76,7 @@ const animation = () => {
 
 // **** リスト編集処理 ****//
 const openEditBtn = (id) => isOpenEdit.value = id;
-const deleteListBtn = (idx) => deleteTopic(idx);
+const deleteListBtn = async (idx) => await deleteTopic(idx);
 const executeSave = (val, i) => {
   const { id: topicId, topic: topicTitle} = val; //NOTE: 既存コンポーネントを変えない様にする為置換
   if (isNaN(i)) {
@@ -145,6 +147,10 @@ onUnmounted(async () => {
       <p>
         あいことば: {{ selectedKeyword?.keyword }}
       </p>
+      <div v-if="myInformation?.admin">
+        <input v-model="inputNewKeyword" />
+        <button @click="createDiceTopicData(inputNewKeyword)">設定</button>
+      </div>
     </div>
     <!-- DICE -->
     <div class="dice-area-wrap">

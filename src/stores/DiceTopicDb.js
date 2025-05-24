@@ -1,5 +1,16 @@
 import { defineStore, storeToRefs } from "pinia";
-import { arrayRemove, arrayUnion, getDoc, getDocs, onSnapshot, query, setDoc, where } from "firebase/firestore";
+import {
+  addDoc,
+  setDoc,
+  updateDoc,
+  arrayRemove,
+  arrayUnion,
+  getDoc,
+  getDocs,
+  onSnapshot,
+  query,
+  where
+} from "firebase/firestore";
 import { getRootDocument, getRootCollection } from "@/util/dbUtils";
 import { useUserInfoStore } from "./UserInfo";
 const DICE_TOPIC = "dice-topic";
@@ -22,31 +33,20 @@ export const useDiceTopicDbStore = defineStore("DiceTopicDb", {
   actions: {
     // getter //
     startDiceTopicData() {
-      // const docRef = getRootDocument(DICE_TOPIC, this.selectedKeyword.diceTopicDocId);
-      // this.diceTopicDestroy = onSnapshot(docRef, (res) => {
-      //   if (!res.empty) {
-      //     const data = res.data();
-      //     this.allDiceTopicInfo = data;
-      // this.selectedTopic = this.allDiceTopicInfo.selectedTopic;
-      //     // ロック状態かチェック
-      //     if(this.allDiceTopicInfo.isLocked === "") {
-      //       this.topicList = this.allDiceTopicInfo.topicList;
-      //     }
-      //   } else {
-      //     console.error("No such document!");
-      //   }
-      // });
-      this.allDiceTopicInfo = { // TODO
-        selectedTopic: {},
-        topicList: [],
-        isLocked: "yuma",
-        shearUser: ["yuma", "uma", "ma", "m"],
-      };
-      this.selectedTopic = this.allDiceTopicInfo.selectedTopic;
-      // リストの更新チェック
-      if(this.allDiceTopicInfo.isLocked === "") {
-        this.topicList = this.allDiceTopicInfo.topicList;
-      }
+      const docRef = getRootDocument(DICE_TOPIC, this.selectedKeyword.diceTopicDocId);
+      this.diceTopicDestroy = onSnapshot(docRef, (res) => {
+        if (!res.empty) {
+          const data = res.data();
+          this.allDiceTopicInfo = data;
+          this.selectedTopic = this.allDiceTopicInfo.selectedTopic;
+          // ロック状態かチェック
+          if(this.allDiceTopicInfo.isLocked === "") {
+            this.topicList = this.allDiceTopicInfo.topicList;
+          }
+        } else {
+          console.error("No such document!");
+        }
+      });
     },
     /**
      * キーワードがあるか検索する
@@ -54,19 +54,12 @@ export const useDiceTopicDbStore = defineStore("DiceTopicDb", {
      * @returns 
      */
     async searchKeyword(keyword) {
-      // const collectionRef = getRootCollection(DICE_TOPIC_KEYWORD);
-      // const query = query(collectionRef, where("keyword", "==", keyword))
-      // const snap = await getDocs(query);
-
-      // if (snap.empty) return false;
-      // const data = snap.docs[0].data();
-      // this.selectedKeyword = data;
-
-      this.selectedKeyword = { // TODO
-        keyword: keyword,
-        diceTopicDocId: "EeHSD0x20VXKbFHBt6k3",
-      };
-
+      const collectionRef = getRootCollection(DICE_TOPIC_KEYWORD);
+      const query = query(collectionRef, where("keyword", "==", keyword))
+      const snap = await getDocs(query);
+      if (snap.empty) return false;
+      const data = snap.docs[0].data();
+      this.selectedKeyword = data;
       // 成功時にデータを裏で取得する
       this.startDiceTopicData();
       return true;
@@ -91,7 +84,6 @@ export const useDiceTopicDbStore = defineStore("DiceTopicDb", {
         userName: myInformation.userName,
         timestamp: new Date(),
       };
-
       const deepCopyList = [...this.topicList];
       if (idx >= this.topicList.length) {
         // 新規
@@ -100,68 +92,90 @@ export const useDiceTopicDbStore = defineStore("DiceTopicDb", {
         // 編集
         deepCopyList[idx] = setVal;
       }
-
       // upload
-      this.topicList = deepCopyList; // TODO
-      // await setDoc(
-      //   getRootDocument(
-      //     DICE_TOPIC,
-      //     this.selectedKeyword.diceTopicDocId
-      //   ),
-      //   { topicList: deepCopyList, }, 
-      //   { merge: true }
-      // );
+      await setDoc(
+        getRootDocument(
+          DICE_TOPIC,
+          this.selectedKeyword.diceTopicDocId
+        ),
+        { topicList: deepCopyList, }, 
+        { merge: true }
+      );
     },
-    deleteTopic(idx) {
-      this.topicList.splice(idx, 1);
+    async deleteTopic(idx) {
+      const deepCopyList = [...this.topicList];
+      deepCopyList.splice(idx, 1);
+      // upload
+      await setDoc(
+        getRootDocument(
+          DICE_TOPIC,
+          this.selectedKeyword.diceTopicDocId
+        ),
+        { topicList: deepCopyList, }, 
+        { merge: true }
+      );
     },
     async setSelectedTopic(obj) {
       this.selectedTopic = obj;
-      // // upload
-      // await setDoc(
-      //   getRootDocument(
-      //     DICE_TOPIC,
-      //     this.selectedKeyword.diceTopicDocId
-      //   ),
-      //   { selectedTopic: this.selectedTopic, isLocked: "" }, 
-      //   { merge: true }
-      // );
+      // upload
+      await setDoc(
+        getRootDocument(
+          DICE_TOPIC,
+          this.selectedKeyword.diceTopicDocId
+        ),
+        { selectedTopic: this.selectedTopic, isLocked: "" }, 
+        { merge: true }
+      );
     },
     // lockedのupdate
     async setIsLocked(str) {
-      // TODO
-      // await setDoc(
-      //   getRootDocument(
-      //     DICE_TOPIC,
-      //     this.selectedKeyword.diceTopicDocId
-      //   ),
-      //   { isLocked: str }, 
-      //   { merge: true }
-      // );
+      await setDoc(
+        getRootDocument(
+          DICE_TOPIC,
+          this.selectedKeyword.diceTopicDocId
+        ),
+        { isLocked: str }, 
+        { merge: true }
+      );
     },
     // shearUserのupdate
     async setShearUser(str, isDelete = false) {
-      // TODO
-      // if (!isDelete) {
-      //   await setDoc(
-      //     getRootDocument(
-      //       DICE_TOPIC,
-      //       this.selectedKeyword.diceTopicDocId
-      //     ),
-      //     { shearUser: arrayUnion(str) }, 
-      //     { merge: true }
-      //   );
-      // } else {
-      //   // delete
-      //   await setDoc(
-      //     getRootDocument(
-      //       DICE_TOPIC,
-      //       this.selectedKeyword.diceTopicDocId
-      //     ),
-      //     { shearUser: arrayRemove(str) }, 
-      //     { merge: true }
-      //   );
-      // }
+      if (!isDelete) {
+        // update
+        await setDoc(
+          getRootDocument(
+            DICE_TOPIC,
+            this.selectedKeyword.diceTopicDocId
+          ),
+          { shearUser: arrayUnion(str) }, 
+          { merge: true }
+        );
+      } else {
+        // delete
+        await setDoc(
+          getRootDocument(
+            DICE_TOPIC,
+            this.selectedKeyword.diceTopicDocId
+          ),
+          { shearUser: arrayRemove(str) }, 
+          { merge: true }
+        );
+      }
+    },
+    // あいことばの下となるデータを作成する
+    async createDiceTopicData(keyword) {
+      const formatData = {
+        selectedTopic: {},
+        topicList: [],
+        isLocked: "",
+        shearUser: [],
+      };
+      const diceTopicRef = await addDoc(getRootCollection(DICE_TOPIC), formatData);
+      const diceTopicId = diceTopicRef.id;
+      await addDoc(
+        getRootCollection(DICE_TOPIC_KEYWORD),
+        { keyword, diceTopicDocid: diceTopicId }
+      );
     },
   }
 });
