@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /main-hosting/{document=**} {
+      allow read, write: if true;
+
+      match /dice-topic {
+        allow read, write: if true;
+      }
+      match /dice-topic-keyword {
+        allow read: if true;
+        allow write: if true;
+      }
+      match /user-list {
+        allow read, write: if true;
+      }
+    }
+  }
+}
