@@ -1,5 +1,5 @@
 import { defineStore, storeToRefs } from "pinia";
-import { getDoc, getDocs, onSnapshot, query, setDoc, where } from "firebase/firestore";
+import { arrayRemove, arrayUnion, getDoc, getDocs, onSnapshot, query, setDoc, where } from "firebase/firestore";
 import { getRootDocument, getRootCollection } from "@/util/dbUtils";
 import { useUserInfoStore } from "./UserInfo";
 const DICE_TOPIC = "dice-topic";
@@ -117,7 +117,7 @@ export const useDiceTopicDbStore = defineStore("DiceTopicDb", {
     },
     async setSelectedTopic(obj) {
       this.selectedTopic = obj;
-      // upload
+      // // upload
       // await setDoc(
       //   getRootDocument(
       //     DICE_TOPIC,
@@ -127,7 +127,41 @@ export const useDiceTopicDbStore = defineStore("DiceTopicDb", {
       //   { merge: true }
       // );
     },
-    // TODO lockedのupdate
-    // TODO shearUserのupdate
+    // lockedのupdate
+    async setIsLocked(str) {
+      // TODO
+      // await setDoc(
+      //   getRootDocument(
+      //     DICE_TOPIC,
+      //     this.selectedKeyword.diceTopicDocId
+      //   ),
+      //   { isLocked: str }, 
+      //   { merge: true }
+      // );
+    },
+    // shearUserのupdate
+    async setShearUser(str, isDelete = false) {
+      // TODO
+      // if (!isDelete) {
+      //   await setDoc(
+      //     getRootDocument(
+      //       DICE_TOPIC,
+      //       this.selectedKeyword.diceTopicDocId
+      //     ),
+      //     { shearUser: arrayUnion(str) }, 
+      //     { merge: true }
+      //   );
+      // } else {
+      //   // delete
+      //   await setDoc(
+      //     getRootDocument(
+      //       DICE_TOPIC,
+      //       this.selectedKeyword.diceTopicDocId
+      //     ),
+      //     { shearUser: arrayRemove(str) }, 
+      //     { merge: true }
+      //   );
+      // }
+    },
   }
 });

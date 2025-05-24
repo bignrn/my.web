@@ -9,7 +9,15 @@ import DialogCommon from "@/components/all/common/DialogCommon.vue";
 import EditTopicItem from "@/components/activity/EditTopicItem.vue";
 
 const { topicList, selectedTopic, selectedKeyword, allDiceTopicInfo } = storeToRefs(useDiceTopicDbStore());
-const { setTopic, deleteTopic, setSelectedTopic, searchKeyword, destroyDiceTopicData } = useDiceTopicDbStore();
+const {
+  setTopic,
+  deleteTopic,
+  setSelectedTopic,
+  searchKeyword,
+  destroyDiceTopicData,
+  setShearUser,
+  setIsLocked
+} = useDiceTopicDbStore();
 const { myInformation } = storeToRefs(useUserInfoStore());
 const { retrieveUserInfo } = useUserInfoStore();
 
@@ -34,11 +42,15 @@ const returnNextListLength = computed(() => {
 const onStartShakeDice = () => {
   stopFlg.value = !stopFlg.value;
   if (stopFlg.value) {
+    // アニメーション
     animation();
     setSelectedTopic(null);
+    if (myInformation.value?.userName && !isLockedLocal.value)
+      setIsLocked(myInformation.value.userName); // NOTE: lockedに値があれば更新しない
   } else {
+    // ストップ
     shakeDice();
-    setSelectedTopic(topicList.value[topicIndex.value]);
+    setSelectedTopic(topicList.value[topicIndex.value]); // db更新
   }
 }
 const fakeStartShakeDice = (flg) => {
@@ -86,25 +98,37 @@ const onNextProcess = async () => {
   if (step2Flg && !inputUserName.value) return;
   if (step2Flg && !inputUserName.value.match(/^[^.]+$/)) return;
   // 実行
-  if (!selectedKeyword.value) return await searchKeyword(inputKeyword.value);
-  if (step2Flg) await retrieveUserInfo(inputUserName.value);
+  if (!selectedKeyword.value){
+    // あいことば
+    return await searchKeyword(inputKeyword.value);
+  }
+  if (step2Flg){
+    await retrieveUserInfo(inputUserName.value);
+    if (myInformation.value?.userName)
+      await setShearUser(myInformation.value.userName);
+  }
 };
 
 // watch //
-watch(allDiceTopicInfo, () => {
-  // NOTE: 初回起動時はデータが無いので動かさなくて良い
-  isLockedLocal.value = allDiceTopicInfo.value?.isLocked ?? "";
-  fakeStartShakeDice(isLockedLocal.value !== "")
-}, {deep:true});
+watch(
+  allDiceTopicInfo,
+  () => {
+    // NOTE: 初回起動時はデータが無いので動かさなくて良い
+    isLockedLocal.value = allDiceTopicInfo.value?.isLocked ?? "";
+    fakeStartShakeDice(isLockedLocal.value !== "")
+  },
+  {deep:true}
+);
 
 // mounted //
 onMounted(() => {
   document.addEventListener("dblclick", stopDoubleTap, { passive: false });
 })
 // unmounted //
-onUnmounted(() => {
+onUnmounted(async () => {
   document.removeEventListener("dblclick", stopDoubleTap);
-  destroyDiceTopicData();
+  await setShearUser(myInformation.value.userName, true); // 共有ユーザを削除
+  destroyDiceTopicData(); // データをクリーンアップ
 })
 </script>
 
@@ -125,9 +149,16 @@ onUnmounted(() => {
     <!-- DICE -->
     <div class="dice-area-wrap">
       <div v-if="allDiceTopicInfo">
-        <ButtonCommon v-if="isLockedLocal === ''" @click="onStartShakeDice" width="15rem" height="3rem" class="start-dice-btn">
+        <ButtonCommon
+          v-if="isLockedLocal === '' || myInformation?.userName === isLockedLocal"
+          @click="onStartShakeDice"
+          width="15rem"
+          height="3rem"
+          class="start-dice-btn"
+        >
           {{ btnMessage }}
         </ButtonCommon>
+        <!-- NOTE: 誰かが操作中は阻止する。 -->
         <p v-else class="button-not-action">{{isLockedLocal}}が操作中です。</p>
       </div>
       <p class="topic-title-label">TOPIC</p>
@@ -206,12 +237,14 @@ onUnmounted(() => {
         />
       </div>
     </div>
+    <!-- ログインユーザリスト -->
     <div v-if="allDiceTopicInfo" class="login-users-list-wrap">
       <h2>ログインしているユーザ名</h2>
       <p v-for="shearUserName in allDiceTopicInfo.shearUser" :key="shearUserName">
         {{ shearUserName }}
       </p>
     </div>
+    <!-- ダイアログ -->
     <DialogCommon :displayStatus="!selectedKeyword || !myInformation">
       <template #dialog-main>
         <div class="setting-space-form">
@@ -227,7 +260,7 @@ onUnmounted(() => {
             <div class="msg">※本名は避けてください</div>
           </div>
           <ButtonCommon @click="onNextProcess()" width="15rem" height="3rem">
-            合言葉を入力
+            {{selectedKeyword ? "次へ" : "始める"}}
           </ButtonCommon>
         </div>
       </template>
