@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import {  arrayUnion, getDocs, setDoc } from "firebase/firestore";
+import { arrayUnion, getDocs, setDoc, query, where } from "firebase/firestore";
 import { getRootDocument, getRootCollection } from "@/util/dbUtils";
 const USER_LIST_COLLECTION = "user-list";
 
