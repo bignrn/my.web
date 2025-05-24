@@ -1,6 +1,5 @@
 import { getFirestore, collection, doc, getDoc, onSnapshot } from "firebase/firestore";
-const ROOT_COLLECTION_NAME = "main-hosting";
-const APP_DOC_ID = "8AcYXd4wbC93Em8dNuuJ";
+import { ROOT_COLLECTION_NAME, APP_DOC_ID } from "@/config";
 
 // common
 const getRootCollection = (SUB_COLLECTION) => {

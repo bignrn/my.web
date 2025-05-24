@@ -8,5 +8,7 @@ const firebaseConfig = {
   appId: "YOUR_APP_ID",
   measurementId: "YOUR_ID"
 };
+const ROOT_COLLECTION_NAME = "YOUR_COLLECTION";
+const APP_DOC_ID = "DOCID";
 
-export { firebaseConfig };
+export { firebaseConfig, ROOT_COLLECTION_NAME, APP_DOC_ID };
