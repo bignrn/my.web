@@ -117,10 +117,7 @@ export const useDiceTopicDbStore = defineStore("DiceTopicDb", {
       );
     },
     async setSelectedTopic(obj) {
-      if (!obj) {
-        this.setIsLocked("");
-        return;
-      }
+      if (!obj) obj = "";
       this.selectedTopic = obj;
       // upload
       await setDoc(

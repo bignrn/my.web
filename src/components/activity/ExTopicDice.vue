@@ -46,13 +46,14 @@ const onStartShakeDice = () => {
   if (stopFlg.value) {
     // アニメーション
     animation();
+    // 空にする(ダイスタイトルを動かすため)
     setSelectedTopic(null);
+    // ロック状態にする(他の人の操作を奪う為)
     if (myInformation.value?.userName && !isLockedLocal.value)
       setIsLocked(myInformation.value.userName); // NOTE: lockedに値があれば更新しない
   } else {
     // ストップ
     shakeDice();
-    setSelectedTopic(topicList.value[topicIndex.value]); // db更新
   }
 }
 const fakeStartShakeDice = (flg) => {
@@ -69,8 +70,10 @@ const animation = () => {
     count++;
     setTimeout(animation, 50); // シャットダウン間隔
   } else {
+    // ストップ
     count = 0;
     stopFlg.value = false;
+    setSelectedTopic(topicList.value[topicIndex.value]); // db更新
   }
 }
 
@@ -157,7 +160,7 @@ onUnmounted(async () => {
       <p>
         あいことば: {{ selectedKeyword?.keyword }}
       </p>
-      <div v-if="myInformation?.admin">
+      <div v-if="myInformation?.admin" class="debug-texts">
         <input v-model="inputNewKeyword" />
         <button @click="createDiceTopicData(inputNewKeyword)">設定</button>
         <div>
@@ -288,8 +291,15 @@ onUnmounted(async () => {
             <div class="msg">※「.」(ドット)は使用できません</div>
             <div class="msg">※本名は避けてください</div>
           </div>
+          <!-- ログインユーザリスト -->
+          <div v-if="allDiceTopicInfo" class="login-users-list-wrap">
+            <h2>ログインしているユーザ名</h2>
+            <p v-for="shearUserName in allDiceTopicInfo.shearUser" :key="shearUserName">
+              {{ shearUserName }}
+            </p>
+          </div>
           <ButtonCommon @click="onNextProcess()" width="15rem" height="3rem">
-            {{selectedKeyword ? "次へ" : "始める"}}
+            {{selectedKeyword ? "始める" : "次へ"}}
           </ButtonCommon>
         </div>
       </template>
@@ -317,6 +327,11 @@ onUnmounted(async () => {
     p {
       font-size: 1.6rem;
       margin-top: 0.5rem;
+    }
+
+    .debug-texts {
+      max-height: 20rem;
+      overflow-y: scroll;
     }
   }
 
@@ -498,7 +513,9 @@ onUnmounted(async () => {
   }
 
   .login-users-list-wrap {
+    max-height: 13rem;
     margin: 2rem 0;
+    overflow-y: auto;
     p {
       font-size: 1.6rem;
     }
