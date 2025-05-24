@@ -13,6 +13,7 @@ import {
 } from "firebase/firestore";
 import { getRootDocument, getRootCollection } from "@/util/dbUtils";
 import { useUserInfoStore } from "./UserInfo";
+import { defaultTopicList } from "@/util/diceUtils"
 const DICE_TOPIC = "dice-topic";
 const DICE_TOPIC_KEYWORD = "dice-topic-keyword";
 
@@ -55,8 +56,8 @@ export const useDiceTopicDbStore = defineStore("DiceTopicDb", {
      */
     async searchKeyword(keyword) {
       const collectionRef = getRootCollection(DICE_TOPIC_KEYWORD);
-      const query = query(collectionRef, where("keyword", "==", keyword))
-      const snap = await getDocs(query);
+      const q = query(collectionRef, where("keyword", "==", keyword))
+      const snap = await getDocs(q);
       if (snap.empty) return false;
       const data = snap.docs[0].data();
       this.selectedKeyword = data;
@@ -81,7 +82,7 @@ export const useDiceTopicDbStore = defineStore("DiceTopicDb", {
       const setVal = {
         topicId: val.topicId,
         topicTitle: val.topicTitle,
-        userName: myInformation.userName,
+        userName: myInformation.value.userName,
         timestamp: new Date(),
       };
       const deepCopyList = [...this.topicList];
@@ -116,6 +117,10 @@ export const useDiceTopicDbStore = defineStore("DiceTopicDb", {
       );
     },
     async setSelectedTopic(obj) {
+      if (!obj) {
+        this.setIsLocked("");
+        return;
+      }
       this.selectedTopic = obj;
       // upload
       await setDoc(
@@ -162,11 +167,11 @@ export const useDiceTopicDbStore = defineStore("DiceTopicDb", {
         );
       }
     },
-    // あいことばの下となるデータを作成する
+    // あいことばの素となるデータを作成する
     async createDiceTopicData(keyword) {
       const formatData = {
         selectedTopic: {},
-        topicList: [],
+        topicList: [...defaultTopicList],
         isLocked: "",
         shearUser: [],
       };
@@ -174,7 +179,7 @@ export const useDiceTopicDbStore = defineStore("DiceTopicDb", {
       const diceTopicId = diceTopicRef.id;
       await addDoc(
         getRootCollection(DICE_TOPIC_KEYWORD),
-        { keyword, diceTopicDocid: diceTopicId }
+        { keyword, diceTopicDocId: diceTopicId }
       );
     },
   }

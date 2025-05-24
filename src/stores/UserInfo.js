@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { arrayUnion, getDocs, setDoc, query, where } from "firebase/firestore";
+import { arrayUnion, getDocs, setDoc, query, where, addDoc } from "firebase/firestore";
 import { getRootDocument, getRootCollection } from "@/util/dbUtils";
 const USER_LIST_COLLECTION = "user-list";
 
@@ -13,8 +13,8 @@ export const useUserInfoStore = defineStore("UserInfo", {
     async retrieveUserInfo(userName, keyword) {
       // 検索
       const collectionRef = getRootCollection(USER_LIST_COLLECTION);
-      const query = query(collectionRef, where("userName", "==", userName))
-      const snap = await getDocs(query);
+      const q = query(collectionRef, where("userName", "==", userName))
+      const snap = await getDocs(q);
       if (snap.empty) {
         // ない場合保存
         this.myInformation = {
@@ -23,12 +23,12 @@ export const useUserInfoStore = defineStore("UserInfo", {
           created: new Date(),
           updated: new Date(),
         };
-        await setDoc(collectionRef, this.myInformation)
+        await addDoc(collectionRef, this.myInformation);
         return false;
       }
       // データがある場合
       const data = snap.docs[0].data();
-      const docId = snap.id;
+      const docId = snap.docs[0].id;
       this.myInformation = data;
       // 更新
       await setDoc(

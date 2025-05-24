@@ -67,7 +67,7 @@ const animation = () => {
   shakeDice();
   if (stopFlg.value && count < MAX_SHAKE_COUNT) {
     count++;
-    setTimeout(animation, 50); // シャットダウン感覚
+    setTimeout(animation, 50); // シャットダウン間隔
   } else {
     count = 0;
     stopFlg.value = false;
@@ -102,14 +102,25 @@ const onNextProcess = async () => {
   // 実行
   if (!selectedKeyword.value){
     // あいことば
-    return await searchKeyword(inputKeyword.value);
+    await searchKeyword(inputKeyword.value);
+    // 共有ユーザアップデート
+    if (myInformation.value && myInformation.value?.userName)
+      await setShearUser(myInformation.value.userName);
+    return;
   }
   if (step2Flg){
-    await retrieveUserInfo(inputUserName.value);
+    await retrieveUserInfo(inputUserName.value, inputKeyword.value);
+    // 共有ユーザアップデート
     if (myInformation.value?.userName)
       await setShearUser(myInformation.value.userName);
   }
 };
+const removeThisPage = async () => {
+  await setShearUser(myInformation.value.userName, true); // 共有ユーザを削除
+  document.removeEventListener("dblclick", stopDoubleTap);
+  window.removeEventListener("beforeunload", removeThisPage);
+  destroyDiceTopicData(); // データをクリーンアップ
+}
 
 // watch //
 watch(
@@ -117,7 +128,7 @@ watch(
   () => {
     // NOTE: 初回起動時はデータが無いので動かさなくて良い
     isLockedLocal.value = allDiceTopicInfo.value?.isLocked ?? "";
-    fakeStartShakeDice(isLockedLocal.value !== "")
+    fakeStartShakeDice(isLockedLocal.value !== "");
   },
   {deep:true}
 );
@@ -125,12 +136,11 @@ watch(
 // mounted //
 onMounted(() => {
   document.addEventListener("dblclick", stopDoubleTap, { passive: false });
+  window.addEventListener("beforeunload", removeThisPage);
 })
 // unmounted //
 onUnmounted(async () => {
-  document.removeEventListener("dblclick", stopDoubleTap);
-  await setShearUser(myInformation.value.userName, true); // 共有ユーザを削除
-  destroyDiceTopicData(); // データをクリーンアップ
+  removeThisPage();
 })
 </script>
 
@@ -150,6 +160,19 @@ onUnmounted(async () => {
       <div v-if="myInformation?.admin">
         <input v-model="inputNewKeyword" />
         <button @click="createDiceTopicData(inputNewKeyword)">設定</button>
+        <div>
+          {{ selectedKeyword }}
+        </div>
+        <div>
+          {{ allDiceTopicInfo }}
+        </div>
+        <div>
+          {{ selectedTopic }}
+          {{ topicList }}
+        </div>
+        <div>
+          {{ myInformation }}
+        </div>
       </div>
     </div>
     <!-- DICE -->
