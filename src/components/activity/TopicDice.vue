@@ -104,35 +104,44 @@ onUnmounted(() => {
   <section class="activity-contents-wrap">
     <h1 class="main-title">サイコロトーク</h1>
     <p class="sub-title">-SAIKORO TALK-</p>
-    <div class="activity-list-wrap">
-      <h2>☕やり方</h2>
-      <div class="list-wrap">
-        <ol>
-          <li>回す順番を決める。</li>
-          <li><kbd>"サイコロを投げる"</kbd>を押す。</li>
-          <li>自分のタイミングで<kbd>"ストップする"</kbd>を押す。</li>
-          <li>その話題について話す。</li>
-        </ol>
-      </div>
-    </div>
     <!-- DICE -->
     <div class="dice-area-wrap">
       <div>
-        <ButtonCommon @click="onClick" width="12rem" height="2rem" class="start-dice-btn">
+        <ButtonCommon @click="onClick" width="15rem" height="3rem" class="start-dice-btn">
           {{ btnMessage }}
         </ButtonCommon>
       </div>
-      <h2>TOPIC:</h2>
-      <h2 v-if="topicList.length > 0">「{{ topicList[topicIndex]?.title }}」</h2>
+      <p class="topic-title-label">TOPIC</p>
+      <p v-if="topicList.length > 0" class="topic-title">「{{ topicList[topicIndex]?.title }}」</p>
       <div v-else class="empty-list-wrap">
-        <h3>リストがありません。</h3>
-        <span class="empty-message-text">※追加するには下部にあるボタンから</span>
+        <p class="topic-title">リストがありません</p>
+        <p class="empty-message-text">※追加するには下部にあるボタンから</p>
       </div>
       <img :src="dices[diceIndex]" class="dice-img" />
     </div>
+    <!-- 使い方 -->
+    <div class="activity-list-wrap">
+      <h2>使い方</h2>
+      <div class="list-wrap">
+        <ol>
+          <li class="step-item">
+            <p>回す順番を決める。</p>
+          </li>
+          <li class="step-item">
+            <p><kbd>"サイコロを投げる"</kbd>を押す。</p>
+          </li>
+          <li class="step-item">
+            <p>自分のタイミングで<kbd>"ストップする"</kbd>を押す。</p>
+          </li>
+          <li class="step-item">
+            <p>その話題について話す。</p>
+          </li>
+        </ol>
+      </div>
+    </div>
     <!-- TOPIC LIST -->
     <div class="activity-register-list-wrap">
-      <h2>登録されているリスト</h2>
+      <h2>トピックリスト</h2>
       <div class="list-wrap register-list-wrap">
         <ul v-if="topicList.length > 0">
           <li v-for="(list, i) of topicList" :key="list">
@@ -164,38 +173,68 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 .activity-contents-wrap {
-  .dice-img {
-    width: 10rem;
-  }
-
   button {
     background: none;
     border: none;
   }
 
+  // タイトル
   .main-title {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 
   .sub-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
+  // サイコロ
   .dice-area-wrap {
-    .start-dice-btn {
-      font-size: 1rem;
-      font-weight: 600;
+    margin-top: 6.4rem;
+
+    .topic-title-label {
+      position: relative;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-top: 3.1rem;
+
+      &::after {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -0.3rem;
+        display: flex;
+        content: "";
+        width: 3.9rem;
+        height: 0.4rem;
+        margin: 0 auto;
+        background-color: $black;
+      }
     }
 
+    .topic-title {
+      font-size: 2rem;
+      font-weight: 400;
+      margin-top: 1.9rem
+    }
+
+    // リストが無い時
     .empty-list-wrap {
       margin-bottom: 30px;
 
       .empty-message-text {
+        font-size: 1.6rem;
+        font-weight: 400;
         color: $text-secondary;
       }
     }
+
+    .dice-img {
+      width: 10rem;
+      margin-top: 4rem;
+    }
   }
 
+  // TOPIC LIST
   .activity-register-list-wrap {
     display: flex;
     flex-direction: column;
@@ -205,29 +244,23 @@ onUnmounted(() => {
     background-color: $theme-bg-color;
   }
 
-  .activity-list-wrap {
-    margin: 2rem 0;
+  // 使い方
+  .activity-list-wrap,
+  .activity-register-list-wrap {
+    margin: 6.2rem 0 0;
 
     h2 {
       font-size: 2rem;
-      margin: 0;
-      padding: 0;
+      font-weight: 700;
+      margin-bottom: 2.3rem;
     }
 
     ol {
       text-align: left;
       font-size: 1.2rem;
       font-weight: bold;
-      width: fit-content;
-      padding: 0.3rem 2rem;
-      border: 0.1rem solid black;
-    }
-  }
-
-  .activity-list-wrap,
-  .activity-register-list-wrap {
-    h1 {
-      padding-top: 1rem;
+      max-width: 33rem;
+      padding: 0.3rem 4rem;
     }
 
     .list-wrap {
@@ -236,13 +269,13 @@ onUnmounted(() => {
       margin: 0 0.5rem;
 
       &.register-list-wrap {
-        margin: 0 auto 1rem;
+        margin: 0 1.5rem;
+        margin-bottom: 1rem;
         flex-direction: column;
 
         ul {
           text-align: left;
           font-weight: bold;
-          width: fit-content;
           padding: 0rem;
           list-style-type: none;
         }
@@ -252,15 +285,33 @@ onUnmounted(() => {
         }
       }
 
+      li {
+        @mixin font-style {
+          font-size: 1.6rem;
+          font-weight: 400;
+        }
+
+        &.step-item {
+          @include font-style();
+
+          >p {
+            @include font-style();
+          }
+        }
+      }
+
       h1 {
         width: 6rem;
       }
 
       .registered-list {
-        display: flex;
-        max-width: 23rem;
-        margin: 0.4rem 0;
         align-items: center;
+        display: flex;
+        max-width: 50rem;
+        width: 100%;
+        margin: 1rem auto;
+        font-size: 1.6rem;
+        font-weight: 500;
 
         .registered-list-id {
           padding: 0.4rem;
@@ -268,15 +319,17 @@ onUnmounted(() => {
 
         .registered-list-title {
           min-width: 16rem;
-          max-width: 18rem;
+          max-width: 40rem;
           white-space: pre-wrap;
           word-break: break-word;
         }
 
         .edit-btn {
-          color: $secondary-text-color;
-          margin: 0 0 0 auto;
           justify-items: end;
+          width: 3rem;
+          padding: 0;
+          margin: 0 0 0 auto;
+          color: $secondary-text-color;
           cursor: pointer;
         }
       }
@@ -285,7 +338,10 @@ onUnmounted(() => {
     .list-add-btn-wrap {
       display: flex;
       align-items: center;
+      max-width: 50rem;
+      width: 100%;
       padding: 0;
+      margin: 0 auto;
       cursor: pointer;
 
       .add-img-icon {
@@ -296,8 +352,43 @@ onUnmounted(() => {
 
       p {
         color: $text-black;
-        font-weight: 600;
-        line-height: 1rem;
+        font-size: 1.6rem;
+        font-weight: 700;
+      }
+    }
+  }
+
+  @media screen and (width > 1000px) {
+    .main-title {
+      font-size: 5rem;
+    }
+
+    .sub-title {
+      font-size: 2.8rem;
+    }
+
+    .activity-list-wrap {
+      h2 {
+        font-size: 2rem;
+      }
+
+      ol {
+        font-size: 1.6rem;
+      }
+    }
+
+    .dice-area-wrap {
+      .topic-title {
+        font-size: 3rem;
+
+        &.label {
+          font-size: 2rem;
+          margin-top: 4rem
+        }
+      }
+
+      .dice-img {
+        width: 15rem;
       }
     }
   }

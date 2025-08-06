@@ -22,11 +22,12 @@ defineProps({
 <style lang="scss" scoped>
 .common-button-wrap {
   border: $button-bg solid 0.1rem;
+  font-size: 1.6rem;
   font-weight: bold;
-  color: black;
+  color: $black;
   padding: 0.3rem 1rem;
-  border-radius: 1rem;
-  box-shadow: 0rem 0.1rem 0.1em black;
+  border-radius: 1.6rem;
+  box-shadow: 0rem 0.1rem 0.1em $black;
   box-sizing: content-box;
   cursor: pointer;
 
@@ -40,9 +41,9 @@ defineProps({
 
   &:active {
     cursor: pointer;
-    background-color: rgb(169, 135, 73);
-    border-color: rgb(169, 135, 73);
-    box-shadow: 0rem 0rem 0.1em black;
+    background-color: $button-active-color;
+    border-color: $button-active-color;
+    box-shadow: 0rem 0rem 0.1em $black;
   }
 }
 </style>
