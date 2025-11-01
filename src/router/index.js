@@ -20,7 +20,7 @@ const routes = [
   },
   {
     path: '/money-amida',
-    name: 'ActivityAmidaView',
+    name: 'ActivityAmida',
     component: ActivityAmidaView,
   },
 ]
