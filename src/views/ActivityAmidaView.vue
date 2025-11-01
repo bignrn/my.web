@@ -27,35 +27,35 @@ const executeAmida = () => {
   <section class="money-amida-root">
     <h1>金額あみだくじ(開発中)</h1>
     <p>超シンプル！</p>
-    <div class="how-to-play">
+    <div class="how-to-play mt">
       <h2>遊び方</h2>
       <ol>
         <li>参加者の名前を入力する。</li>
         <li>支払金額を入力する。</li>
-        <li>あみだくじを開始する。</li>
+        <li>あみだくじを生成する。</li>
         <li>当たった金額を払う💰</li>
       </ol>
     </div>
-    <div class="player-name">
+    <div class="player-name mt">
       <div class="input-wrap">
         <input v-model="playerNames" />
         <div>※名前を「,」カンマ 区切りで入力</div>
       </div>
     </div>
-    <div class="money">
+    <div class="money mt">
       <input v-model="paymentAmount" /><span>円</span>
     </div>
-    <div class="execute">
+    <div class="execute mt">
       <ButtonCommon @click="executeAmida">あみだくじ を生成</ButtonCommon>
     </div>
     <div class="errors">
       <p v-for="err in errorMessage" :key="err" class="">{{ err }}</p>
     </div>
-    <div class="results">
+    <div class="results mt" :class="{ mb:!executedAmidaFlg }">
       <div v-if="(!paymentAmount && !playerNames) || !executedAmidaFlg" class="not-execute">※結果がここに表示するよ！</div>
       <div v-else ref="amidaDivRef" class="amida-wrap"></div>
     </div>
-    <div>
+    <div v-if="executedAmidaFlg" class="just-kidding mt mb">
       <p>結果が出たら、さて、お財布を出そうか。</p>
       <p>男に二言は無いよね？？</p>
       <p>............冗談だよ？笑笑</p>
@@ -66,8 +66,41 @@ const executeAmida = () => {
 <style lang="scss" scoped>
 .money-amida-root {
   margin-top: calc($header-height + 2rem);
-  .amida-wrap {
-    overflow-y: scroll;
+  .mt {
+    margin-top: 3rem;
+  }
+  .how-to-play {
+    width: 25rem;
+    margin: auto;
+    font-size: 1.6rem;
+    text-align: start;
+    >h2 {
+      text-align: center;
+    }
+  }
+  .money,
+  .player-name {
+    input {
+      font-size: 1.6rem;
+    }
+  }
+  .errors {
+    color: $text-error;
+  }
+  .results {
+    .not-execute {
+      align-content: center;
+      width: 90%;
+      height: 10rem;
+      margin: auto;
+      background-color: rgba($prof-theme-color, 0.5);
+    }
+    .amida-wrap {
+      overflow-y: scroll;
+    }
+  }
+  .mb {
+    margin-bottom: 5rem;
   }
 }
 </style>
