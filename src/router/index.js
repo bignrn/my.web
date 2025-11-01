@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ActivityView from '../views/ActivityView'
 import MyHistoryView from '../views/MyHistoryView';
+import ActivityAmidaView from '@/views/ActivityAmidaView.vue';
 
 const routes = [
   {
@@ -16,6 +17,11 @@ const routes = [
     path: '/ice-break',
     name: 'iceBreak',
     component: ActivityView,
+  },
+  {
+    path: '/money-amida',
+    name: 'ActivityAmidaView',
+    component: ActivityAmidaView,
   },
 ]
 
