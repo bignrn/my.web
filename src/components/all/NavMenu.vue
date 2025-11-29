@@ -50,7 +50,7 @@ function closeMenu() {
       position: absolute;
       top: 0;
       left: 0;
-      z-index: 1000;
+      z-index: 10000;
       width: 100%;
       max-height: 50rem;
       background-color: $theme-color;

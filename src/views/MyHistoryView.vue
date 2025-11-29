@@ -4,371 +4,245 @@ const lv2 = "images/profile/lv2.svg";
 const ipa = "images/profile/ipa.svg";
 const oracle = "images/profile/oracle.svg";
 const historyList = [
-  { img: lv2, title: "HTML5\nプロフェッショナル試験Lv2", period: "2024.03.30 > 2029.03.30" },
-  { img: lv1, title: "HTML5\nプロフェッショナル試験Lv1", period: "2024.03.30 > 2029.03.30" },
-  { img: ipa, title: "基本情報技術者試験" },
-  { img: oracle, title: "JAVA BRONZE SE" }
-]
+  { img: oracle, title: "JAVA BRONZE SE", year: 2021 },
+  { img: ipa, title: "基本情報技術者試験", year: 2022 },
+  { img: lv1, title: "HTML5\nプロフェッショナル試験Lv1", period: "2024.03.30 > 2029.03.30", year: 2023 },
+  { img: lv2, title: "HTML5\nプロフェッショナル試験Lv2", period: "2024.03.30 > 2029.03.30", year: 2024 },
+];
+const books = [
+  "images/profile/readAbleCode.png",
+  "images/profile/TheMostUnderstandableOrderOfExplanation.png",
+  "images/profile/holeOfThought.png",
+  "images/profile/TheTeamEvolvesNaturally.png",
+  "images/profile/designSystem.png",
+  "images/profile/objectOriented UI.png",
+];
 </script>
 
 <template>
-  <article class="portfolio-wrap">
-    <div class="prof-basic-contents-wrap">
-      <img src="/images/profile/myAvatar.jpg" class="my-avatar-img" />
-      <h1 class="my-name">Mishima Yuma</h1>
-      <div class="my-purpose-title">
-        <p>開発の楽しさを原動力に。</p>
-        <p>楽しい明日をつくる。</p>
-        <p>開発のプロフェッショナル。</p>
+  <div class="portfolio-wrap">
+    <section class="introduction-me">
+      <span class="cover white"></span>
+      <span class="cover orange"></span>
+      <div class="z-index-top">
+        <img src="images/profile/Mishima_Yuma.svg" alt="Mishima Yuma" class="name" />
+        <img src="images/profile/myAvatar_clip.png" alt="yuma" class="me" />
+        <div class="poem">
+          <p>開発は楽しく。誠実に。</p>
+          <p>誰もが使えるシステムをめざす。</p>
+          <p>開発のプロフェッショナル。</p>
+        </div>
       </div>
-    </div>
-    <div class="prof-basic-histories-wrap">
-      <h2 class="contents-title">取得した資格</h2>
-      <ul class="ul-my-qualification">
-        <li v-for="(list, i) of historyList" :key="i">
-          <div class="inner-wrap">
-            <img :src="list.img" alt="list-icon" class="history-img" />
-            <div class="title">{{ list.title }}</div>
-            <div class="period">{{ list?.period }}</div>
-          </div>
+    </section>
+    <section class="my-capabilities">
+      <span class="orange half-circle"></span>
+      <span class="orange pillar"></span>
+      <ul class="capabilities-wrap">
+        <li v-for="value in historyList" :key="value">
+          <p class="year">{{ value.year }}</p>
+          <img :src="value.img" alt="capability-img" class="photo" />
+          <p class="title">{{ value.title }}</p>
+          <p v-if="value?.period" class="period">{{ value?.period }}</p>
         </li>
       </ul>
-      <div class="gradient-wrap">
-        <h2 class="contents-title">技術者を<br />目指した切っ掛け</h2>
-        <div class="gradient">
-          <img src="images/profile/undraw_back_in_the_day_knsh.svg" class="img-class" />
-          <p>ゲームを切っ掛けに<br>プログラミングに興味を持ちました。</p>
-          <p>そこからプログラミングを勉強。<br />IT業界を知りました。</p>
-          <p>私もSYSTEMを通じて、<br />
-            人の手助けが出来る仕事をしたい！<br />
-            と強く思いこの業界に入りました。
-          </p>
+    </section>
+    <section class="recommend-books">
+      <h2>読んだ本</h2>
+      <div class="top-2-wrap books">
+        <div class="book large">
+          <img src="images/profile/7Habits.jpg" alt="book" class="book-img" />
+          <div class="text-wrap">
+            <h3 class="title">7つの習慣</h3>
+            <p class="description">
+              生活・仕事・生き方について、考える道標の様な本です。<br/>
+              人によっては聖書と呼ばれています。
+            </p>
+          </div>
         </div>
-        <div class="gradient-reverse">
-          <img src="images/profile/undraw_programmer_re_owql.svg" class="img-class" />
-        </div>
-      </div>
-      <!-- 開発言語 -->
-      <div class="used-dev-language-wrap">
-        <!-- 背景図形 -->
-        <span class="background-square-bottom"></span>
-        <span class="background-square-top"></span>
-        <!-- 言語 -->
-        <h2 class="contents-title">開発言語</h2>
-        <div class="content-flex">
-          <ul class="columns">
-            <li class="language-item small">業務実績</li>
-            <li class="language-item">HTML</li>
-            <li class="language-item">CSS</li>
-            <li class="language-item">JavaScript</li>
-            <li class="language-item">Python</li>
-          </ul>
-          <ul class="columns">
-            <li class="language-item small">勉強実績</li>
-            <li class="language-item">Java</li>
-            <li class="language-item">php</li>
-            <li class="language-item">c</li>
-            <li class="language-item">cpp</li>
-          </ul>
-        </div>
-        <!-- フレームワーク -->
-        <h2 class="contents-title">フレームワーク</h2>
-        <div class="content-flex">
-          <ul class="columns">
-            <li class="language-item small">業務実績</li>
-            <li class="language-item">Vue.js</li>
-            <li class="language-item">Angular</li>
-          </ul>
-          <ul class="columns">
-            <li class="language-item small">勉強実績</li>
-            <li class="language-item">Astro</li>
-          </ul>
-        </div>
-        <!-- DB -->
-        <h2 class="contents-title">DB</h2>
-        <div class="content-flex">
-          <ul class="columns">
-            <li class="language-item small">業務実績</li>
-            <li class="language-item">firebase</li>
-          </ul>
-          <ul class="columns">
-            <li class="language-item small">勉強実績</li>
-            <li class="language-item">MySQL</li>
-            <li class="language-item">PostgresSQL</li>
-          </ul>
-        </div>
-        <!-- マイコン -->
-        <h2 class="contents-title">IoT</h2>
-        <div class="content-flex">
-          <ul class="columns"><!-- space --></ul>
-          <ul class="columns">
-            <li class="language-item small">勉強実績</li>
-            <li class="language-item">Raspberry pi4</li>
-            <li class="language-item">ESP-32</li>
-          </ul>
+        <div class="book large">
+          <img src="images/profile/YourStrengthsYouDontKnow.png" alt="book" class="book-img" />
+          <div class="text-wrap">
+            <h3 class="title">あなたの知らない<br/>あなたの強み</h3>
+            <p class="description">
+              三島が自己啓発本に興味を持つ切っ掛けになった最初の本です。
+            </p>
+          </div>
         </div>
       </div>
-      <!-- 趣味 -->
-      <div class="hobby-wrap">
-        <h2 class="contents-title hobby">趣味</h2>
-        <div class="card trumpet">
-          <img src="images/profile/tp-icon.jpg" class="tp-icon-img" />
-          <h3>トランペット🎺</h3>
-          <p>
-            小学4年生から続けたトランペット。<br />
-            高校卒業頃には、<br />
-            県ソロコン大会で2位を獲得。
-          </p>
-          <p>
-            時折、母校にトランペットを<br />
-            教えに行っています。
-          </p>
-          <p>
-            少しでも若い世代に、<br />
-            トランペットの師匠の思いが、<br />
-            届けられたらと願っています。
-          </p>
-        </div>
+      <div class="some-wrap">
+        <ul class="books">
+          <li v-for="b in books" :key="b" class="book">
+            <img :src="b" alt="book" class="book-img" />
+          </li>
+        </ul>
       </div>
-    </div>
-  </article>
+    </section>
+    <section class="my-skill-tree"></section>
+  </div>
 </template>
 
 <style lang="scss" scoped>
 .portfolio-wrap {
-
-  .contents-title {
-    font-size: 2rem;
-    margin: 1rem 0 3.5rem;
-    white-space: break-spaces;
-
-    &.hobby {
-      padding: 5rem;
-      margin: 0;
-      background-color: $prof-theme-bg-color;
-    }
-  }
-
-  // 名刺
-  .prof-basic-contents-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    color: $white;
+  section {
     height: 100vh;
-    height: 100dvh;
-    background-color: $prof-theme-color;
-    margin-bottom: 8.6rem;
-
-    .my-avatar-img {
-      margin-top: 4rem;
-      border-radius: 50% 70%;
-      max-width: 28rem;
-      width: 100%;
-      margin-bottom: 2rem;
-      box-shadow: 0rem 0.5rem 0.8rem black;
-    }
-
-    .my-name {
-      font-family: "LilitaOne-Regular";
-      font-size: 3.6rem;
-      margin: 1rem 0;
-      margin-bottom: 1rem;
-    }
-
-    .my-purpose-title {
-      display: flex;
-      flex-direction: column;
-      font-size: 1.6rem;
-      font-weight: 200;
-      text-align: start;
-      width: fit-content;
-      margin: 0 auto;
-
-      p {
-        font-size: 1.6rem;
-        font-weight: 600;
-      }
-    }
-  }
-
-  .prof-basic-histories-wrap {
-    margin-top: 2rem;
-
-    .ul-my-qualification {
-      display: flex;
-      flex-direction: column;
-      gap: 4.6rem;
-      align-items: center;
-      text-align: left;
-      list-style-type: none;
-      font-weight: 600;
-      padding: 0;
-      margin-bottom: 20.5rem;
-
-      li {
-        display: flex;
-        align-items: center;
-        align-content: center;
-
-        .inner-wrap {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-
-          .history-img {
-            max-width: 7.9rem;
-            width: 100%;
-            max-height: 8.4rem;
-            height: 100%;
-            margin-bottom: 1rem;
-          }
-
-          .title {
-            font-size: 1.6rem;
-            margin-bottom: 0.4rem;
-            text-align: center;
-            white-space: break-spaces;
-          }
-
-          .period {
-            font-size: 1.2rem;
-            color: $text-tertiary;
-          }
-        }
-      }
-    }
-
-    .gradient-wrap {
-      margin-bottom: 20.5rem;
-
-      .img-class {
-        max-width: 27.8rem;
-        width: 100%;
-        margin-bottom: 6.8rem;
-      }
-
-      .gradient {
-        background: linear-gradient($white, #ffe227);
-        padding-bottom: 1rem;
-
-        p {
-          font-size: 1.6rem;
-          margin-bottom: 3.8rem;
-          line-height: 2.1rem;
-        }
-      }
-
-      .gradient-reverse {
-        margin: 0;
-        padding: 4rem 0;
-        background: linear-gradient(#ffe227, $white);
-      }
-    }
-
-    .used-dev-language-wrap {
+    &.introduction-me {
       position: relative;
-      padding: 0 0.5rem;
-      margin-bottom: 15rem;
-
-      .background-square-bottom {
+      background-image: url("/public/images/profile/bike.png");
+      background-repeat: no-repeat;
+      object-fit: cover;
+      background-size: cover;
+      background-position: center;  /* 中央に配置 */
+      background-attachment: fixed; /* スクロールしても固定（任意） */
+      .cover {
         position: absolute;
         top: 0;
-        left: 0;
-        z-index: -2;
+        right: 0;
+        z-index: 900;
+        display: block;
         width: 100%;
-        height: 100%;
-        background-color: $background-square-bottom-color;
-        clip-path: polygon(0 0, 100% 4rem, 0 60%);
-      }
-      .background-square-top {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -2;
-        width: 100%;
-        height: 100%;
-        background-color: $background-square-top-color;
-        clip-path: polygon(0 8rem, 100% 13rem, 100% 100%, 30% 95%);
-      }
-
-      .contents-title {
-        padding: 0;
-        margin-bottom: 0.5rem;
-        line-height: 2rem;
-      }
-      .content-flex {
-        display: flex;
-        gap: 1rem;
-        width: fit-content;
-        margin: 0 auto;
-        margin-bottom: 5rem;
-
-        .columns {
-          width: 30vw;
-          width: 30dvw;
-          text-align: end;
-          margin-right: 0.5rem;
-
-          &:nth-child(2n) {
-            text-align: start;
-            margin-left: 0.5rem;
+        height: 100vh;
+        &.white {
+          background-color: rgba($white, 0.52);
         }
-
-          .language-item {
-            font-size: 1.8rem;
-            font-weight: 400;
-
-            &.small {
-              font-size: 1.4rem;
+        &.orange {
+          clip-path: polygon(75% 0, 100% 0, 100% 100%, 20% 100%); // 左上、右上、右下、左下
+          background-color: rgba($theme-color, 0.8);
+        }
+      }
+      .z-index-top {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: auto;
+        img.name {
+          width: 20%;
+        }
+        img.me {
+          width: 40%;
+        }
+        .poem {
+          >p {
+            margin-bottom: 1.3rem;
+            font-size: 2rem;
+            font-weight: 900;
+            line-height: 2rem;
+            text-align: start;
+            color: $white;
+          }
+        }
+      }
+    }
+    &.my-capabilities {
+      position: relative;
+      .orange {
+        background-color: $theme-color;
+      }
+      .half-circle {
+        position: absolute;
+        top: 0;
+        transform: translateX(-50%);
+        width: 12rem;
+        height: 6rem;
+        border-radius: 50% / 0 0 100% 100%;
+      }
+      .pillar {
+        position: absolute;
+        transform: translateX(-50%);
+        width: 3rem;
+        height: 100vh;
+      }
+      .capabilities-wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        align-content: center;
+        width: fit-content;
+        margin: auto;
+        li {
+          transform: translateX(100%);
+          margin-bottom: 5rem;
+          font-size: 2rem;
+          &:nth-child(2n) {
+            transform: translateX(-100%);
+          }
+          .year {
+            font-size: 3.2rem;
+            color: $theme-color;
+          }
+          .photo {
+            margin: 1rem auto;
+          }
+          .title {
+            font-size: 2rem;
+          }
+          .period {
+            font-size: 1.6rem;
+            color: $text-secondary;
+          }
+        }
+      }
+    }
+    &.recommend-books {
+      align-content: center;
+      background-color: rgba($theme-color, 0.8);
+      > h2 {
+        margin: 0;
+        margin-bottom: 2rem;
+        font-size: 4.8rem;
+      }
+      .books {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* ← 4カラム */
+        gap: 5.5rem;
+        justify-content: center;
+        justify-items: center;
+        margin: auto 5rem;
+        .book {
+          width: fit-content;
+          padding: 2rem;
+          background-color: $white;
+          border-radius: 1.6rem;
+          &.large {
+            display: flex;
+            width: 56rem;
+            text-align: start;
+            .text-wrap {
+              margin-left: 3.5rem;
+              .title {
+                font-size: 2.4rem;
+              }
+              .description {
+                font-size: 1.6rem;
+              }
             }
           }
         }
       }
-    }
-
-    .hobby-wrap {
-      height: 100vh;
-      height: 100dvh;
-      padding: 1rem;
-      padding-bottom: 5rem;
-      color: $black;
-      background-color: $prof-theme-bg-color;
-
-      .card {
-        max-width: 50rem;
-        padding: 1rem;
-        margin: auto;
-        margin-bottom: 4rem;
-        background-color: rgba($theme-bg-color, 0.65);
-        border-radius: 1.6rem;
-
-        h3 {
-          font-size: 2rem;
-        }
-
-        p {
-          font-size: 1.6rem;
-          line-height: 2.3rem;
-          margin-bottom: 2rem;
-        }
-
-        &.trumpet {
-          .tp-icon-img {
-            max-width: 6.7rem;
-            width: 100%;
-            border-radius: 50%;
-          }
+      .top-2-wrap {
+        display: flex;
+        justify-content: center;
+        gap: 10.7rem;
+        width: 100%;
+        padding: 0 2rem;
+        margin: 0;
+        margin-bottom: 3.4rem;
+        box-sizing: border-box;
+        .book-img {
+          width: 18.2rem;
         }
       }
-    }
-  }
-
-  nav {
-    &.prof-basic-nav-wrap {
-      background-color: $white;
-      padding: 1.5rem 0;
+      .some-wrap {
+        .book-img {
+          width: 14.9rem;
+        }
+      }
     }
   }
 }

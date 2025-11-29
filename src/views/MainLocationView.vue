@@ -4,8 +4,8 @@ import FooterCommon from "@/components/all/FooterCommon.vue";
 </script>
 
 <template>
-  <HeaderCommon />
   <router-view />
+  <HeaderCommon />
   <FooterCommon />
 </template>
 

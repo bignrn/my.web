@@ -29,6 +29,7 @@ const isProfile = computed(() => {
 .common-header {
   position: fixed;
   top: 0;
+  z-index: 2000;
   display: flex;
   align-items: center;
   width: 100%;
