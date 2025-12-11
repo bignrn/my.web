@@ -1,4 +1,80 @@
 <script setup>
+import { ref } from "vue";
+import ApexCharts from "vue3-apexcharts";
+
+const languages = ref();
+const DataBases = ref();
+const mySkills = ref([
+  {
+    title: "開発可能な言語",
+    data: [
+      {
+        name: 'Languages',
+        data: [4, 3, 3, 3, 2, 1, 3],
+        categories: ['Vue.js', 'JavaScript', 'HTML', 'CSS', 'Java', 'C', 'Python'],
+      },
+    ]
+  },
+  {
+    title: "データベース",
+    data: [
+      {
+        name: 'DataBases',
+        data: [4, 1, 2],
+        categories: ['Firebase', "MySQL", "PostgreSQL"],
+      },
+    ]
+  },
+  {
+    title: "FFS理論",
+    data: [
+      {
+        name: 'DataBases',
+        data: [2, 4, 4, 2, 3],
+        categories: ['凝縮性', "受容性", "弁別性", "拡散性", "保全性"],
+      },
+    ]
+  },
+]);
+
+const chartOptions = {
+  chart: {
+    type: 'radar',
+    toolbar: {
+      show: false
+    },
+  },
+  title: {
+    text: '',
+  },
+  yaxis: {
+    stepSize: 20,
+    min: 0,
+    max: 4,
+    tickAmount: 4,
+    labels: {
+      style: {
+        fontSize: '2rem',
+        fontWeight: 600
+      }
+    }
+  },
+  xaxis: {
+    categories: [],
+    labels: {
+      style: {
+        fontSize: '2.4rem',
+        fontWeight: 600
+      }
+    }
+  },
+  plotOptions: {
+    radar: {
+      size: 225,
+    }
+  },
+};
+
 const lv1 = "images/profile/lv1.svg";
 const lv2 = "images/profile/lv2.svg";
 const ipa = "images/profile/ipa.svg";
@@ -17,6 +93,12 @@ const books = [
   "images/profile/designSystem.png",
   "images/profile/objectOriented UI.png",
 ];
+
+const returnChartOptions = (data) => {
+  const tempChartOption = JSON.parse(JSON.stringify(chartOptions));
+  tempChartOption["xaxis"]["categories"] = data[0]["categories"]
+  return tempChartOption;
+};
 </script>
 
 <template>
@@ -47,7 +129,7 @@ const books = [
       </ul>
     </section>
     <section class="recommend-books">
-      <h2>読んだ本</h2>
+      <h2>"ため"になった本棚</h2>
       <div class="top-2-wrap books">
         <div class="book large">
           <img src="images/profile/7Habits.jpg" alt="book" class="book-img" />
@@ -77,7 +159,20 @@ const books = [
         </ul>
       </div>
     </section>
-    <section class="my-skill-tree"></section>
+    <section class="my-skill-tree">
+      <h2>Yuma をグラフ化</h2>
+      <div class="flex-wrap">
+        <div v-for="value in mySkills" :key="value.title" class="graph-wrap">
+          <h3>{{ value.title }}</h3>
+          <apexchart 
+            width="800"
+            type="radar"
+            :options="returnChartOptions(value.data)"
+            :series="value.data"
+          />
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -241,6 +336,22 @@ const books = [
       .some-wrap {
         .book-img {
           width: 14.9rem;
+        }
+      }
+    }
+    &.my-skill-tree {
+      h2 {
+        font-size: 4.8rem;
+      }
+      .flex-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .graph-wrap {
+          width: fit-content;
+          > h3 {
+            font-size: 2.4rem;
+          }
         }
       }
     }
