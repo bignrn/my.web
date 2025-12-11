@@ -30,10 +30,24 @@ const mySkills = ref([
     data: [
       {
         name: 'DataBases',
-        data: [2, 4, 4, 2, 3],
+        data: [2, 3, 3, 2, 3],
         categories: ['凝縮性', "受容性", "弁別性", "拡散性", "保全性"],
       },
-    ]
+    ],
+    setting: {
+      yaxis: {
+        stepSize: 20,
+        min: 0,
+        max: 3,
+        tickAmount: 3,
+        labels: {
+          style: {
+            fontSize: '2rem',
+            fontWeight: 600
+          }
+        }
+      }
+    }
   },
 ]);
 
@@ -94,10 +108,10 @@ const books = [
   "images/profile/objectOriented UI.png",
 ];
 
-const returnChartOptions = (data) => {
+const returnChartOptions = (val) => {
   const tempChartOption = JSON.parse(JSON.stringify(chartOptions));
-  tempChartOption["xaxis"]["categories"] = data[0]["categories"]
-  return tempChartOption;
+  tempChartOption["xaxis"]["categories"] = val.data[0]["categories"]
+  return Object.assign(tempChartOption, val["setting"]);
 };
 </script>
 
@@ -167,7 +181,7 @@ const returnChartOptions = (data) => {
           <apexchart 
             width="800"
             type="radar"
-            :options="returnChartOptions(value.data)"
+            :options="returnChartOptions(value)"
             :series="value.data"
           />
         </div>
