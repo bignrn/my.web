@@ -37,15 +37,35 @@ const cancelBtn = (id) => {
 <template>
   <section class="edit-topic-item-wrap">
     <div class="input-form-wrap">
-      <div class="disp-id">{{ dispId }}:</div>
-      <input type="text" v-model="editTopic" class="input-topic" :class="{ isDelete: isDeleteBtn }" />
-      <button v-if="isDeleteBtn" @click="deleteBtn(id)" class="delete-list-btn">削除</button>
+      <div class="disp-id">
+        {{ dispId }}:
+      </div>
+      <input
+        v-model="editTopic"
+        type="text"
+        class="input-topic"
+        :class="{ isDelete: isDeleteBtn }"
+      >
+      <button
+        v-if="isDeleteBtn"
+        class="delete-list-btn"
+        @click="deleteBtn(id)"
+      >
+        削除
+      </button>
     </div>
     <div class="btn-wrap">
-      <ButtonCommon @click="saveBtn(id)" class="register-btn">
+      <ButtonCommon
+        class="register-btn"
+        @click="saveBtn(id)"
+      >
         登録する
       </ButtonCommon>
-      <ButtonCommon @click="cancelBtn(id)" classType="type-b" class="cancel-btn">
+      <ButtonCommon
+        class-type="type-b"
+        class="cancel-btn"
+        @click="cancelBtn(id)"
+      >
         キャンセル
       </ButtonCommon>
     </div>

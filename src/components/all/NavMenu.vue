@@ -20,17 +20,32 @@ function closeMenu() {
 </script>
 
 <template>
-  <nav v-show="status" class="nav-main-wrap">
-    <a class="nav-wrap">
-      <a @click="closeMenu" class="back-btn">
-        <img src="images/all/icon-batu.svg" />
+  <nav
+    v-show="status"
+    class="nav-main-wrap"
+  >
+    <div class="nav-wrap">
+      <a
+        class="back-btn"
+        @click="closeMenu"
+      >
+        <img src="images/all/icon-batu.svg">
       </a>
       <ul class="nav-text-wrap">
-        <li v-for="(item, i) of navList" :key="i">
-          <router-link class="nav-text" :to="item.to" @click="closeMenu">{{ item.label }}</router-link>
+        <li
+          v-for="(item, i) of navList"
+          :key="i"
+        >
+          <router-link
+            class="nav-text"
+            :to="item.to"
+            @click="closeMenu"
+          >
+            {{ item.label }}
+          </router-link>
         </li>
       </ul>
-    </a>
+    </div>
   </nav>
 </template>
 
@@ -45,7 +60,8 @@ function closeMenu() {
     &.router-link-exact-active {
       color: rgba($white, 0.5);
     }
-
+  }
+  div {
     &.nav-wrap {
       position: absolute;
       top: 0;

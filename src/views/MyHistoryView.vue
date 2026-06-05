@@ -130,11 +130,19 @@ const returnChartOptions = (val) => {
 <template>
   <div class="portfolio-wrap">
     <section class="introduction-me">
-      <span class="cover white"></span>
-      <span class="cover orange"></span>
+      <span class="cover white" />
+      <span class="cover orange" />
       <div class="z-index-top">
-        <img src="images/profile/Mishima_Yuma.svg" alt="Mishima Yuma" class="name" />
-        <img src="images/profile/myAvatar_clip.png" alt="yuma" class="me" />
+        <img
+          src="images/profile/Mishima_Yuma.svg"
+          alt="Mishima Yuma"
+          class="name"
+        >
+        <img
+          src="images/profile/myAvatar_clip.png"
+          alt="yuma"
+          class="me"
+        >
         <div class="poem">
           <p>開発は楽しく。誠実に。</p>
           <p>誰もが使えるシステムをめざす。</p>
@@ -143,14 +151,30 @@ const returnChartOptions = (val) => {
       </div>
     </section>
     <section class="my-capabilities">
-      <span class="orange half-circle"></span>
-      <span class="orange pillar"></span>
+      <span class="orange half-circle" />
+      <span class="orange pillar" />
       <ul class="capabilities-wrap">
-        <li v-for="value in historyList" :key="value">
-          <p class="year">{{ value.year }}</p>
-          <img :src="value.img" alt="capability-img" class="photo" />
-          <p class="title">{{ value.title }}</p>
-          <p v-if="value?.period" class="period">{{ value?.period }}</p>
+        <li
+          v-for="value in historyList"
+          :key="value"
+        >
+          <p class="year">
+            {{ value.year }}
+          </p>
+          <img
+            :src="value.img"
+            alt="capability-img"
+            class="photo"
+          >
+          <p class="title">
+            {{ value.title }}
+          </p>
+          <p
+            v-if="value?.period"
+            class="period"
+          >
+            {{ value?.period }}
+          </p>
         </li>
       </ul>
     </section>
@@ -158,19 +182,31 @@ const returnChartOptions = (val) => {
       <h2>"ため"になった本棚</h2>
       <div class="top-2-wrap books">
         <div class="book large">
-          <img src="images/profile/7Habits.jpg" alt="book" class="book-img" />
+          <img
+            src="images/profile/7Habits.jpg"
+            alt="book"
+            class="book-img"
+          >
           <div class="text-wrap">
-            <h3 class="title">7つの習慣</h3>
+            <h3 class="title">
+              7つの習慣
+            </h3>
             <p class="description">
-              生活・仕事・生き方について、考える道標の様な本です。<br/>
+              生活・仕事・生き方について、考える道標の様な本です。<br>
               人によっては聖書と呼ばれています。
             </p>
           </div>
         </div>
         <div class="book large">
-          <img src="images/profile/YourStrengthsYouDontKnow.png" alt="book" class="book-img" />
+          <img
+            src="images/profile/YourStrengthsYouDontKnow.png"
+            alt="book"
+            class="book-img"
+          >
           <div class="text-wrap">
-            <h3 class="title">あなたの知らない<br/>あなたの強み</h3>
+            <h3 class="title">
+              あなたの知らない<br>あなたの強み
+            </h3>
             <p class="description">
               私が自己啓発本に興味を持つ切っ掛けになった最初の本です。
             </p>
@@ -179,8 +215,16 @@ const returnChartOptions = (val) => {
       </div>
       <div class="some-wrap">
         <ul class="books">
-          <li v-for="b in books" :key="b" class="book">
-            <img :src="b" alt="book" class="book-img" />
+          <li
+            v-for="b in books"
+            :key="b"
+            class="book"
+          >
+            <img
+              :src="b"
+              alt="book"
+              class="book-img"
+            >
           </li>
         </ul>
       </div>
@@ -188,7 +232,11 @@ const returnChartOptions = (val) => {
     <section class="my-skill-tree">
       <h2>私 をグラフ化</h2>
       <div class="flex-wrap">
-        <div v-for="value in mySkills" :key="value.title" class="graph-wrap">
+        <div
+          v-for="value in mySkills"
+          :key="value.title"
+          class="graph-wrap"
+        >
           <h3>{{ value.title }}</h3>
           <apexchart 
             width="500"
@@ -208,7 +256,11 @@ const returnChartOptions = (val) => {
         </div>
       </div>
       <div class="flex-wrap">
-        <div v-for="value in myPersonality" :key="value.title" class="graph-wrap">
+        <div
+          v-for="value in myPersonality"
+          :key="value.title"
+          class="graph-wrap"
+        >
           <h3>{{ value.title }}</h3>
           <apexchart 
             width="500"
