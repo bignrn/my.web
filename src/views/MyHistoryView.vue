@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from "vue";
-import ApexCharts from "vue3-apexcharts";
+// import ApexCharts from "vue3-apexcharts";
 
-const languages = ref();
-const DataBases = ref();
+// const languages = ref();
+// const DataBases = ref();
 const mySkills = ref([
   {
     title: "開発可能な言語",
@@ -26,10 +26,22 @@ const mySkills = ref([
     ]
   },
   {
+    title: "サーバー/クラウド",
+    data: [
+      {
+        name: 'server',
+        data: [1, 3, 1],
+        categories: ['Linux', "GCP", "AWS"],
+      },
+    ]
+  },
+]);
+const myPersonality = ref([
+  {
     title: "FFS理論",
     data: [
       {
-        name: 'DataBases',
+        name: 'FFS',
         data: [2, 3, 3, 2, 3],
         categories: ['凝縮性', "受容性", "弁別性", "拡散性", "保全性"],
       },
@@ -68,8 +80,8 @@ const chartOptions = {
     tickAmount: 4,
     labels: {
       style: {
-        fontSize: '2rem',
-        fontWeight: 600
+        fontSize: '1.6rem',
+        fontWeight: 400
       }
     }
   },
@@ -77,14 +89,14 @@ const chartOptions = {
     categories: [],
     labels: {
       style: {
-        fontSize: '2.4rem',
-        fontWeight: 600
+        fontSize: '2rem',
+        fontWeight: 500
       }
     }
   },
   plotOptions: {
     radar: {
-      size: 225,
+      size: 100,
     }
   },
 };
@@ -160,7 +172,7 @@ const returnChartOptions = (val) => {
           <div class="text-wrap">
             <h3 class="title">あなたの知らない<br/>あなたの強み</h3>
             <p class="description">
-              三島が自己啓発本に興味を持つ切っ掛けになった最初の本です。
+              私が自己啓発本に興味を持つ切っ掛けになった最初の本です。
             </p>
           </div>
         </div>
@@ -174,12 +186,32 @@ const returnChartOptions = (val) => {
       </div>
     </section>
     <section class="my-skill-tree">
-      <h2>Yuma をグラフ化</h2>
+      <h2>私 をグラフ化</h2>
       <div class="flex-wrap">
         <div v-for="value in mySkills" :key="value.title" class="graph-wrap">
           <h3>{{ value.title }}</h3>
           <apexchart 
-            width="800"
+            width="500"
+            type="radar"
+            :options="returnChartOptions(value)"
+            :series="value.data"
+          />
+        </div>
+        <div class="description-wrap">
+          <h3>表の読み方</h3>
+          <ul>
+            <li>4: 即戦力</li>
+            <li>3: 実務経験</li>
+            <li>2: 多少の実務あり</li>
+            <li>1: 教育的、知識</li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex-wrap">
+        <div v-for="value in myPersonality" :key="value.title" class="graph-wrap">
+          <h3>{{ value.title }}</h3>
+          <apexchart 
+            width="500"
             type="radar"
             :options="returnChartOptions(value)"
             :series="value.data"
@@ -308,8 +340,8 @@ const returnChartOptions = (val) => {
       }
       .books {
         display: grid;
-        grid-template-columns: repeat(4, 1fr); /* ← 4カラム */
-        gap: 5.5rem;
+        grid-template-columns: repeat(auto-fill, 25rem); /* ← 4カラム */
+        gap: 3rem;
         justify-content: center;
         justify-items: center;
         margin: auto 5rem;
@@ -354,6 +386,7 @@ const returnChartOptions = (val) => {
       }
     }
     &.my-skill-tree {
+      align-content: center;
       h2 {
         font-size: 4.8rem;
       }
@@ -363,6 +396,15 @@ const returnChartOptions = (val) => {
         justify-content: center;
         .graph-wrap {
           width: fit-content;
+          > h3 {
+            font-size: 2.4rem;
+          }
+        }
+        .description-wrap {
+          align-content: center;
+          padding: 0 1.5rem;
+          font-size: 2rem;
+          background-color: $background-gray;
           > h3 {
             font-size: 2.4rem;
           }

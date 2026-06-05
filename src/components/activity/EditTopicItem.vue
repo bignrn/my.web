@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, defineEmits, ref, toRefs } from 'vue';
+import { defineEmits, ref, toRefs } from 'vue';
 import ButtonCommon from '../all/common/ButtonCommon.vue';
 
 const props = defineProps({
