@@ -99,6 +99,34 @@ const chartOptions = {
       size: 100,
     }
   },
+  responsive: [
+    {
+      breakpoint: 600,
+      options: {
+        yaxis: {
+          labels: {
+            style: {
+              fontSize: '1rem',
+              fontWeight: 400
+            }
+          }
+        },
+        xaxis: {
+          labels: {
+            style: {
+              fontSize: '1.1rem',
+              fontWeight: 500
+            }
+          }
+        },
+        plotOptions: {
+          radar: {
+            size: 72,
+          }
+        },
+      }
+    }
+  ],
 };
 
 const lv1 = "images/profile/lv1.svg";
@@ -239,7 +267,7 @@ const returnChartOptions = (val) => {
         >
           <h3>{{ value.title }}</h3>
           <apexchart 
-            width="500"
+            width="100%"
             type="radar"
             :options="returnChartOptions(value)"
             :series="value.data"
@@ -263,7 +291,7 @@ const returnChartOptions = (val) => {
         >
           <h3>{{ value.title }}</h3>
           <apexchart 
-            width="500"
+            width="100%"
             type="radar"
             :options="returnChartOptions(value)"
             :series="value.data"
@@ -278,6 +306,7 @@ const returnChartOptions = (val) => {
 .portfolio-wrap {
   section {
     height: 100vh;
+    overflow: hidden;
     &.introduction-me {
       position: relative;
       background-image: url("/public/images/profile/bike.png");
@@ -447,7 +476,7 @@ const returnChartOptions = (val) => {
         flex-wrap: wrap;
         justify-content: center;
         .graph-wrap {
-          width: fit-content;
+          width: 50rem;
           > h3 {
             font-size: 2.4rem;
           }
@@ -459,6 +488,188 @@ const returnChartOptions = (val) => {
           background-color: $background-gray;
           > h3 {
             font-size: 2.4rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 130rem) {
+  .portfolio-wrap {
+    section {
+      height: auto;
+      min-height: 100svh;
+      overflow: hidden;
+      box-sizing: border-box;
+      &.introduction-me {
+        background-attachment: scroll;
+        .cover {
+          height: 100%;
+          min-height: 100svh;
+          &.orange {
+            clip-path: polygon(0 62%, 100% 42%, 100% 100%, 0 100%);
+          }
+        }
+        .z-index-top {
+          position: relative;
+          flex-direction: column;
+          justify-content: flex-end;
+          min-height: 100svh;
+          padding: 6rem 1.6rem 4rem;
+          box-sizing: border-box;
+          img.name {
+            width: min(78vw, 24rem);
+            margin-bottom: 1.5rem;
+          }
+          img.me {
+            width: min(82vw, 28rem);
+          }
+          .poem {
+            width: 100%;
+            margin-top: 2rem;
+            >p {
+              margin-bottom: 1rem;
+              font-size: 1.6rem;
+              line-height: 1.4;
+              text-align: center;
+            }
+          }
+        }
+      }
+      &.my-capabilities {
+        min-height: auto;
+        padding: 5rem 1.6rem;
+        .half-circle {
+          width: 8rem;
+          height: 4rem;
+        }
+        .pillar {
+          height: 100%;
+          width: 1.8rem;
+        }
+        .capabilities-wrap {
+          position: relative;
+          width: 100%;
+          max-width: 32rem;
+          padding-left: 3.2rem;
+          box-sizing: border-box;
+          li {
+            transform: none;
+            margin-bottom: 3rem;
+            font-size: 1.5rem;
+            text-align: start;
+            &:nth-child(2n) {
+              transform: none;
+            }
+            &:last-child {
+              margin-bottom: 0;
+            }
+            .year {
+              font-size: 2.6rem;
+            }
+            .photo {
+              max-width: 12rem;
+              max-height: 12rem;
+              margin: 0.8rem 0;
+            }
+            .title {
+              font-size: 1.6rem;
+              line-height: 1.35;
+              white-space: pre-line;
+              overflow-wrap: anywhere;
+            }
+            .period {
+              font-size: 1.2rem;
+              overflow-wrap: anywhere;
+            }
+          }
+        }
+      }
+      &.recommend-books {
+        padding: 4.5rem 1.2rem;
+        > h2 {
+          margin-bottom: 2rem;
+          font-size: 2.8rem;
+          line-height: 1.2;
+        }
+        .books {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 1.2rem;
+          margin: 0;
+          .book {
+            width: 100%;
+            padding: 1.2rem;
+            border-radius: 0.8rem;
+            box-sizing: border-box;
+            &.large {
+              display: grid;
+              grid-template-columns: 8.4rem minmax(0, 1fr);
+              width: 100%;
+              gap: 1.2rem;
+              .text-wrap {
+                min-width: 0;
+                margin-left: 0;
+                .title {
+                  font-size: 1.6rem;
+                  line-height: 1.3;
+                  overflow-wrap: anywhere;
+                }
+                .description {
+                  font-size: 1.2rem;
+                  line-height: 1.45;
+                  overflow-wrap: anywhere;
+                }
+              }
+            }
+          }
+        }
+        .top-2-wrap {
+          flex-direction: column;
+          gap: 1.2rem;
+          padding: 0;
+          margin-bottom: 1.6rem;
+          .book-img {
+            width: 8.4rem;
+          }
+        }
+        .some-wrap {
+          .book-img {
+            width: 100%;
+            max-width: 10rem;
+          }
+        }
+      }
+      &.my-skill-tree {
+        padding: 4.5rem 1.2rem;
+        h2 {
+          margin-bottom: 2rem;
+          font-size: 2.8rem;
+          line-height: 1.2;
+        }
+        .flex-wrap {
+          gap: 1.6rem;
+          .graph-wrap {
+            width: 100%;
+            max-width: 32rem;
+            overflow: hidden;
+            > h3 {
+              font-size: 1.8rem;
+            }
+            :deep(.apexcharts-canvas),
+            :deep(.apexcharts-svg) {
+              max-width: 100%;
+            }
+          }
+          .description-wrap {
+            width: 100%;
+            max-width: 32rem;
+            padding: 1.6rem;
+            font-size: 1.5rem;
+            box-sizing: border-box;
+            > h3 {
+              font-size: 1.8rem;
+            }
           }
         }
       }
