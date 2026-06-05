@@ -260,6 +260,15 @@ const returnChartOptions = (val) => {
     <section class="my-skill-tree">
       <h2>私 をグラフ化</h2>
       <div class="flex-wrap">
+        <div class="description-wrap">
+          <h3>表の読み方</h3>
+          <ul>
+            <li>4: 即戦力</li>
+            <li>3: 実務経験</li>
+            <li>2: 多少の実務あり</li>
+            <li>1: 教育的、知識</li>
+          </ul>
+        </div>
         <div
           v-for="value in mySkills"
           :key="value.title"
@@ -273,16 +282,8 @@ const returnChartOptions = (val) => {
             :series="value.data"
           />
         </div>
-        <div class="description-wrap">
-          <h3>表の読み方</h3>
-          <ul>
-            <li>4: 即戦力</li>
-            <li>3: 実務経験</li>
-            <li>2: 多少の実務あり</li>
-            <li>1: 教育的、知識</li>
-          </ul>
-        </div>
       </div>
+      <h2>性格診断</h2>
       <div class="flex-wrap">
         <div
           v-for="value in myPersonality"
@@ -514,7 +515,7 @@ const returnChartOptions = (val) => {
         .z-index-top {
           position: relative;
           flex-direction: column;
-          justify-content: flex-end;
+          justify-content: center;
           min-height: 100svh;
           padding: 6rem 1.6rem 4rem;
           box-sizing: border-box;
