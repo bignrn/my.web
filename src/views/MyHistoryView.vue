@@ -10,8 +10,8 @@ const mySkills = ref([
     data: [
       {
         name: 'Languages',
-        data: [4, 3, 3, 3, 2, 1, 3],
-        categories: ['Vue.js', 'JavaScript', 'HTML', 'CSS', 'Java', 'C', 'Python'],
+        data: [4, 3, 3, 3, 2, 3, 1, 1, 1],
+        categories: ['Vue.js', 'JavaScript', 'HTML', 'CSS', 'Java', 'Python', 'C', 'PHP', "Laravel"],
       },
     ]
   },
@@ -51,6 +51,30 @@ const myPersonality = ref([
         stepSize: 20,
         min: 0,
         max: 3,
+        tickAmount: 3,
+        labels: {
+          style: {
+            fontSize: '2rem',
+            fontWeight: 600
+          }
+        }
+      }
+    }
+  },
+  {
+    title: "MBTI診断(ENTJ-A:指揮官タイプ)",
+    data: [
+      {
+        name: '16Personalities',
+        data: [56, 97, 52, 89, 60],
+        categories: ['外向型', "直感型", "思考型", "計画型", "自己主張型"],
+      },
+    ],
+    setting: {
+      yaxis: {
+        stepSize: 25,
+        min: 0,
+        max: 100,
         tickAmount: 3,
         labels: {
           style: {
@@ -157,6 +181,7 @@ const returnChartOptions = (val) => {
 
 <template>
   <div class="portfolio-wrap">
+    <!-- 見出し -->
     <section class="introduction-me">
       <span class="cover white" />
       <span class="cover orange" />
@@ -178,6 +203,7 @@ const returnChartOptions = (val) => {
         </div>
       </div>
     </section>
+    <!-- 資格 -->
     <section class="my-capabilities">
       <span class="orange half-circle" />
       <span class="orange pillar" />
@@ -206,6 +232,7 @@ const returnChartOptions = (val) => {
         </li>
       </ul>
     </section>
+    <!-- 本棚 -->
     <section class="recommend-books">
       <h2>"ため"になった本棚</h2>
       <div class="top-2-wrap books">
@@ -257,6 +284,7 @@ const returnChartOptions = (val) => {
         </ul>
       </div>
     </section>
+    <!-- グラフ化 -->
     <section class="my-skill-tree">
       <h2>私 をグラフ化</h2>
       <div class="flex-wrap">
@@ -299,6 +327,42 @@ const returnChartOptions = (val) => {
           />
         </div>
       </div>
+      <!-- 略語 -->
+      <abbr class="outside">
+        <div>
+          <!-- FFS理論 x 宇宙兄弟 -->
+          <!-- https://www.ffs-uchukyodai.com/spacebr/top/ -->
+          <!-- https://www.ffs-uchukyodai.com/spacebr/member/_login.jsp?__afc=&ec=needLogin -->
+          <p>
+            FFS理論 x 宇宙兄弟
+            (
+              <a href="https://www.ffs-uchukyodai.com/spacebr/top/" target="_blank">
+                公式サイト
+              </a>
+            )
+          </p>
+          <a href="https://www.ffs-uchukyodai.com/spacebr/trial/trial_result_eddie.jsp" target="_blank">
+            [エディ・ジェイ]タイプ
+          </a>
+          <br />
+          
+        </div>
+        <div>
+          <!-- MBTI診断 -->
+          <!-- https://www.16personalities.com/ja/%E7%B5%90%E6%9E%9C/entj-a/m/3xkiizs77 -->
+          <p>
+            16Personalities
+            (
+              <a href="https://www.16personalities.com/ja" target="_blank">
+                公式サイト
+              </a>
+            )
+          </p>
+          <a href="https://www.16personalities.com/ja/プロフィール/c24467a4d634d" target="_blank">
+            指揮官タイプ（ENTJ-A）
+          </a>
+        </div>
+      </abbr>
     </section>
   </div>
 </template>
@@ -493,6 +557,19 @@ const returnChartOptions = (val) => {
         }
       }
     }
+    // 注釈
+    abbr {
+      &.outside {
+        > div {
+          margin-bottom: 1rem;
+        }
+        p,
+        a {
+          color: $black;
+          font-size: 2rem;
+        }
+      }
+    }
   }
 }
 
@@ -671,6 +748,15 @@ const returnChartOptions = (val) => {
             > h3 {
               font-size: 1.8rem;
             }
+          }
+        }
+      }
+      // 注釈
+      abbr {
+        &.outside {
+          p,
+          a {
+            font-size: 1.2rem;
           }
         }
       }
