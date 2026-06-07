@@ -3,8 +3,15 @@
 <template>
   <footer class="common-footer">
     <address>
-      <a href="https://github.com/bignrn" target="_blank" class="code-link">
-        <img src="images/all/address-github.svg" class="github-icon" />
+      <a
+        href="https://github.com/bignrn"
+        target="_blank"
+        class="code-link"
+      >
+        <img
+          src="images/all/address-github.svg"
+          class="github-icon"
+        >
         <span class="title">CODE公開</span>
       </a>
     </address>
@@ -12,9 +19,21 @@
     <small>
       <p class="title">画像著作</p>
       <ul class="small-ul-wrap">
-        <li>icon by <a target="_blank" href="https://icons8.com" class="web-link">Icons8</a></li>
-        <li>illustration by <a target="_blank" href="https://undraw.co/illustrations" class="web-link">unDraw</a></li>
-        <li>Favicon by <a target="_blank" href="http://flat-icon-design.com/" class="web-link">FLAT ICON</a></li>
+        <li>icon by <a
+          target="_blank"
+          href="https://icons8.com"
+          class="web-link"
+        >Icons8</a></li>
+        <li>illustration by <a
+          target="_blank"
+          href="https://undraw.co/illustrations"
+          class="web-link"
+        >unDraw</a></li>
+        <li>Favicon by <a
+          target="_blank"
+          href="http://flat-icon-design.com/"
+          class="web-link"
+        >FLAT ICON</a></li>
       </ul>
     </small>
   </footer>

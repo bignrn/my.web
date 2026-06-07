@@ -1,6 +1,4 @@
 <script setup>
-import { defineProps } from 'vue';
-
 defineProps({
   width: String,
   height: String,
@@ -12,7 +10,11 @@ defineProps({
 </script>
 
 <template>
-  <button class="common-button-wrap" :style="`width: ${width}; height: ${height};`" :class="[classType]">
+  <button
+    class="common-button-wrap"
+    :style="`width: ${width}; height: ${height};`"
+    :class="[classType]"
+  >
     <span class="button-text">
       <slot />
     </span>
