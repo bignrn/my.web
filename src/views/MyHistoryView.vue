@@ -350,6 +350,7 @@ const returnChartOptions = (val) => {
         </div>
         <!-- 略語 -->
         <abbr class="graph-wrap outside">
+          <h4>補足</h4>
           <div>
             <!-- FFS理論 x 宇宙兄弟 -->
             <!-- https://www.ffs-uchukyodai.com/spacebr/top/ -->
@@ -419,7 +420,12 @@ const returnChartOptions = (val) => {
         </li>
       </ul>
     </section>
-    <!-- なぜITの世界に -->
+    <!-- TODO なぜITの世界に -->
+    <address>
+      <h2>コンタクト</h2>
+      <p>e-mail: m.yuma.info@gmail.com</p>
+      <p>Instagram: @tp.my_q</p>
+    </address>
   </div>
 </template>
 
@@ -471,9 +477,9 @@ const returnChartOptions = (val) => {
         .poem {
           >p {
             margin-bottom: 1.3rem;
-            font-size: 2rem;
+            font-size: 3rem;
             font-weight: 900;
-            line-height: 2rem;
+            line-height: 3rem;
             text-align: start;
             color: $white;
           }
@@ -606,7 +612,6 @@ const returnChartOptions = (val) => {
           align-content: center;
           padding: 0 1.5rem;
           font-size: 2rem;
-          background-color: $background-gray;
           > h3 {
             font-size: 2.4rem;
           }
@@ -632,7 +637,6 @@ const returnChartOptions = (val) => {
         padding: 0;
         list-style: none;
         .hobby-card {
-          display: grid;
           grid-template-columns: 18rem minmax(0, 1fr);
           gap: 2rem;
           align-items: center;
@@ -644,6 +648,7 @@ const returnChartOptions = (val) => {
           box-sizing: border-box;
           .hobby-img {
             width: 100%;
+            height: 30rem;
             aspect-ratio: 1 / 1;
             object-fit: cover;
             border-radius: 0.6rem;
@@ -675,12 +680,38 @@ const returnChartOptions = (val) => {
         > div {
           margin-bottom: 1rem;
         }
+        h4,
         p,
         a {
           color: $black;
           font-size: 2rem;
         }
       }
+    }
+  }
+  // コンタクト
+  address {
+    align-content: center;
+    height: calc(100vh + 10rem);
+    > h2 {
+      font-size: 4.8rem;
+    }
+    > p {
+      font-size: 3rem;
+    }
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: calc(50% - 6rem);
+      left: 0;
+      width: 10rem;
+      height: 1rem;
+      background: $prof-theme-color;
+    }
+    &::after {
+      top: calc(50% - 4.5rem);
+      width: 4rem;
     }
   }
 }
@@ -871,13 +902,19 @@ const returnChartOptions = (val) => {
           line-height: 1.2;
         }
         .hobby-list {
-          grid-template-columns: minmax(0, 34rem);
+          grid-template-columns: minmax(0, 60rem);
           gap: 1.2rem;
           .hobby-card {
+            display: grid;
             grid-template-columns: 9.6rem minmax(0, 1fr);
             gap: 1.2rem;
+            max-width: 60rem;
+            width: 100%;
             min-height: 12rem;
             padding: 1.2rem;
+            .hobby-img {
+              height: 24rem;
+            }
             .hobby-text {
               > h3 {
                 margin-bottom: 0.6rem;
@@ -899,6 +936,16 @@ const returnChartOptions = (val) => {
             font-size: 1.2rem;
           }
         }
+      }
+    }
+    // コンタクト
+    address {
+      position: relative;
+      > h2 {
+        font-size: 2.8rem;
+      }
+      > p {
+        font-size: 2rem;
       }
     }
   }
