@@ -102,22 +102,48 @@ onUnmounted(() => {
 
 <template>
   <section class="activity-contents-wrap">
-    <h1 class="main-title">サイコロトーク</h1>
-    <p class="sub-title">-SAIKORO TALK-</p>
+    <h1 class="main-title">
+      サイコロトーク
+    </h1>
+    <p class="sub-title">
+      -SAIKORO TALK-
+    </p>
     <!-- DICE -->
     <div class="dice-area-wrap">
       <div>
-        <ButtonCommon @click="onClick" width="15rem" height="3rem" class="start-dice-btn">
+        <ButtonCommon
+          width="15rem"
+          height="3rem"
+          class="start-dice-btn"
+          @click="onClick"
+        >
           {{ btnMessage }}
         </ButtonCommon>
       </div>
-      <p class="topic-title-label">TOPIC</p>
-      <p v-if="topicList.length > 0" class="topic-title">「{{ topicList[topicIndex]?.title }}」</p>
-      <div v-else class="empty-list-wrap">
-        <p class="topic-title">リストがありません</p>
-        <p class="empty-message-text">※追加するには下部にあるボタンから</p>
+      <p class="topic-title-label">
+        TOPIC
+      </p>
+      <p
+        v-if="topicList.length > 0"
+        class="topic-title"
+      >
+        「{{ topicList[topicIndex]?.title }}」
+      </p>
+      <div
+        v-else
+        class="empty-list-wrap"
+      >
+        <p class="topic-title">
+          リストがありません
+        </p>
+        <p class="empty-message-text">
+          ※追加するには下部にあるボタンから
+        </p>
       </div>
-      <img :src="dices[diceIndex]" class="dice-img" />
+      <img
+        :src="dices[diceIndex]"
+        class="dice-img"
+      >
     </div>
     <!-- 使い方 -->
     <div class="activity-list-wrap">
@@ -144,28 +170,64 @@ onUnmounted(() => {
       <h2>トピックリスト</h2>
       <div class="list-wrap register-list-wrap">
         <ul v-if="topicList.length > 0">
-          <li v-for="(list, i) of topicList" :key="list">
-            <div v-show="isOpenEdit !== list.id" class="registered-list">
-              <div class="registered-list-id">{{ i + 1 }}：</div>
-              <div class="registered-list-title">{{ list.title }}</div>
-              <button @click="openEditBtn(list.id)" class="edit-btn">編集</button>
+          <li
+            v-for="(list, i) of topicList"
+            :key="list"
+          >
+            <div
+              v-show="isOpenEdit !== list.id"
+              class="registered-list"
+            >
+              <div class="registered-list-id">
+                {{ i + 1 }}：
+              </div>
+              <div class="registered-list-title">
+                {{ list.title }}
+              </div>
+              <button
+                class="edit-btn"
+                @click="openEditBtn(list.id)"
+              >
+                編集
+              </button>
             </div>
-            <EditTopicItem v-if="isOpenEdit === list.id" :dispId="(i + 1).toString()" :id="list.id" :topic="list.title"
-              isDeleteBtn @saveBtn="executeSave($event, i)" @cancelBtn="closeEditStatus"
-              @deleteBtn="deleteListBtn(i)" />
+            <EditTopicItem
+              v-if="isOpenEdit === list.id"
+              :id="list.id"
+              :disp-id="(i + 1).toString()"
+              :topic="list.title"
+              is-delete-btn
+              @saveBtn="executeSave($event, i)"
+              @cancelBtn="closeEditStatus"
+              @deleteBtn="deleteListBtn(i)"
+            />
           </li>
         </ul>
-        <div v-else class="empty-list-wrap register-section">
+        <div
+          v-else
+          class="empty-list-wrap register-section"
+        >
           <span class="empty-message-text">リストを作ってサイコロを振ろう！</span>
         </div>
-        <button v-show="isOpenEdit !== returnNextListLength" @click="openEditBtn(returnNextListLength)"
-          class="list-add-btn-wrap">
-          <img src="images/activity/diceTopic/icons8-add-64.png" class="add-img-icon" />
+        <button
+          v-show="isOpenEdit !== returnNextListLength"
+          class="list-add-btn-wrap"
+          @click="openEditBtn(returnNextListLength)"
+        >
+          <img
+            src="images/activity/diceTopic/icons8-add-64.png"
+            class="add-img-icon"
+          >
           <p>項目を追加する</p>
         </button>
-        <EditTopicItem v-if="isOpenEdit === returnNextListLength" :dispId="(topicList.length + 1).toString()"
-          :id="returnNextListLength" topic="" @saveBtn="executeSave($event, returnNextListLength)"
-          @cancelBtn="closeEditStatus" />
+        <EditTopicItem
+          v-if="isOpenEdit === returnNextListLength"
+          :id="returnNextListLength"
+          :disp-id="(topicList.length + 1).toString()"
+          topic=""
+          @saveBtn="executeSave($event, returnNextListLength)"
+          @cancelBtn="closeEditStatus"
+        />
       </div>
     </div>
   </section>

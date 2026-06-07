@@ -17,10 +17,16 @@ const isProfile = computed(() => {
 </script>
 
 <template>
-  <header class="common-header" :class="{ 'isProfile': isProfile }">
-    <NavMenu :status="menuFlg" @close="(e) => { menuFlg = e }" />
+  <header
+    class="common-header"
+    :class="{ 'isProfile': isProfile }"
+  >
+    <NavMenu
+      :status="menuFlg"
+      @close="(e) => { menuFlg = e }"
+    />
     <a @click="clickFunction">
-      <img src="images/all/icon-menu.svg" />
+      <img src="images/all/icon-menu.svg">
     </a>
   </header>
 </template>
@@ -29,6 +35,7 @@ const isProfile = computed(() => {
 .common-header {
   position: fixed;
   top: 0;
+  z-index: 2000;
   display: flex;
   align-items: center;
   width: 100%;
