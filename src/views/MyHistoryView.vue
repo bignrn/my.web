@@ -171,6 +171,28 @@ const books = [
   "images/profile/designSystem.png",
   "images/profile/objectOriented UI.png",
 ];
+const hobbies = [
+  {
+    img: "images/profile/tp-bg-img.jpg",
+    title: "トランペット",
+    description: "小学4年生から今日まで、続けている趣味です。トランペットは、私を自由に表現する事が出来る方法だと思っています。\n今では、母校に赴いて外部トランペット講師のお手伝いとして、地域貢献をしています。",
+  },
+  {
+    img: "images/profile/bike.png",
+    title: "バイク",
+    description: "景色や空気の変化を感じながら走る事が一種のリフレッシュの時間になっています。\nバイクは、中学生のころから憧れを持っており、その夢を叶える事が出来ました。",
+  },
+  {
+    img: "images/profile/undraw_programmer_re_owql.svg",
+    title: "個人開発",
+    description: "お客様の周りを良くする前に、自分の身の回りから良くして行かないと、良い物を提供出来ないと思っています。\nまた、単純に開発する事が好きなので遊びと、新しい技術の探求心でやっています。",
+  },
+  {
+    img: "images/detail/undraw_team_up_re_84ok.svg",
+    title: "コミュニティ",
+    description: "IT業界の技術革新の発展は常に早いです。その中で、エンジニア同士の交流とは新しい視点や知識を取り入れる大事なひと時になります。\nそういう意味で、気になったものには積極的に参加しています。",
+  },
+];
 
 const returnChartOptions = (val) => {
   const tempChartOption = JSON.parse(JSON.stringify(chartOptions));
@@ -326,44 +348,78 @@ const returnChartOptions = (val) => {
             :series="value.data"
           />
         </div>
+        <!-- 略語 -->
+        <abbr class="graph-wrap outside">
+          <div>
+            <!-- FFS理論 x 宇宙兄弟 -->
+            <!-- https://www.ffs-uchukyodai.com/spacebr/top/ -->
+            <!-- https://www.ffs-uchukyodai.com/spacebr/member/_login.jsp?__afc=&ec=needLogin -->
+            <p>
+              FFS理論 x 宇宙兄弟
+              (
+              <a
+                href="https://www.ffs-uchukyodai.com/spacebr/top/"
+                target="_blank"
+              >
+                公式サイト
+              </a>
+              )
+            </p>
+            <a
+              href="https://www.ffs-uchukyodai.com/spacebr/trial/trial_result_eddie.jsp"
+              target="_blank"
+            >
+              [エディ・ジェイ]タイプ
+            </a>
+            <br>
+            
+          </div>
+          <div>
+            <!-- MBTI診断 -->
+            <!-- https://www.16personalities.com/ja/%E7%B5%90%E6%9E%9C/entj-a/m/3xkiizs77 -->
+            <p>
+              16Personalities
+              (
+              <a
+                href="https://www.16personalities.com/ja"
+                target="_blank"
+              >
+                公式サイト
+              </a>
+              )
+            </p>
+            <a
+              href="https://www.16personalities.com/ja/プロフィール/c24467a4d634d"
+              target="_blank"
+            >
+              指揮官タイプ（ENTJ-A）
+            </a>
+          </div>
+        </abbr>
       </div>
-      <!-- 略語 -->
-      <abbr class="outside">
-        <div>
-          <!-- FFS理論 x 宇宙兄弟 -->
-          <!-- https://www.ffs-uchukyodai.com/spacebr/top/ -->
-          <!-- https://www.ffs-uchukyodai.com/spacebr/member/_login.jsp?__afc=&ec=needLogin -->
-          <p>
-            FFS理論 x 宇宙兄弟
-            (
-              <a href="https://www.ffs-uchukyodai.com/spacebr/top/" target="_blank">
-                公式サイト
-              </a>
-            )
-          </p>
-          <a href="https://www.ffs-uchukyodai.com/spacebr/trial/trial_result_eddie.jsp" target="_blank">
-            [エディ・ジェイ]タイプ
-          </a>
-          <br />
-          
-        </div>
-        <div>
-          <!-- MBTI診断 -->
-          <!-- https://www.16personalities.com/ja/%E7%B5%90%E6%9E%9C/entj-a/m/3xkiizs77 -->
-          <p>
-            16Personalities
-            (
-              <a href="https://www.16personalities.com/ja" target="_blank">
-                公式サイト
-              </a>
-            )
-          </p>
-          <a href="https://www.16personalities.com/ja/プロフィール/c24467a4d634d" target="_blank">
-            指揮官タイプ（ENTJ-A）
-          </a>
-        </div>
-      </abbr>
     </section>
+    <!-- 趣味 -->
+    <section class="my-hobby">
+      <h2>趣味</h2>
+      <ul class="hobby-list">
+        <li
+          v-for="hobby in hobbies"
+          :key="hobby.title"
+          class="hobby-card"
+        >
+          <img
+            :src="hobby.img"
+            :alt="hobby.title"
+            class="hobby-img"
+          >
+          <div class="hobby-text">
+            <h3>{{ hobby.title }}</h3>
+            <p>{{ hobby.description }}</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- なぜITの世界に -->
   </div>
 </template>
 
@@ -557,9 +613,65 @@ const returnChartOptions = (val) => {
         }
       }
     }
+    &.my-hobby {
+      align-content: center;
+      padding: 5rem;
+      box-sizing: border-box;
+      background-color: rgba($theme-color, 0.8);
+      > h2 {
+        margin: 0;
+        margin-bottom: 2rem;
+        font-size: 4.8rem;
+      }
+      .hobby-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 52rem));
+        gap: 2.4rem;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        .hobby-card {
+          display: grid;
+          grid-template-columns: 18rem minmax(0, 1fr);
+          gap: 2rem;
+          align-items: center;
+          min-height: 20rem;
+          padding: 2rem;
+          text-align: start;
+          background-color: $white;
+          border-radius: 0.8rem;
+          box-sizing: border-box;
+          .hobby-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 0.6rem;
+            background-color: $background-gray;
+          }
+          .hobby-text {
+            white-space: break-spaces;
+            min-width: 0;
+            > h3 {
+              margin: 0 0 1rem;
+              font-size: 2.4rem;
+              line-height: 1.3;
+              overflow-wrap: anywhere;
+            }
+            > p {
+              margin: 0;
+              font-size: 1.6rem;
+              line-height: 1.7;
+              overflow-wrap: anywhere;
+            }
+          }
+        }
+      }
+    }
     // 注釈
     abbr {
       &.outside {
+        align-content: center;
         > div {
           margin-bottom: 1rem;
         }
@@ -729,7 +841,7 @@ const returnChartOptions = (val) => {
           gap: 1.6rem;
           .graph-wrap {
             width: 100%;
-            max-width: 32rem;
+            max-width: 40rem;
             overflow: hidden;
             > h3 {
               font-size: 1.8rem;
@@ -747,6 +859,34 @@ const returnChartOptions = (val) => {
             box-sizing: border-box;
             > h3 {
               font-size: 1.8rem;
+            }
+          }
+        }
+      }
+      &.my-hobby {
+        padding: 4.5rem 1.2rem;
+        > h2 {
+          margin-bottom: 2rem;
+          font-size: 2.8rem;
+          line-height: 1.2;
+        }
+        .hobby-list {
+          grid-template-columns: minmax(0, 34rem);
+          gap: 1.2rem;
+          .hobby-card {
+            grid-template-columns: 9.6rem minmax(0, 1fr);
+            gap: 1.2rem;
+            min-height: 12rem;
+            padding: 1.2rem;
+            .hobby-text {
+              > h3 {
+                margin-bottom: 0.6rem;
+                font-size: 1.6rem;
+              }
+              > p {
+                font-size: 1.2rem;
+                line-height: 1.45;
+              }
             }
           }
         }
