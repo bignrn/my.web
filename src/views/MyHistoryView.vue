@@ -691,6 +691,7 @@ const returnChartOptions = (val) => {
   }
   // コンタクト
   address {
+    position: relative;
     align-content: center;
     height: calc(100vh + 10rem);
     > h2 {
@@ -940,7 +941,6 @@ const returnChartOptions = (val) => {
     }
     // コンタクト
     address {
-      position: relative;
       > h2 {
         font-size: 2.8rem;
       }
