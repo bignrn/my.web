@@ -10,8 +10,8 @@ const mySkills = ref([
     data: [
       {
         name: 'Languages',
-        data: [4, 3, 3, 3, 2, 3, 1, 1, 1],
-        categories: ['Vue.js', 'JavaScript', 'HTML', 'CSS', 'Java', 'Python', 'C', 'PHP', "Laravel"],
+        data: [3, 3, 3, 3, 1, 1, 1, 2, 3, 1],
+        categories: ['Vue.js', 'JavaScript', 'HTML', 'CSS', 'PHP', "Laravel", "React.ts", 'Java', 'Python', 'C'],
       },
     ]
   },
@@ -20,7 +20,7 @@ const mySkills = ref([
     data: [
       {
         name: 'DataBases',
-        data: [4, 1, 2],
+        data: [3, 1, 2],
         categories: ['Firebase', "MySQL", "PostgreSQL"],
       },
     ]
@@ -30,7 +30,7 @@ const mySkills = ref([
     data: [
       {
         name: 'server',
-        data: [1, 3, 1],
+        data: [2, 3, 1],
         categories: ['Linux', "GCP", "AWS"],
       },
     ]
@@ -100,8 +100,8 @@ const chartOptions = {
   yaxis: {
     stepSize: 20,
     min: 0,
-    max: 4,
-    tickAmount: 4,
+    max: 3,
+    tickAmount: 3,
     labels: {
       style: {
         fontSize: '1.6rem',
@@ -313,10 +313,9 @@ const returnChartOptions = (val) => {
         <div class="description-wrap">
           <h3>表の読み方</h3>
           <ul>
-            <li>4: 即戦力</li>
-            <li>3: 実務経験</li>
-            <li>2: 多少の実務あり</li>
-            <li>1: 教育的、知識</li>
+            <li>3: 即戦力！(実務経験)</li>
+            <li>2: 実務経験</li>
+            <li>1: 教育的、または自己学習</li>
           </ul>
         </div>
         <div
@@ -425,6 +424,16 @@ const returnChartOptions = (val) => {
       <h2>コンタクト</h2>
       <p>e-mail: m.yuma.info@gmail.com</p>
       <p>Instagram: @tp.my_q</p>
+      <p>
+        <a target="_break" href="https://www.linkedin.com/in/yuma-mishima-651bb83aa?utm_source=share_via&utm_content=profile&utm_medium=member_ios">
+          LinkedIn
+        </a>
+      </p>
+      <p>
+        <a target="_break" href="https://youtrust.jp/users/2e0aa97a2c9ff1bbb43d39e0366299e4?youtrust_source=qr_share">
+          YOUTRUST
+        </a>
+      </p>
     </address>
   </div>
 </template>
